@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<title>新闻资讯管理平台</title>
+	<!-- 引入jQuery -->
+	<script src="../common/jquery/jquery-3.4.1.min.js"></script>
+	<!-- 引入highcharts -->
+	<script src="../common/highcharts/highcharts.js"></script>
+	<!-- 引入BootStrap -->
+	<link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css">
+	<script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+	<!-- 引入font-awesome 字体图标 -->
+	<link rel="stylesheet" href="../bootstrap-3.3.7/css/animate.min.css">
+	<link rel="stylesheet" href="../common/css/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../bootstrap-3.3.7/css/style.min.css">
+
+	<!-- 引入bootstrap-table 插件-->
+	<link rel="stylesheet" href="../bootstrap-3.3.7/css/plugins/bootstrap-table/bootstrap-table.min.css">
+	<link rel="stylesheet" href="../bootstrap-3.3.7/js/plugins/bootstrap-select/bootstrap-select.min.css"></script>
+	<script src="../bootstrap-3.3.7/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+	<script src="../bootstrap-3.3.7/js/plugins/bootstrap-select/bootstrap-select.js"></script>
+	<script src="../bootstrap-3.3.7/js/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="../bootstrap-3.3.7/js/plugins/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
+
+	<!-- 引入bootstrap-validator 插件-->
+	<link rel="stylesheet" href="../bootstrap-3.3.7/css/plugins/bootstrapValidator/bootstrapValidator.min.css">
+	<script src="../bootstrap-3.3.7/js/plugins/bootstrapValidator/bootstrapValidator.min.js"></script>
+
+	<!-- 引入bootstrap-switch插件 -->
+	<link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap-switch.min.css">
+	<script src="../bootstrap-3.3.7/js/bootstrap-switch.min.js"></script>
+
+	<!-- 引入封装的ajax -->
+	<script src="../common/js/ajax.js"></script>
+
+	<!--引入当前模块-->
+	<link rel="stylesheet" href="./index.css">
+	<script src="./index.js"></script>
+</head>
+<body>
+	<header>
+		<div class="head-left">
+			<img src="../common/images/head-logo.jpg" alt="">
+			<span>新闻资讯管理平台</span>
+		</div>
+		<div class="head-right">
+			<div class="hr-bell">
+				<i class="fa fa-bell-o" aria-hidden="true">
+					<span class="badge">4</span>
+				</i>
+				<span>消息</span>
+			</div>
+			<div class="hr-user">
+				<i class="fa fa-user-o" aria-hidden="true"></i>
+				<span>admin</span>
+			</div>
+			<div class="hr-exit">
+				<i class="fa fa-sign-out" aria-hidden="true"></i>
+				<span>退出</span>
+			</div>
+		</div>
+	</header>
+	<div class="kd-body">
+		<nav>
+			<ul>
+				<li>
+					<i class="fa fa-home" aria-hidden="true"></i>
+					<span class="fir">首页</span>
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</li>
+				<li>
+					<i class="fa fa-bars" aria-hidden="true"></i>
+					<span>分类管理</span>
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</li>
+				<li>
+					<i class="fa fa-book" aria-hidden="true"></i>
+					<span>资讯管理</span>
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</li>
+				<li>
+					<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+					<span>用户管理</span>
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</li>
+			</ul>
+		</nav>
+		<div class="content" id="content"></div>
+	</div>
+</body>
+</html>

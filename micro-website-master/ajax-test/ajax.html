@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    </head>
+
+    <body>
+        <div id="id">
+           
+        </div>
+    </body>
+    <script type="text/javascript" src="../common/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+	//一.设置默认参数
+ //公用接口调用
+
+function sysAjax(opts) {
+
+    //一.设置默认参数
+    var defaults = {
+        method: 'POST',
+        url: '',
+        dataType: 'json',
+        data: '',
+        async: true,
+        cache: false,
+        processData: true,
+        contentType: 'application/json; charset=utf-8',
+        success: function () {
+        },
+        error: function () {
+        }
+    };
+
+
+    //二.用户参数覆盖默认参数
+    for (var key in opts) {
+        defaults[key] = opts[key];
+    }
+    // console.log("请求相关参数：");
+    // console.log(defaults)
+    $.ajax({
+        type: defaults.method,
+        url: defaults.url,
+        dataType: defaults.dataType,
+        contentType: defaults.contentType,
+        data: defaults.data,
+        async: defaults.async,
+        processData: defaults.processData,
+        beforeSend: function (xhr) {
+            //设置请求头
+            //xhr.setRequestHeader("User-Agent", "headertest");
+            //console.log(JSON.stringify(sysComm));
+            //xhr.setRequestHeader("x-auth-token","1212121");
+            
+        },
+        success: function (res, status, xhr) {
+			defaults.success(res, status, xhr);
+            
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            if (textStatus == "timeout") {
+                //alert('请求超时，请重试');
+            } else {
+                //alert("请求报错")
+                console.log(errorThrown);
+            }
+
+        }
+    });
+};
+
+
+
+var req = {
+			  "pageReq": {
+				"pageNum": 1,
+				"pageSize": 10
+			}};
+var opt = {
+        method: 'post',
+        url: "http://182.92.118.137:8088/user/queryUserInfoForPage",
+        data: JSON.stringify(req),
+        contentType: 'application/json; charset=utf-8',
+        crossDomain: true,
+        origin: 'http://182.92.118.137',
+        success: function (res) {
+		
+            if (res.code == '8888') {
+				$("#id").text(JSON.stringify(res));
+                 console.log(res)
+            } else {
+                 console.log(res)
+            }
+        }
+    }
+    sysAjax(opt);
+	
+        
+    </script>   
+</html>
