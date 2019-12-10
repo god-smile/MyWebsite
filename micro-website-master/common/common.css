@@ -18,6 +18,10 @@
 	float: left;
 	font-size: 18px;
 }
+.head-right>div{
+	float: left;
+    width: 48px;
+}
 .head-left img{
 	width: 35px;
 	height:35px;
@@ -36,7 +40,7 @@
 	height:15px;
 	background-color: #D4282D;
 	position: absolute;
-	left: -5px;
+	left: 35px;
 	top:12px;
 	padding: 0;
 	padding-top: 2px;
@@ -187,7 +191,7 @@ nav .fir{
 .page ul{
 	margin:0;
 }
-/*资讯管理*/
+/*新闻管理*/
 .info-action{
 	margin-bottom: 10px;
 }
