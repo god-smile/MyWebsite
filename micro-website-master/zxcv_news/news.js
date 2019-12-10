@@ -25,16 +25,17 @@ var state = {
 };
 //追加模态框处所属栏目的option节点
 function addOptionDOM() {
-    var optionStr = `<option value="">请选择</option>`;
+    var optionStr = '<option value="">请选择</option>';
     state.category.forEach(function(item) {
-        optionStr += `<option value="` + item.id + `">` + item.name + `</option>`;
+        optionStr += '<option value="' + item.id + '">' + item.name + '</option>';
     });
     $('#category').html(optionStr);
 }
-//新增事件绑定
-$('.add-btn').click(function(event) {
+
+//新增新闻
+function addNews() {
     //设置模态框标题
-    $('.modal-title').text('发布资讯');
+    $('.modal-title').text('发布新闻');
     //选中select
     $('#category').selectpicker();
     $('#category').selectpicker('val','1');
@@ -42,16 +43,18 @@ $('.add-btn').click(function(event) {
     // 清空表单数据，显示模态框
     $('.modal [type=text]').val('');
     $('input[type=radio]:checked').prop('checked', false);
+
     //模态框中的select的值为.myselect的值
     $('#category').val($('.myselect').val());
     //加载编辑正文
     fun.addTextFun();
     $('#add-update-modal').modal('show');
-});
+}
+
 //修改事件绑定
 $('tbody').on('click', '[title=编辑]', function() {
     //设置模态框标题
-    $('.modal-title').text( '编辑资讯');
+    $('.modal-title').text( '编辑新闻');
     addOptionDOM();
     //获取当前点击的元素的id
     var id = $(this).attr('data_id');
@@ -75,11 +78,11 @@ function addCategory() {
         state.category = res.data;
         var option = '';
         state.category.forEach(function(item) {
-            option += `<option value="` + item.id + `">` + item.name + `</option>`;
+            option += '<option value="' + item.id + '">' + item.name + '</option>';
         });
         $('.myselect').html(option);
         state.currentCId = res.data[0].id;
-        //加载当前select中对应的资讯信息,也是第一个
+        //加载当前select中对应的新闻信息,也是第一个
         findArticle(state.currentCId);
     }, function(error) {
         console.log(error);
@@ -101,7 +104,7 @@ var fun = {
     },
     /** 加载数据 */
     loadData:function () {
-        //生成新闻资讯
+        //生成新闻新闻
         $('#infoTable').bootstrapTable({
             method: 'post',
             // contentType: "application/x-www-form-urlencoded",
@@ -319,7 +322,7 @@ $('#search_btn').click(function(event) {
 documentBindFunc.on('click', '.detail_news', function () {
     debugger;
 // $('.detail_news').click(function(event) {
-    $(".modal-title").text("资讯详情");
+    $(".modal-title").text("新闻详情");
     $('#detail_content').empty();
 
     var id = $(this).data('id');

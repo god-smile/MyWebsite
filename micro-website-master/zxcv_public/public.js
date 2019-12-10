@@ -44,4 +44,11 @@ document.write('' +
     '<script src="../bootstrap-3.3.7/js/bootstrap-switch.min.js"></script>\n' +
     '');
 
+document.write('' +
+    '<!-- 引入bootstrap-select插件 -->\n' +
+    '<link rel="stylesheet" href="../bootstrap-3.3.7/js/plugins/bootstrap-select/bootstrap-select.min.css">\n' +
+    '<script src="../bootstrap-3.3.7/js/plugins/bootstrap-select/bootstrap-select.js"></script>\n' +
+    '<script src="../bootstrap-3.3.7/js/plugins/bootstrap-select/bootstrap-select.min.js"></script>\n' +
+    '');
+
 document.write('<!-----------  公共js和css end----------->');
