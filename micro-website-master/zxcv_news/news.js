@@ -1,3 +1,8 @@
+
+$(function () {
+    fun.init();
+});
+
 //需要用到的数据
 var state = {
     //当前页数
@@ -32,7 +37,7 @@ function addOptionDOM() {
     $('#category').html(optionStr);
 }
 
-//新增新闻
+// 新增新闻
 function addNews() {
     //设置模态框标题
     $('.modal-title').text('发布新闻');
@@ -49,6 +54,35 @@ function addNews() {
     //加载编辑正文
     fun.addTextFun();
     $('#add-update-modal').modal('show');
+}
+// 显示新闻详情
+function showNews(newsId, newsNo) {
+    $(".modal-title").text("新闻详情");
+    $('#detail_content').empty();
+
+    var id = newsId;
+    var newsNo = newsNo;
+    //设置请求参数
+    var req = {
+        newsNo: newsNo,
+        id: id
+    };
+    var opt = {
+        method: 'post',
+        url: dataUrl.util.selectNewsInfo(),
+        data: JSON.stringify(req),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (res) {
+            if (res.code == '8888') {
+                $('#detail_no').val(res.data.newsNo);
+                $('#detail_title').val(res.data.title);
+                $('#detail_content').append(res.data.content);
+                $('#detail_modal').modal('show');
+            }
+        }
+    };
+    getAjax(opt);
 }
 
 //修改事件绑定
@@ -74,7 +108,7 @@ $('tbody').on('click', '[title=编辑]', function() {
 
 //获取所有新闻类型，追加节点到select中
 function addCategory() {
-    getAjax('/newsInfo/queryNewsInfoForPage', 'post', null, function(res) {
+    getAjax('/newsInfo/querySiteNewsInfoForPage', 'post', null, function(res) {
         state.category = res.data;
         var option = '';
         state.category.forEach(function(item) {
@@ -105,12 +139,13 @@ var fun = {
     /** 加载数据 */
     loadData:function () {
         //生成新闻新闻
-        $('#infoTable').bootstrapTable({
+        $('#newsTable').bootstrapTable({
             method: 'post',
             // contentType: "application/x-www-form-urlencoded",
             // contentType: "application/json; charset=utf-8",
             // url:"/user/queryUserInfoForPage",
             height:tableHeight(),//高度调整
+            width: tableWidth(),
             striped: true, //是否显示行间隔色
             rownumbers:true,
             // dataField: "res",
@@ -123,27 +158,32 @@ var fun = {
             sidePagination:'server',
             pageSize:10,//单页记录数
             pageList:[5,10,20,30],//分页步进值
-            showRefresh:true,//刷新按钮
-            showColumns:true,
+            showRefresh:false,//刷新按钮
+            showColumns:false,//选择列
             clickToSelect: true,//是否启用点击选中行
-            toolbarAlign:'right',
-            buttonsAlign:'right',//按钮对齐方式
+            toolbarAlign:'left',
+            buttonsAlign:'left',//按钮对齐方式
             toolbar:'#toolbar',//指定工作栏
             ajax: tableLoadRequest,//自定义ajax加载数据
             columns:[
-                {title:'id',field:'id',visible:true},
-                {title:'标题',field:'title',sortable:true},
-                {title:'创建人',field:'createEmpName',sortable:true},
-                {title:'创建日期',field:'createTime',sortable:true},
-                {title:'修改日期',field:'modifyTime',sortable:true},
+                {title:'id',field:'id',visible:false},
+                {title:'标题',field:'title',sortable:true, width:200,formatter:fun.titleFormatter},
+                {title:'标题',field:'title',sortable:true, width:200},
+                {title:'创建日期',field:'createTime',sortable:true,formatter:commonObj.timeFormatter},
+                {title:'修改日期',field:'modifyTime',sortable:true,formatter:commonObj.timeFormatter},
                 {title:'操作',field:'',align:'center',formatter:fun.operateFormatter}
             ],
             locale:'zh-CN',//中文支持,
         });
     },
+    titleFormatter:function(value, row, index){
+        var html = "<a href='#' onclick='showNews(" + row.id + ", \"" + row.newsNo + "\")' >" + row.title + "</a> ";
+        return html;
+    },
     operateFormatter:function(value, row, index){
-        var html = "<span class='detail_news ' data-id='" + row.id + "' data-no='" + row.newsNo + "'  >查看</span> ";
-            html += "<span class='delete_news' data-id='" + row.id + "'data-no='" + row.newsNo + "' >删除</span> ";
+        var html = "<span class='detail_news ' data-id='" + row.id + "' data-no='" + row.newsNo + "' id='detail_news' >查看</span> ";
+            html += "&nbsp;&nbsp;&nbsp;";
+            html += "<span class='delete_news' data-id='" + row.id + "'data-no='" + row.newsNo + "' id='delete_news' >删除</span> ";
 
        return html;
     },
@@ -258,7 +298,7 @@ var fun = {
                 dataType: 'json',
                 success: function (res) {
                     if (res.code == '8888') {
-                        $("#infoTable").bootstrapTable('refresh');
+                        $("#newsTable").bootstrapTable('refresh');
                         $('#add-update-modal').modal('hide');
                     }
                 },
@@ -274,15 +314,12 @@ var fun = {
     },
 }
 
-
-
-fun.init();
-
-
 function tableHeight() {
     return $(window).height() - 140;
 }
-
+function tableWidth() {
+    return $(window).width() - 140;
+}
 /**
  * 自定义table AJAX请求
  * @param {Object} params
@@ -314,11 +351,12 @@ function tableLoadRequest(params) {
     getAjax(opt);
 }
 //查询按钮
-$('#search_btn').click(function(event) {
+function search() {
     fun.loadData();
-});
+}
 
 //查看
+/*
 documentBindFunc.on('click', '.detail_news', function () {
     debugger;
 // $('.detail_news').click(function(event) {
@@ -346,4 +384,4 @@ documentBindFunc.on('click', '.detail_news', function () {
         }
     };
     getAjax(opt);
-});
+});*/

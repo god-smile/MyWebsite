@@ -71,7 +71,7 @@ $('tbody').on('click', '[title=编辑]', function() {
 
 //获取所有新闻类型，追加节点到select中
 function addCategory() {
-    getAjax('/newsInfo/queryNewsInfoForPage', 'post', null, function(res) {
+    getAjax('/newsInfo/querySiteNewsInfoForPage', 'post', null, function(res) {
         state.category = res.data;
         var option = '';
         state.category.forEach(function(item) {

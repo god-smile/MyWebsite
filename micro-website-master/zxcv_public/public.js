@@ -9,6 +9,12 @@ document.write('' +
     '');
 
 document.write('' +
+    '<!-- 引入 工具js -->\n' +
+    '<script type="text/javascript" src="../util/DateUtils.js"></script>\n' +
+    '<script type="text/javascript" src="../util/util.js"></script>\n' +
+    '');
+
+document.write('' +
     '<link rel="stylesheet" href="../common/common.css">\n' +
     '');
 

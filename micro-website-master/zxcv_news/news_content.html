@@ -17,14 +17,14 @@
             </div>
 
             <div class="col-sm-2 pull-right">
-                <button class="btn btn-primary" id="search_btn">查询</button>
+                <button class="btn btn-primary" id="search_btn" onclick="search()">查询</button>
             </div>
 
         </div>
     </div>
     <div class="info-manage">
         <div class="info-action">
-            <button type="button" class="btn btn-success add-btn" id="news_add" onclick="addNews()">新增</button>
+            <button type="button" class="btn btn-success add-btn" id="add_news" onclick="addNews()">新增</button>
             <button type="button" class="btn btn-primary badelete-btn">批量删除</button>
         </div>
         <!-- 表格 -->
@@ -45,7 +45,7 @@
                 <!--<tbody></tbody>-->
             <!--</table>-->
         <!--</div>-->
-        <table id="infoTable" class="table table-hover"></table>
+        <table id="newsTable" class="table table-hover" style="width: 100%;overflow: hidden;"></table>
         <!-- 分页 -->
         <div class="page">
             <ul class="pagination"></ul>
@@ -102,21 +102,25 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
-                    <h4 class="modal-title">资讯详情</h4>
+                    <h4 class="modal-title">新闻详情</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="title" class="col-md-2 control-label"> 标题</label>
+                            <label for="title" class="col-md-2 control-label"> 新闻编号</label>
                             <div class="col-md-10">
-                                <input id="detail_title" type="text" class="form-control">
+                                <input id="detail_no" type="text" class="form-control" disabled="disabled">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-md-2 control-label"> 新闻标题</label>
+                            <div class="col-md-10">
+                                <input id="detail_title" type="text" class="form-control" disabled="disabled">
                             </div>
                         </div>
 
-
                         <div class="form-group">
                             <div id="detail_content">
-
                             </div>
                         </div>
                     </form>

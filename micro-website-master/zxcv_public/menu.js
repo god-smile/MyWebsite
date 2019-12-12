@@ -1,3 +1,23 @@
+
+$(function () {
+    var location = top.location.href;
+    console.log(location);
+
+    // index.html
+    var content = location.substring(location.lastIndexOf("/") + 1);
+    content = content.substr(0, content.indexOf(".html"));
+
+    console.log(content);
+
+    $("#" + content).css({
+        'backgroundColor':'#444',
+        'color':'#fff'
+    });
+
+});
+
+
+
 function clickMenu(target) {
     switch(target){
         case 'index':

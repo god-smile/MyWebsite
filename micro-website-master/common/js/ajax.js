@@ -7,19 +7,19 @@ var dataUrl = {};
 dataUrl.util = {
     //分页查询用户
     queryUserInfoForPage: function () {
-        return baseURL + '/user/queryUserInfoForPage';
+        return baseURL + '/sysUserInfo/querySysUserInfoForPage';
     },
     //分页查询新闻
     queryUserRechargeRefundForPage: function () {
-        return baseURL + '/newsInfo/queryNewsInfoForPage';
+        return baseURL + '/siteNewsInfo/querySiteNewsInfoForPage';
     },
     //新增新闻
     saveNewsInfo: function () {
-        return baseURL + '/newsInfo/saveNewsInfo';
+        return baseURL + '/siteNewsInfo/saveNewsInfo';
     },
     //查询新闻
     selectNewsInfo: function () {
-        return baseURL + '/newsInfo/selectNewsInfo';
+        return baseURL + '/siteNewsInfo/selectSiteNewsInfo';
     },
 }
 function getAjax(opts){
