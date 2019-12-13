@@ -5,23 +5,51 @@ var baseURL = 'http://localhost:8088';
 
 var dataUrl = {};
 dataUrl.util = {
-    //分页查询用户
-    queryUserInfoForPage: function () {
+    /******************************用户管理 start***********************/
+    // 分页查询用户
+    querySysUserInfoForPage: function () {
         return baseURL + '/sysUserInfo/querySysUserInfoForPage';
     },
-    //分页查询新闻
-    queryUserRechargeRefundForPage: function () {
+    // 新增用户
+    saveSysUserInfo: function () {
+        return baseURL + '/sysUserInfo/saveSysUserInfo';
+    },
+    // 查询用户
+    selectSysUserInfo: function () {
+        return baseURL + '/sysUserInfo/selectSysUserInfo';
+    },
+    // 修改用户
+    updateSysUserInfoById: function () {
+        return baseURL + '/sysUserInfo/updateSysUserInfoById';
+    },
+    // 删除用户
+    deleteSysUserInfo: function () {
+        return baseURL + '/sysUserInfo/deleteSysUserInfo';
+    },
+    /******************************用户管理 end***********************/
+    /******************************新闻管理 start***********************/
+    // 分页查询新闻
+    querySiteNewsInfoForPage: function () {
         return baseURL + '/siteNewsInfo/querySiteNewsInfoForPage';
     },
-    //新增新闻
+    // 新增新闻
     saveNewsInfo: function () {
         return baseURL + '/siteNewsInfo/saveNewsInfo';
     },
-    //查询新闻
-    selectNewsInfo: function () {
+    // 查询新闻
+    selectSiteNewsInfo: function () {
         return baseURL + '/siteNewsInfo/selectSiteNewsInfo';
     },
-}
+    // 修改新闻
+    updateSiteNewsInfoById: function () {
+        return baseURL + '/siteNewsInfo/updateSiteNewsInfoById';
+    },
+    // 删除新闻
+    deleteSiteNewsInfo: function () {
+        return baseURL + '/siteNewsInfo/deleteSiteNewsInfo';
+    },
+    /******************************新闻管理 end***********************/
+};
 function getAjax(opts){
     
     //一.设置默认参数

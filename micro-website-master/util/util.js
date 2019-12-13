@@ -236,7 +236,18 @@ var commonObj={
     },
     // 字符串转数字处理
 
-}
+
+    /**
+     * form 转 json
+     * //将从form中通过$('#form').serialize()获取的值转成json
+     */
+    formToJson: function (data) {
+        data=data.replace(/&/g,"\",\"");
+        data=data.replace(/=/g,"\":\"");
+        data="{\""+data+"\"}";
+        return data;
+    },
+};
 
 
 

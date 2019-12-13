@@ -106,7 +106,7 @@ var fun = {
             method: 'post',
             // contentType: "application/x-www-form-urlencoded",
             // contentType: "application/json; charset=utf-8",
-            // url:"/user/queryUserInfoForPage",
+            // url:"/user/querySysUserInfoForPage",
             height:tableHeight(),//高度调整
             striped: true, //是否显示行间隔色
             rownumbers:true,
@@ -298,7 +298,7 @@ function tableLoadRequest(params) {
     };
     var opt = {
         method: 'post',
-        url: dataUrl.util.queryUserRechargeRefundForPage(),
+        url: dataUrl.util.querySiteNewsInfoForPage(),
         data: JSON.stringify(req),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
@@ -331,7 +331,7 @@ documentBindFunc.on('click', '.detail_news', function () {
     };
     var opt = {
         method: 'post',
-        url: dataUrl.util.selectNewsInfo(),
+        url: dataUrl.util.selectSiteNewsInfo(),
         data: JSON.stringify(req),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
