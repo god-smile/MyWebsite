@@ -9,6 +9,11 @@ document.write('' +
     '');
 
 document.write('' +
+    '<!-- 引入封装的 errorAlert -->\n' +
+    '<script src="../common/js/alert.js"></script>\n' +
+    '');
+
+document.write('' +
     '<!-- 引入 工具js -->\n' +
     '<script type="text/javascript" src="../util/DateUtils.js"></script>\n' +
     '<script type="text/javascript" src="../util/util.js"></script>\n' +
@@ -57,4 +62,9 @@ document.write('' +
     '<script src="../bootstrap-3.3.7/js/plugins/bootstrap-select/bootstrap-select.min.js"></script>\n' +
     '');
 
+document.write('' +
+    '<!-- 引入 layui -->\n' +
+    '<link rel="stylesheet" href="../layui/css/layui.css">\n' +
+    '<script src="../layui/layui.js"></script>\n' +
+    '');
 document.write('<!-----------  公共js和css end----------->');

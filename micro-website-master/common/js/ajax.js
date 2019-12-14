@@ -65,6 +65,7 @@ function getAjax(opts){
         success: function () {
         },
         error: function () {
+            ErrorAlertManual("系统出错，请重试或联系管理员！");
         }
     };
     //二.用户参数覆盖默认参数
@@ -91,12 +92,13 @@ function getAjax(opts){
             
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            if (textStatus == "timeout") {
+            /*if (textStatus == "timeout") {
                 //alert('请求超时，请重试');
             } else {
                 //alert("请求报错")
                 console.log(errorThrown);
-            }
+            }*/
+            defaults.error();
 
         }
     });

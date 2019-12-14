@@ -152,7 +152,7 @@ layui.use('layer', function () {
                 })
         }
     })
-})
+});
 var fullscreen = function () {
     elem = document.body;
     if (elem.webkitRequestFullScreen) {
