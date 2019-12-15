@@ -139,7 +139,7 @@ var fun = {
     /** 加载数据 */
     loadData:function () {
         //生成新闻新闻
-        $('#newsTable').bootstrapTable({
+        $('#newsTable').bootstrapTable('destroy').bootstrapTable({
             method: 'post',
             // contentType: "application/x-www-form-urlencoded",
             // contentType: "application/json; charset=utf-8",

@@ -19,9 +19,7 @@ document.write('' +
     '<script type="text/javascript" src="../util/util.js"></script>\n' +
     '');
 
-document.write('' +
-    '<link rel="stylesheet" href="../common/common.css">\n' +
-    '');
+
 
 document.write('' +
     '<!-- 引入 bootstrap -->\n' +
@@ -34,6 +32,10 @@ document.write('' +
     '<link rel="stylesheet" href="../bootstrap-3.3.7/css/animate.min.css">\n' +
     '<link rel="stylesheet" href="../common/css/font-awesome-4.7.0/css/font-awesome.min.css">\n' +
     '<link rel="stylesheet" href="../bootstrap-3.3.7/css/style.min.css">\n' +
+    '');
+
+document.write('' +
+    '<link rel="stylesheet" href="../common/common.css">\n' +
     '');
 
 document.write('' +

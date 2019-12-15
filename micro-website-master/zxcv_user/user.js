@@ -1,8 +1,8 @@
 var userId;
 var userNo;
-var size = 10;
-var offset = 0;
-var index = 1;
+
+var fadeTime = 500;
+
 $(function () {
     //根据窗口调整表格高度
     $(window).resize(function () {
@@ -16,7 +16,7 @@ $(function () {
     loadData();
 
     // 渲染复选框
-    renderCheckBox();
+    // renderCheckBox();
 
     /**
      * 请求后台数据获取角色列表
@@ -265,10 +265,10 @@ $(function () {
 /** 加载数据 */
 function loadData() {
     //生成用户数据
-    $('#userTable').bootstrapTable({
+    $('#userTable').bootstrapTable('destroy').bootstrapTable({
         method: 'post',
-        height: tableHeight(),//高度调整
-        width: tableWidth(),//宽度调整
+        // height: tableHeight(),//高度调整
+        // width: tableWidth(),//宽度调整
         striped: true, //是否显示行间隔色
         rownumbers: true,
         // dataField: "res",
@@ -283,16 +283,16 @@ function loadData() {
         showRefresh: false,//刷新按钮
         showColumns: false,
         clickToSelect: false,//是否启用点击选中行
-        toolbarAlign: 'left',
-        buttonsAlign: 'left',//按钮对齐方式
+        toolbarAlign: 'right',
+        buttonsAlign: 'right',//按钮对齐方式
         toolbar: '#toolbar',//指定工作栏
         ajax: tableLoadRequest,//自定义ajax加载数据
         columns: [
-            {title: '全选', field: 'select', checkbox: true, width: 25, align: 'center', valign: 'middle'},
+            /*{title: '全选', field: 'select', checkbox: true, width: 25, align: 'center', valign: 'middle'},*/
             {title: 'id', field: 'id', visible: false},
             {title: '用户名', field: 'userName', sortable: true, formatter: userNameFormatter},
             {title: '姓名', field: 'realName', sortable: true},
-            {title: '邮箱', field: 'email'},
+            {title: '手机号', field: 'phoneNumber'},
             {title: '注册日期', field: 'createTime', sortable: true, formatter: commonObj.timeFormatter},
             {title: '修改日期', field: 'modifyTime', sortable: true, formatter: commonObj.timeFormatter},
             {title: '状态', field: 'dataState', align: 'center', formatter: stateFormatter},
@@ -331,17 +331,16 @@ function operateFormatter(value, row, index) {
 }
 //默认加载
 function tableLoadRequest(params) {
-    this.size = params.data.limit;
-    this.offset = params.data.offset;
-    this.index = params.data.pageNumber;
-    var ps = queryParams(params.data.limit, params.data.pageNumber);
+    var req = queryParams();
+    var data = JSON.parse(params.data);
     //设置请求参数
-    var pageNum = (params.data.offset / params.data.limit) + 1;
-    ps['pageNum'] = pageNum;
-    ps['pageSize'] = params.data.limit;
+    var pageNum = data.pageNumber;
+    var pageSize = data.limit;
+
     //条件查询
-    var req = {
-        baseRequest: ps
+    req.pageReq = {
+        pageNum: pageNum,
+        pageSize:pageSize
     };
     var userTableAjax = {
         method: params.type,
@@ -361,32 +360,28 @@ function tableLoadRequest(params) {
     getAjax(userTableAjax);
 }
 //请求服务数据时所传参数
-function queryParams(limit, pageNumber) {
+function queryParams() {
     return {
-        pageSize: limit,
-        pageIndex: pageNumber,
         userName: $('#search_userName').val(),
         phoneNumber: $('#search_phoneNumber').val()
     }
 }
 //查询按钮事件
 function searchUser() {
-    refreshOptionsTable();
+    $('#userTable').bootstrapTable('refresh');
 }
-/*
+/**
 * 用户管理增加用户页面所有事件
 */
-
 // 新增用户
 function addUser() {
     $('#userContent').addClass('animated slideOutLeft');
     setTimeout(function () {
         $('#userContent').removeClass('animated slideOutLeft').css('display', 'none');
-    }, 500);
+    }, fadeTime);
     $('#addUser').css('display', 'block');
     $('#addUser').addClass('animated slideInRight');
 }
-
 // 新增页面表单验证
 function addSaveUser() {
     //点击保存时触发表单验证
@@ -394,6 +389,7 @@ function addSaveUser() {
     //如果表单验证正确，则请求后台添加用户
     if ($("#addUserForm").data('bootstrapValidator').isValid()) {
         var user = $('#addUserForm').serialize();
+        user = decodeURIComponent(user,true);
         var jsonUser = JSON.parse(commonObj.formToJson(user));
         var opt = {
             method: 'post',
@@ -407,7 +403,7 @@ function addSaveUser() {
                     $('#addUser').addClass('animated slideOutLeft');
                     setTimeout(function () {
                         $('#addUser').removeClass('animated slideOutLeft').css('display', 'none');
-                    }, 500);
+                    }, fadeTime);
                     $('#userContent').css('display', 'block').addClass('animated slideInRight');
                     refreshTable();
                     $('#addUserForm').data('bootstrapValidator').resetForm(true);
@@ -415,9 +411,6 @@ function addSaveUser() {
                     // $('#btn_delete').css('display','none');
                     // $('#btn_edit').css('display','none');
                 }
-            },
-            error: function (msg) {
-                console("后端异常：" + msg);
             }
         };
         getAjax(opt);
@@ -436,13 +429,12 @@ function addSaveUser() {
         )*/
     }
 }
-
 // 新增页面的返回按钮
 function addCancel() {
     $('#addUser').addClass('animated slideOutLeft');
     setTimeout(function () {
         $('#addUser').removeClass('animated slideOutLeft').css('display', 'none');
-    }, 500);
+    }, fadeTime);
     $('#userContent').css('display', 'block').addClass('animated slideInRight');
     $('#addUserForm').data('bootstrapValidator').resetForm(true);
 }
@@ -450,13 +442,12 @@ function addCancel() {
 /*
 * 用户管理修改用户页面所有事件
 */
-
 // 修改用户
 function editUser(userId, userNo) {
     $('#userContent').addClass('animated slideOutLeft');
     setTimeout(function () {
         $('#userContent').removeClass('animated slideOutLeft').css('display', 'none');
-    }, 500);
+    }, fadeTime);
     $('#updateUser').css('display', 'block');
     $('#updateUser').addClass('animated slideInRight');
 
@@ -484,13 +475,13 @@ function editUser(userId, userNo) {
     };
     getAjax(opt);
 }
-
 //修改页面保存按钮事件
 function editSaveUser() {
     $('#editUserForm').bootstrapValidator('validate');
 
     if ($("#editUserForm").data('bootstrapValidator').isValid()) {
         var user = $('#editUserForm').serialize();
+        user = decodeURIComponent(user,true);
         var jsonUser = JSON.parse(commonObj.formToJson(user));
 
         var opt = {
@@ -508,28 +499,24 @@ function editSaveUser() {
                     $('#updateUser').addClass('animated slideOutLeft');
                     setTimeout(function () {
                         $('#updateUser').removeClass('animated slideOutLeft').css('display', 'none');
-                    }, 500);
+                    }, fadeTime);
                     $('#userContent').css('display', 'block').addClass('animated slideInRight');
                     //刷新人员管理主页
                     refreshTable();
                     //修改页面表单重置
                     $('#editUserForm').data('bootstrapValidator').resetForm(true);
                 }
-            },
-            error: function (msg) {
-                console("后端异常：" + msg);
             }
         };
         getAjax(opt);
     }
 }
-
 // 修改页面回退按钮事件
 function editCancel() {
     $('#updateUser').addClass('animated slideOutLeft');
     setTimeout(function () {
         $('#updateUser').removeClass('animated slideOutLeft').css('display', 'none');
-    }, 500);
+    }, fadeTime);
     $('#userContent').css('display', 'block').addClass('animated slideInRight');
     $('#editUserForm').data('bootstrapValidator').resetForm(true);
 }
@@ -568,16 +555,19 @@ function deleteUser(userId, userNo) {
     });*/
 }
 
-//弹出框取消按钮事件
+// 删除 确定按钮事件
 function deleteConfirm() {
     $('#delete_window').removeClass('bbox');
 
     // 单用户删除
     var id = this.userId;
+    var ids = [id];
+
     //设置请求参数
     var req = {
         userNo: this.userNo,
-        id: id
+        id: id,
+        ids: ids
     };
     var opt = {
         method: 'post',
@@ -594,13 +584,56 @@ function deleteConfirm() {
     };
     getAjax(opt);
 }
-//弹出框关闭按钮事件
+// 删除 取消按钮事件
 function deleteCancel() {
     $('#delete_window').removeClass('bbox');
 }
 
+// 查看用户详情
+function showUser(userId, userNo) {
+    $('#userContent').addClass('animated slideOutLeft');
+    setTimeout(function () {
+        $('#userContent').removeClass('animated slideOutLeft').css('display', 'none');
+    }, fadeTime);
+    $('#showUser').css('display', 'block');
+    $('#showUser').addClass('animated slideInRight');
+
+    var id = userId;
+    //设置请求参数
+    var req = {
+        userNo: userNo,
+        id: id
+    };
+    var opt = {
+        method: 'post',
+        url: dataUrl.util.selectSysUserInfo(),
+        data: JSON.stringify(req),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (res) {
+            if (res.code == '8888') {
+                $('#detail_id').val(id);
+                $('#detail_userName').val(res.data.userName);
+                $('#detail_realName').val(res.data.realName);
+                $('#detail_phoneNumber').val(res.data.phoneNumber);
+                $('#detail_email').val(res.data.email);
+            }
+        }
+    };
+    getAjax(opt);
+}
+
+// 详情页面回退按钮事件
+function showCancel() {
+    $('#showUser').addClass('animated slideOutLeft');
+    setTimeout(function () {
+        $('#showUser').removeClass('animated slideOutLeft').css('display', 'none');
+    }, fadeTime);
+    $('#userContent').css('display', 'block').addClass('animated slideInRight');
+}
+
 function tableHeight() {
-    return $(window).height() - 140;
+    return $(window).height() * 0.83;
 }
 
 function tableWidth() {
@@ -609,16 +642,4 @@ function tableWidth() {
 
 function refreshTable() {
     $('#userTable').bootstrapTable('refresh', {url: dataUrl.util.querySysUserInfoForPage()});
-}
-function refreshOptionsTable() {
-    var ps = queryParams(this.size, this.index);
-    //设置请求参数
-    var pageNum = (this.offset / this.size) + 1;
-    ps['pageNum'] = pageNum;
-    ps['pageSize'] = this.size;
-    //条件查询
-    var req = {
-        baseRequest: ps
-    };
-    $('#userTable').bootstrapTable('refreshOptions', {url: dataUrl.util.querySysUserInfoForPage(), data: JSON.stringify(req)});
 }

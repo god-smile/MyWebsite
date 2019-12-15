@@ -216,4 +216,44 @@ nav .fir{
 .col-sm-4,.col-sm-7{
 	font-size: 20px;
 }
-
+.common-tableh25>tbody>tr>td{
+	height: 10px;
+	line-height: 10px;
+}
+.ITD-complex-table thead  tr th{
+	border-left: 1px solid #e7ecf1!important;
+}
+.ITD-complex-table thead  tr th:nth-of-type(1){
+	border-left: none!important;
+}
+/*其他table 新版样式*/
+.ITD-fix-table-title{
+	padding: 20px 0;
+	height: 60px;
+}
+.ITD-fix-table thead{
+	font-size: 14px;
+	color: rgba(0,0,0,.45) !important;
+	border-bottom: 0!important;
+}
+.ITD-fix-table thead>tr>th{
+	height: 28px!important;
+	line-height: 28px!important;
+	background-color: #fafafa!important;
+	padding-top: 0!important;
+	padding-right: 0!important;
+	padding-bottom: 0!important;
+	/*padding-left: 24px!important;*/
+	border-bottom: 0!important;
+}
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+	border-top: 1px solid #e7eaec;
+	line-height: 1;
+	padding: 8px;
+	vertical-align: middle;
+}
