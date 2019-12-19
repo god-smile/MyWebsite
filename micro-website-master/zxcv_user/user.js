@@ -265,10 +265,10 @@ $(function () {
 /** 加载数据 */
 function loadData() {
     //生成用户数据
-    $('#userTable').bootstrapTable('destroy').bootstrapTable({
+    $('#userContentTable').bootstrapTable('destroy').bootstrapTable({
         method: 'post',
-        // height: tableHeight(),//高度调整
-        // width: tableWidth(),//宽度调整
+        height: tableHeight(),//高度调整
+        width: tableWidth(),//宽度调整
         striped: true, //是否显示行间隔色
         rownumbers: true,
         // dataField: "res",
