@@ -5,34 +5,37 @@
 <script src="../zxcv_user/user.js"></script>
 <!-- 用户控制管理 -->
 <div class="tableBody" id="userContent">
-    <div class="panel panel-default">
-        <div class="panel-body form-group" style="margin-bottom:0px;">
-            <label class="col-sm-2 control-label" style="text-align: right; margin-top:3px">用户名：</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" name="userName" id="search_userName"/>
-            </div>
-            <label class="col-sm-2 control-label" style="text-align: right; margin-top:3px">手机号：</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" name="phoneNumber" id="search_phoneNumber"/>
-            </div>
-            <div class="col-sm-2 pull-right">
-                <button class="btn btn-primary" id="search_btn" onclick="searchUser()">查询</button>
-            </div>
-
-        </div>
-    </div>
-    <table id="userTable" class="table table-hover ITD-fix-table ITD-complex-table common-tableh25" style="width: 100%;overflow: hidden;"></table>
-    <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px; margin-top: 3px;" >
-        <button id="btn_edit" type="button" class="btn btn-default" style="border-radius: 0; display: none;">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>&nbsp;&nbsp;修改
-        </button>
-        <button id="btn_delete" type="button" class="btn btn-default" onclick='deleteUser(1, "10")' style="display: none;">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;删除
-        </button>
-        <button id="btn_add" type="button" class="btn btn-default" onclick="addUser()">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;&nbsp;新增
-        </button>
-    </div>
+	<table id="userContentTable">
+		<div class="panel panel-default">
+		    <div class="panel-body form-group" style="margin-bottom:0px;">
+		        <label class="col-sm-2 control-label" style="text-align: right; margin-top:3px">用户名：</label>
+		        <div class="col-sm-2">
+		            <input type="text" class="form-control" name="userName" id="search_userName"/>
+		        </div>
+		        <label class="col-sm-2 control-label" style="text-align: right; margin-top:3px">手机号：</label>
+		        <div class="col-sm-2">
+		            <input type="text" class="form-control" name="phoneNumber" id="search_phoneNumber"/>
+		        </div>
+		        <div class="col-sm-2 pull-right">
+		            <button class="btn btn-primary" id="search_btn" onclick="searchUser()">查询</button>
+		        </div>
+		
+		    </div>
+		</div>
+		<!-- <table id="userTable" class="table table-hover ITD-fix-table ITD-complex-table common-tableh25" style="width: 100%;overflow: hidden;"></table> -->
+		<div id="toolbar" class="btn-group pull-right" style="margin-right: 20px; margin-top: 3px;" >
+		    <button id="btn_edit" type="button" class="btn btn-default" style="border-radius: 0; display: none;">
+		        <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>&nbsp;&nbsp;修改
+		    </button>
+		    <button id="btn_delete" type="button" class="btn btn-default" onclick='deleteUser(1, "10")' style="display: none;">
+		        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;删除
+		    </button>
+		    <button id="btn_add" type="button" class="btn btn-default" onclick="addUser()">
+		        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;&nbsp;新增
+		    </button>
+		</div>
+	</table>
+    
 </div>
 <div class="addBody" style="width:100%; display: none;" id="addUser">
     <div class="col-sm-12">

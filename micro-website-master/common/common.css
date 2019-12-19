@@ -20,7 +20,7 @@
 }
 .head-right>div{
 	float: left;
-    width: 48px;
+    width: 52px;
 }
 .head-left img{
 	width: 35px;
@@ -32,7 +32,7 @@
 }
 .hr-bell{
 	float: left;
-	margin-right: 25px;
+	margin-right: 16px;
 	position:relative;
 }
 .hr-bell .badge{
@@ -48,7 +48,7 @@
 }
 .hr-user{
 	display: inline-block;	
-	margin-right: 20px;
+	margin-right: 16px;
 }
 .hr-exit{
 	display: inline-block;	
@@ -257,3 +257,6 @@ nav .fir{
 	padding: 8px;
 	vertical-align: middle;
 }
+/* .bs-bars.pull-right {
+    margin-top: 0!important;
+} */
