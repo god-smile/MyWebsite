@@ -6,7 +6,7 @@ var fadeTime = 500;
 $(function () {
     //根据窗口调整表格高度
     $(window).resize(function () {
-        $('#userTable').bootstrapTable('resetView', {
+        $('#userContentTable').bootstrapTable('resetView', {
             height: tableHeight(),
             width: tableWidth()
         })
@@ -15,235 +15,9 @@ $(function () {
     // 生成用户数据
     loadData();
 
-    // 渲染复选框
-    // renderCheckBox();
-
-    /**
-     * 请求后台数据获取角色列表
-     * 渲染复选框
-     */
-    function renderCheckBox() {
-        var user = [];
-        //条件查询
-        var req = {
-            baseRequest: {
-                pageNum: 1,
-                pageSize: 999
-            }
-        };
-
-        var userTableAjax = {
-            method: 'POST',
-            url: dataUrl.util.querySysUserInfoForPage(),
-            data: JSON.stringify(req),
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            success: function (res) {
-                console.log("res:" + res);
-                console.log("code:" + res.code);
-                console.log("data:" + res.data);
-                if (res.code == "8888") {
-                    for (var i = 0; i < res.data.rows.length; i++) {
-                        var obj = new Object();
-                        obj.userId = res.data.rows[i].userId;
-                        obj.userName = res.data.rows[i].userName;
-                        user[i] = obj;
-                    }
-                    //生成增加与修改页面的角色复选框
-                    var _roleHtml = '';
-                    for (var i = 0; i < user.length; i++) {
-                        _roleHtml += '<label><input type="checkbox" name="userId[]"   value="' + user[i].userId + '"/> ' + user[i].userName + ' </label>';
-                    }
-                    $('.role').html(_roleHtml);
-                    $('.role input').eq(0).attr('checked', 'true');
-                    //请求成功后生成增加用户页面表单内容
-                    $('#addUserForm').bootstrapValidator({
-                        feedbackIcons: {
-                            valid: 'glyphicon glyphicon-ok',
-                            invalid: 'glyphicon glyphicon-remove',
-                            validating: 'glyphicon glyphicon-refresh'
-                        },
-                        fields: {
-                            'userId[]': {
-                                validators: {
-                                    notEmpty: {
-                                        message: '至少选择一条记录'
-                                    }
-                                }
-                            },
-                            userName: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '登录名不能为空'
-                                    },
-                                    stringLength: {
-                                        min: 5,
-                                        max: 15,
-                                        message: '姓名为5-10位'
-                                    }
-                                }
-                            },
-                            realName: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '姓名不能为空'
-                                    },
-                                    stringLength: {
-                                        min: 2,
-                                        max: 10,
-                                        message: '姓名为2-10位'
-                                    }
-                                }
-                            },
-                            userPassword: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '密码不能为空'
-                                    },
-                                    stringLength: {
-                                        min: 6,
-                                        max: 128,
-                                        message: '密码为6-128位'
-                                    }
-                                }
-
-                            },
-                            /*Tel: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '手机号不能为空'
-                                    },
-                                    stringLength: {
-                                        min: 11,
-                                        max: 11,
-                                        message: '手机号必须为11位'
-                                    },
-                                    regexp: {
-                                        regexp: /^1(3|4|5|7|8)\d{9}$/,
-                                        message: '请填写正确的手机号'
-                                    }
-                                }
-                            },*/
-                            userEmail: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '邮箱不能为空'
-                                    },
-                                    regexp: {
-                                        regexp: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
-                                        message: '无效的邮箱'
-                                    }
-                                }
-                            },
-                            userState: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '状态不能为空'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    $('#editUserForm').bootstrapValidator({
-                        feedbackIcons: {
-                            valid: 'glyphicon glyphicon-ok',
-                            invalid: 'glyphicon glyphicon-remove',
-                            validating: 'glyphicon glyphicon-refresh'
-                        },
-                        fields: {
-                            'userId[]': {
-                                validators: {
-                                    notEmpty: {
-                                        message: '至少选择一条记录'
-                                    }
-                                }
-                            },
-                            userId: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'id不能为空'
-                                    }
-                                }
-                            },
-                            realName: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '登录名不能为空'
-                                    }/*,
-		                       stringLength:{
-		               			min:5,
-		               			max:15,
-		               			message:'登录名为5-10位'
-		               		}*/
-                                }
-                            },
-                            Name: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '姓名不能为空'
-                                    },
-                                    stringLength: {
-                                        min: 2,
-                                        max: 10,
-                                        message: '姓名为2-10位'
-                                    }
-                                }
-                            },
-                            /*Tel: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '手机号不能为空'
-                                    },
-                                    stringLength: {
-                                        min: 11,
-                                        max: 11,
-                                        message: '手机号必须为11位'
-                                    },
-                                    regexp: {
-                                        regexp: /^1(3|4|5|7|8)\d{9}$/,
-                                        message: '请填写正确的手机号'
-                                    }
-                                }
-                            },*/
-                            userEmail: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '邮箱不能为空'
-                                    },
-                                    regexp: {
-                                        regexp: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
-                                        message: '无效的邮箱'
-                                    }
-                                }
-                            },
-                            userState: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '状态不能为空'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                } else {
-                    console.log('后台角色列表获取失败！');
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                if (textStatus == "timeout") {
-                    //alert('请求超时，请重试');
-                } else {
-                    //alert("请求报错")
-                    console.log(errorThrown);
-                }
-            }
-        };
-        getAjax(userTableAjax);
-    }
-
     //删除按钮与修改按钮的出现与消失
     /*$('.bootstrap-table').change(function(){
-        var dataArr=$('#userTable .selected');
+        var dataArr=$('#userContentTable .selected');
         if(dataArr.length==1){
             $('#btn_edit').css('display','block').removeClass('fadeOutRight').addClass('animated fadeInRight');
         }else{
@@ -315,7 +89,7 @@ function stateFormatter(value, row, index) {
     }*/
     if (value == '1') {
         return "正常";
-    } else if (value == '2') {
+    } else if (value == '0') {
         return "冻结";
     } else if (value == '3') {
         return "删除";
@@ -325,6 +99,8 @@ function stateFormatter(value, row, index) {
 }
 function operateFormatter(value, row, index) {
     var html = "<a href='#' class='edit_user' onclick='editUser(" + row.id + ", \"" + row.userNo + "\")' id='edit_user' >修改</a> ";
+    html += "&nbsp;&nbsp;&nbsp;";
+    html += "<a href='#' class='delete_user' onclick='changeUserState(" + row.id + ", \"" + row.userState + "\")' id='changestate_user' >删除</a> ";
     html += "&nbsp;&nbsp;&nbsp;";
     html += "<a href='#' class='delete_user' onclick='deleteUser(" + row.id + ", \"" + row.userNo + "\")' id='delete_user' >删除</a> ";
     return html;
@@ -368,7 +144,7 @@ function queryParams() {
 }
 //查询按钮事件
 function searchUser() {
-    $('#userTable').bootstrapTable('refresh');
+    $('#userContentTable').bootstrapTable('refresh');
 }
 /**
 * 用户管理增加用户页面所有事件
@@ -520,6 +296,34 @@ function editCancel() {
     $('#userContent').css('display', 'block').addClass('animated slideInRight');
     $('#editUserForm').data('bootstrapValidator').resetForm(true);
 }
+// 修改状态
+function changeUserState(userId, userState) {
+    var newState = -1;
+    if (userState == '1') {
+        newState = 0;
+    } else if (userState == '0') {
+        newState = 1;
+    }
+
+    //设置请求参数
+    var req = {
+        id: userId,
+        newState: newState
+    };
+    var opt = {
+        method: 'post',
+        url: dataUrl.util.updateSysUserInfoById(),
+        data: JSON.stringify(req),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (res) {
+            if (res.code == '8888') {
+                refreshTable();
+            }
+        }
+    };
+    getAjax(opt);
+}
 
 // 删除事件按钮
 function deleteUser(userId, userNo) {
@@ -530,7 +334,7 @@ function deleteUser(userId, userNo) {
     this.userNo = userNo;
 
     // 多用户删除
-    /*var dataArr=$('#userTable').bootstrapTable('getSelections');
+    /*var dataArr=$('#userContentTable').bootstrapTable('getSelections');
     $('.popup_de .show_msg').text('确定要删除该用户吗?');
     $('.popup_de').addClass('bbox');
     $('.popup_de .btn_submit').one('click',function(){
@@ -548,7 +352,7 @@ function deleteUser(userId, userNo) {
                     $('.popup_de .btn_submit').one('click',function(){
                         $('.popup_de').removeClass('bbox');
                     })
-                    $('#userTable').bootstrapTable('refresh', {url: '../index.php/admin/index/userManagement'});
+                    $('#userContentTable').bootstrapTable('refresh', {url: '../index.php/admin/index/userManagement'});
                 }else{
                 }
             });
@@ -641,5 +445,5 @@ function tableWidth() {
 }
 
 function refreshTable() {
-    $('#userTable').bootstrapTable('refresh', {url: dataUrl.util.querySysUserInfoForPage()});
+    $('#userContentTable').bootstrapTable('refresh', {url: dataUrl.util.querySysUserInfoForPage()});
 }

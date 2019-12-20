@@ -1,329 +1,91 @@
+var userId;
+
+var fadeTime = 500;
 
 $(function () {
-    fun.init();
-});
-
-//需要用到的数据
-var state = {
-    //当前页数
-    currentPage: 1,
-    //总的数据个数
-    total: 0,
-    //每页个数
-    pageSize: 8,
-    //总页数
-    totalPage: 0,
-    //表格数据
-    tableData: [],
-    //表格总数据
-    tableTotalData: [],
-    //所有的新闻类型信息
-    category: [],
-    //当前操作类型：新增或修改
-    option: '发布',
-    //当前点击的对象的id
-    currentId: '',
-    //当前info-action中select选中的栏目id
-    currentCId: '',
-    // 当前修改的对象
-    currentObj: {},
-};
-//追加模态框处所属栏目的option节点
-function addOptionDOM() {
-    var optionStr = '<option value="">请选择</option>';
-    state.category.forEach(function(item) {
-        optionStr += '<option value="' + item.id + '">' + item.name + '</option>';
+    //根据窗口调整表格高度
+    $(window).resize(function () {
+        $('#newsContentTable').bootstrapTable('resetView', {
+            height: tableHeight(),
+            width: tableWidth()
+        })
     });
-    $('#category').html(optionStr);
-}
-
-// 新增新闻
-function addNews() {
-    //设置模态框标题
-    $('.modal-title').text('发布新闻');
-    //选中select
-    $('#category').selectpicker();
-    $('#category').selectpicker('val','1');
-    //addOptionDOM();
-    // 清空表单数据，显示模态框
-    $('.modal [type=text]').val('');
-    $('input[type=radio]:checked').prop('checked', false);
-
-    //模态框中的select的值为.myselect的值
-    $('#category').val($('.myselect').val());
-    //加载编辑正文
-    fun.addTextFun();
-    $('#add-update-modal').modal('show');
-}
-// 显示新闻详情
-function showNews(newsId, newsNo) {
-    $(".modal-title").text("新闻详情");
-    $('#detail_content').empty();
-
-    var id = newsId;
-    var newsNo = newsNo;
-    //设置请求参数
-    var req = {
-        newsNo: newsNo,
-        id: id
-    };
-    var opt = {
+    console.log("news");
+    // 生成新闻数据
+    loadData();
+});
+/** 加载数据 */
+function loadData() {
+    //生成新闻数据
+    $('#newsContentTable').bootstrapTable('destroy').bootstrapTable({
         method: 'post',
-        url: dataUrl.util.selectSiteNewsInfo(),
-        data: JSON.stringify(req),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        success: function (res) {
-            if (res.code == '8888') {
-                $('#detail_no').val(res.data.newsNo);
-                $('#detail_title').val(res.data.title);
-                $('#detail_content').append(res.data.content);
-                $('#detail_modal').modal('show');
-            }
-        }
-    };
-    getAjax(opt);
-}
-
-//修改事件绑定
-$('tbody').on('click', '[title=编辑]', function() {
-    //设置模态框标题
-    $('.modal-title').text( '编辑新闻');
-    addOptionDOM();
-    //获取当前点击的元素的id
-    var id = $(this).attr('data_id');
-    //遍历数据，如果当前id与遍历的id同，取出需要的属性值
-    var article = state.tableData.filter(function(item) {
-        return item.id == id;
-    })[0];
-    state.currentObj = article;
-    // 设置值
-    $('#title').val(article.title);
-    //模态框中的select的值为.myselect的值
-    $('#category').val($('.myselect').val());
-    $('input[value=' + article.liststyle + ']').prop('checked', true);
-    $('#content').val(article.content);
-    $('#add-update-modal').modal('show');
-});
-
-//获取所有新闻类型，追加节点到select中
-function addCategory() {
-    getAjax('/newsInfo/querySiteNewsInfoForPage', 'post', null, function(res) {
-        state.category = res.data;
-        var option = '';
-        state.category.forEach(function(item) {
-            option += '<option value="' + item.id + '">' + item.name + '</option>';
-        });
-        $('.myselect').html(option);
-        state.currentCId = res.data[0].id;
-        //加载当前select中对应的新闻信息,也是第一个
-        findArticle(state.currentCId);
-    }, function(error) {
-        console.log(error);
+        height: tableHeight(),//高度调整
+        width: tableWidth(),//宽度调整
+        striped: true, //是否显示行间隔色
+        rownumbers: true,
+        // dataField: "res",
+        pageNumber: 1, //初始化加载第一页，默认第一页
+        pagination: true,//是否分页
+        paginationPreText: '上一页',
+        paginationNextText: '下一页',
+        queryParamsType: 'limit',
+        sidePagination: 'server',
+        pageSize: 10,//单页记录数
+        pageList: [5, 10, 20, 30],//分页步进值
+        showRefresh: false,//刷新按钮
+        showColumns: false,
+        clickToSelect: false,//是否启用点击选中行
+        toolbarAlign: 'right',
+        buttonsAlign: 'right',//按钮对齐方式
+        toolbar: '#toolbar',//指定工作栏
+        ajax: tableLoadRequest,//自定义ajax加载数据
+        columns: [
+            /*{title: '全选', field: 'select', checkbox: true, width: 25, align: 'center', valign: 'middle'},*/
+            {title: 'id', field: 'id', visible: false},
+            {title: '新闻标题', field: 'title', sortable: true, formatter: titleFormatter},
+            {title: '新闻类型', field: 'newsType', sortable: true, formatter: typeFormatter},
+            {title: '注册日期', field: 'createTime', sortable: true, formatter: commonObj.timeFormatter},
+            {title: '修改日期', field: 'modifyTime', sortable: true, formatter: commonObj.timeFormatter},
+            {title: '操作', field: '', align: 'center', formatter: operateFormatter}
+        ],
+        locale: 'zh-CN',//中文支持,
     });
 }
-
-var fun = {
-    init:function(){
-        fun.loadData();
-    },
-    //获取查询参数
-    getQueryParam:function(){
-        var req = {};
-        var title = $("#title").val();
-        req ={
-            title:title,
-        };
-        return req;
-    },
-    /** 加载数据 */
-    loadData:function () {
-        //生成新闻新闻
-        $('#newsTable').bootstrapTable('destroy').bootstrapTable({
-            method: 'post',
-            // contentType: "application/x-www-form-urlencoded",
-            // contentType: "application/json; charset=utf-8",
-            // url:"/user/querySysUserInfoForPage",
-            height:tableHeight(),//高度调整
-            width: tableWidth(),
-            striped: true, //是否显示行间隔色
-            rownumbers:true,
-            // dataField: "res",
-            pageNumber: 1, //初始化加载第一页，默认第一页
-            pagination:true,//是否分页
-            paginationPreText: '上一页',
-            paginationNextText: '下一页',
-            queryParamsType:'limit',
-            // queryParams:queryParams,
-            sidePagination:'server',
-            pageSize:10,//单页记录数
-            pageList:[5,10,20,30],//分页步进值
-            showRefresh:false,//刷新按钮
-            showColumns:false,//选择列
-            clickToSelect: true,//是否启用点击选中行
-            toolbarAlign:'left',
-            buttonsAlign:'left',//按钮对齐方式
-            toolbar:'#toolbar',//指定工作栏
-            ajax: tableLoadRequest,//自定义ajax加载数据
-            columns:[
-                {title:'id',field:'id',visible:false},
-                {title:'标题',field:'title',sortable:true, width:200,formatter:fun.titleFormatter},
-                {title:'标题',field:'title',sortable:true, width:200},
-                {title:'创建日期',field:'createTime',sortable:true,formatter:commonObj.timeFormatter},
-                {title:'修改日期',field:'modifyTime',sortable:true,formatter:commonObj.timeFormatter},
-                {title:'操作',field:'',align:'center',formatter:fun.operateFormatter}
-            ],
-            locale:'zh-CN',//中文支持,
-        });
-    },
-    titleFormatter:function(value, row, index){
-        var html = "<a href='#' onclick='showNews(" + row.id + ", \"" + row.newsNo + "\")' >" + row.title + "</a> ";
-        return html;
-    },
-    operateFormatter:function(value, row, index){
-        var html = "<span class='detail_news ' data-id='" + row.id + "' data-no='" + row.newsNo + "' id='detail_news' >查看</span> ";
-            html += "&nbsp;&nbsp;&nbsp;";
-            html += "<span class='delete_news' data-id='" + row.id + "'data-no='" + row.newsNo + "' id='delete_news' >删除</span> ";
-
-       return html;
-    },
-    //添加正文初始化
-    addTextFun: function () {
-        //清空
-        $("#editor_add").empty();
-        var E = window.wangEditor;
-        var editor = new E('#editor_add');
-        // 自定义菜单配置
-        editor.customConfig.menus = [
-            'head',  // 标题
-            'bold',  // 粗体
-            'fontSize',  // 字号
-            // 'fontName',  // 字体
-            'italic',  // 斜体
-            'underline',  // 下划线
-            'strikeThrough',  // 删除线
-            'foreColor',  // 文字颜色
-            'backColor',  // 背景颜色
-            'link',  // 插入链接
-            'list',  // 列表
-            'justify',  // 对齐方式
-            'quote',  // 引用
-            'emoticon',  // 表情
-            'image',  // 插入图片
-            'table',  // 表格
-            // 'video',  // 插入视频
-            'code',  // 插入代码
-            'undo',  // 撤销
-            'redo'  // 重复
-        ];
-        // editor.customConfig.uploadImgServer = '/Upload/wang_editor';  // 上传图片到服务器
-        //editor.customConfig.uploadImgServer = '/upload';
-        editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
-        // 3M
-        editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
-        // 限制一次最多上传 3 张图片
-        editor.customConfig.uploadImgMaxLength = 3;
-        // 自定义文件名
-        editor.customConfig.uploadFileName = 'editor_img';
-        // 将 timeout 时间为 3s
-        editor.customConfig.uploadImgTimeout = 3000;
-
-        editor.create();
-        editor.customConfig.uploadImgHooks = {
-            before: function (xhr, editor, files) {
-                // 图片上传之前触发
-                // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
-
-                // 如果返回的结果是 {prevent: true, msg: 'xxxx'} 则表示用户放弃上传
-                // return {
-                //     prevent: true,
-                //     msg: '放弃上传'
-                // }
-                // alert("前奏");
-            },
-            success: function (xhr, editor, result) {
-                // 图片上传并返回结果，图片插入成功之后触发
-                // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
-                // var url = result.data.url;
-                // alert(JSON.stringify(url));
-                // editor.txt.append(url);
-                // alert("成功");
-            },
-            fail: function (xhr, editor, result) {
-                // 图片上传并返回结果，但图片插入错误时触发
-                // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
-                alert("失败");
-            },
-            error: function (xhr, editor) {
-                // 图片上传出错时触发
-                // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
-                // alert("错误");
-            },
-            // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
-            // （但是，服务器端返回的必须是一个 JSON 格式字符串！！！否则会报错）
-            customInsert: function (insertImg, result, editor) {
-                // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
-                // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
-                // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
-                var url = result.data[0];
-                insertImg(url);
-                // result 必须是一个 JSON 格式字符串！！！否则报错
-            }
-        }
-
-
-        //获取文本输入的内容
-        document.getElementById('save_news_submit').addEventListener('click', function () {
-            var content = editor.txt.html();
-            var title = $('#insert_title').val();
-
-            var req = {
-                title: title,
-                newsType: 1,
-                beginTime:new Date(),
-                endTime:new Date("2099-01-01 00:00:00"),
-                projectNo:"PJ1001",
-                createEmpId:"1001",
-                createEmpName:"admin",
-                newsContent: content,
-
-            };
-            //条件查询
-
-            var opt = {
-                method: 'post',
-                url: dataUrl.util.saveNewsInfo(),
-                data: JSON.stringify(req),
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                success: function (res) {
-                    if (res.code == '8888') {
-                        $("#newsTable").bootstrapTable('refresh');
-                        $('#add-update-modal').modal('hide');
-                    }
-                },
-                error: function (msg) {
-                    console("后端异常：" + msg);
-                }
-            };
-            getAjax(opt);
-        }, false);
-
-    },
-};
-
-function tableHeight() {
-    return $(window).height() - 140;
+function titleFormatter(value, row, index) {
+    var html = "<a href='#' class='edit_news' onclick='showNews(" + row.id + ", \"" + row.newsNo + "\")' >" + row.title + "</a> ";
+    return html;
 }
-function tableWidth() {
-    return $(window).width() - 140;
+function typeFormatter(value, row, index) {
+    var html = "<a href='#' class='edit_news' onclick='showNews(" + row.id + ", \"" + row.newsNo + "\")' >" + row.title + "</a> ";
+    return html;
 }
-/**
- * 自定义table AJAX请求
- * @param {Object} params
- */
+function stateFormatter(value, row, index) {
+    /*if(value==2){
+        return '<i class="fa fa-lock" style="color:red"></i>'
+    }else if(value==1){
+        return '<i class="fa fa-unlock" style="color:green"></i>'
+    }else{
+        return '数据错误'
+    }*/
+    if (value == '1') {
+        return "正常";
+    } else if (value == '2') {
+        return "冻结";
+    } else if (value == '3') {
+        return "删除";
+    } else {
+        return "其他";
+    }
+}
+function operateFormatter(value, row, index) {
+    var html = "<a href='#' class='edit_user' onclick='editUser(" + row.id + ", \"" + row.userNo + "\")' id='edit_user' >修改</a> ";
+    html += "&nbsp;&nbsp;&nbsp;";
+    html += "<a href='#' class='delete_user' onclick='deleteUser(" + row.id + ", \"" + row.userNo + "\")' id='delete_user' >删除</a> ";
+    return html;
+}
+//默认加载
 function tableLoadRequest(params) {
-    var req = fun.getQueryParam();
+    var req = queryParams();
     var data = JSON.parse(params.data);
     //设置请求参数
     var pageNum = data.pageNumber;
@@ -334,52 +96,279 @@ function tableLoadRequest(params) {
         pageNum: pageNum,
         pageSize:pageSize
     };
-    var opt = {
-        method: 'post',
-        url: dataUrl.util.querySiteNewsInfoForPage(),
+    var userTableAjax = {
+        method: params.type,
+        url: dataUrl.util.querySysUserInfoForPage(),
         data: JSON.stringify(req),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         success: function (res) {
-            if (res.code == '8888') {
+            console.log(res);
+            if (res.code = "8888") {
                 params.success(res.data);
+            } else {
+                ErrorAlertManual("其他错误！");
             }
         }
     };
-    getAjax(opt);
+    getAjax(userTableAjax);
 }
-//查询按钮
-function search() {
-    fun.loadData();
+//请求服务数据时所传参数
+function queryParams() {
+    return {
+        userName: $('#search_userName').val(),
+        phoneNumber: $('#search_phoneNumber').val()
+    }
+}
+//查询按钮事件
+function searchUser() {
+    $('#newsContentTable').bootstrapTable('refresh');
+}
+/**
+ * 新闻管理增加新闻页面所有事件
+ */
+// 新增新闻
+function addUser() {
+    $('#userContent').addClass('animated slideOutLeft');
+    setTimeout(function () {
+        $('#userContent').removeClass('animated slideOutLeft').css('display', 'none');
+    }, fadeTime);
+    $('#addUser').css('display', 'block');
+    $('#addUser').addClass('animated slideInRight');
+}
+// 新增页面表单验证
+function addSaveUser() {
+    //点击保存时触发表单验证
+    $('#addUserForm').bootstrapValidator('validate');
+    //如果表单验证正确，则请求后台添加新闻
+    if ($("#addUserForm").data('bootstrapValidator').isValid()) {
+        var user = $('#addUserForm').serialize();
+        user = decodeURIComponent(user,true);
+        var jsonUser = JSON.parse(commonObj.formToJson(user));
+        var opt = {
+            method: 'post',
+            url: dataUrl.util.saveSysUserInfo(),
+            data: JSON.stringify(jsonUser),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == '8888') {
+                    SuccessAlertManual("新闻添加成功！");
+                    $('#addUser').addClass('animated slideOutLeft');
+                    setTimeout(function () {
+                        $('#addUser').removeClass('animated slideOutLeft').css('display', 'none');
+                    }, fadeTime);
+                    $('#userContent').css('display', 'block').addClass('animated slideInRight');
+                    refreshTable();
+                    $('#addUserForm').data('bootstrapValidator').resetForm(true);
+                    //隐藏修改与删除按钮
+                    // $('#btn_delete').css('display','none');
+                    // $('#btn_edit').css('display','none');
+                }
+            }
+        };
+        getAjax(opt);
+        /*$.post(
+            "../index.php/admin/index/insertUser",
+            $('#addUserForm').serialize(),
+            function(data){
+                //后台返回添加成功
+                if(data.suc==true){
+
+                }
+                //否则
+                else{
+                }
+            }
+        )*/
+    }
+}
+// 新增页面的返回按钮
+function addCancel() {
+    $('#addUser').addClass('animated slideOutLeft');
+    setTimeout(function () {
+        $('#addUser').removeClass('animated slideOutLeft').css('display', 'none');
+    }, fadeTime);
+    $('#userContent').css('display', 'block').addClass('animated slideInRight');
+    $('#addUserForm').data('bootstrapValidator').resetForm(true);
 }
 
-//查看
 /*
-documentBindFunc.on('click', '.detail_news', function () {
-    debugger;
-// $('.detail_news').click(function(event) {
-    $(".modal-title").text("新闻详情");
-    $('#detail_content').empty();
+* 新闻管理修改新闻页面所有事件
+*/
+// 修改新闻
+function editUser(userId, userNo) {
+    $('#userContent').addClass('animated slideOutLeft');
+    setTimeout(function () {
+        $('#userContent').removeClass('animated slideOutLeft').css('display', 'none');
+    }, fadeTime);
+    $('#updateUser').css('display', 'block');
+    $('#updateUser').addClass('animated slideInRight');
 
-    var id = $(this).data('id');
-    var newsNo = $(this).data('no');
+    var id = userId;
     //设置请求参数
     var req = {
-        newsNo: newsNo,
+        userNo: userNo,
         id: id
     };
     var opt = {
         method: 'post',
-        url: dataUrl.util.selectSiteNewsInfo(),
+        url: dataUrl.util.selectSysUserInfo(),
         data: JSON.stringify(req),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         success: function (res) {
             if (res.code == '8888') {
-                $('#detail_content').append(res.data.content);
-                $('#detail_modal').modal('show');
+                $('#edit_id').val(id);
+                $('#edit_userName').val(res.data.userName);
+                $('#edit_realName').val(res.data.realName);
+                $('#edit_phoneNumber').val(res.data.phoneNumber);
+                $('#edit_email').val(res.data.email);
             }
         }
     };
     getAjax(opt);
-});*/
+}
+//修改页面保存按钮事件
+function editSaveUser() {
+    $('#editUserForm').bootstrapValidator('validate');
+
+    if ($("#editUserForm").data('bootstrapValidator').isValid()) {
+        var user = $('#editUserForm').serialize();
+        user = decodeURIComponent(user,true);
+        var jsonUser = JSON.parse(commonObj.formToJson(user));
+
+        var opt = {
+            method: 'post',
+            url: dataUrl.util.updateSysUserInfoById(),
+            data: JSON.stringify(jsonUser),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == '8888') {
+                    //隐藏修改与删除按钮
+                    // $('#btn_delete').css('display','none');
+                    // $('#btn_edit').css('display','none');
+                    //回退到人员管理主页
+                    $('#updateUser').addClass('animated slideOutLeft');
+                    setTimeout(function () {
+                        $('#updateUser').removeClass('animated slideOutLeft').css('display', 'none');
+                    }, fadeTime);
+                    $('#userContent').css('display', 'block').addClass('animated slideInRight');
+                    //刷新人员管理主页
+                    refreshTable();
+                    //修改页面表单重置
+                    $('#editUserForm').data('bootstrapValidator').resetForm(true);
+                }
+            }
+        };
+        getAjax(opt);
+    }
+}
+// 修改页面回退按钮事件
+function editCancel() {
+    $('#updateUser').addClass('animated slideOutLeft');
+    setTimeout(function () {
+        $('#updateUser').removeClass('animated slideOutLeft').css('display', 'none');
+    }, fadeTime);
+    $('#userContent').css('display', 'block').addClass('animated slideInRight');
+    $('#editUserForm').data('bootstrapValidator').resetForm(true);
+}
+
+// 删除事件按钮
+function deleteUser(userId, userNo) {
+    $('#delete_msg').text('确定要删除该新闻吗?');
+    $('#delete_window').addClass('bbox');
+
+    this.userId = userId;
+    this.userNo = userNo;
+}
+
+// 删除 确定按钮事件
+function deleteConfirm() {
+    $('#delete_window').removeClass('bbox');
+
+    // 单新闻删除
+    var id = this.userId;
+    var ids = [id];
+
+    //设置请求参数
+    var req = {
+        userNo: this.userNo,
+        id: id,
+        ids: ids
+    };
+    var opt = {
+        method: 'post',
+        url: dataUrl.util.deleteSysUserInfo(),
+        data: JSON.stringify(req),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (res) {
+            if (res.code == '8888') {
+                // alert 删除成功，刷新界面
+                refreshTable();
+            }
+        }
+    };
+    getAjax(opt);
+}
+// 删除 取消按钮事件
+function deleteCancel() {
+    $('#delete_window').removeClass('bbox');
+}
+
+// 查看新闻详情
+function showUser(userId, userNo) {
+    $('#userContent').addClass('animated slideOutLeft');
+    setTimeout(function () {
+        $('#userContent').removeClass('animated slideOutLeft').css('display', 'none');
+    }, fadeTime);
+    $('#showUser').css('display', 'block');
+    $('#showUser').addClass('animated slideInRight');
+
+    var id = userId;
+    //设置请求参数
+    var req = {
+        userNo: userNo,
+        id: id
+    };
+    var opt = {
+        method: 'post',
+        url: dataUrl.util.selectSysUserInfo(),
+        data: JSON.stringify(req),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (res) {
+            if (res.code == '8888') {
+                $('#detail_id').val(id);
+                $('#detail_userName').val(res.data.userName);
+                $('#detail_realName').val(res.data.realName);
+                $('#detail_phoneNumber').val(res.data.phoneNumber);
+                $('#detail_email').val(res.data.email);
+            }
+        }
+    };
+    getAjax(opt);
+}
+
+// 详情页面回退按钮事件
+function showCancel() {
+    $('#showUser').addClass('animated slideOutLeft');
+    setTimeout(function () {
+        $('#showUser').removeClass('animated slideOutLeft').css('display', 'none');
+    }, fadeTime);
+    $('#userContent').css('display', 'block').addClass('animated slideInRight');
+}
+
+function tableHeight() {
+    return $(window).height() * 0.83;
+}
+
+function tableWidth() {
+    return $(window).width() - 140;
+}
+
+function refreshTable() {
+    $('#newsContentTable').bootstrapTable('refresh', {url: dataUrl.util.querySysUserInfoForPage()});
+}
