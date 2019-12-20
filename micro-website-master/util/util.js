@@ -247,6 +247,17 @@ var commonObj={
         data="{\""+data+"\"}";
         return data;
     },
+
+
+    /**
+     * 根据 form id 获取一个json 对象， 附加中文编码
+     */
+    getJsonObjectByForm: function (formId) {
+        var obj = $('#' + formId).serialize();
+        obj = decodeURIComponent(obj,true);
+        var jsonobj = JSON.parse(commonObj.formToJson(obj));
+        return jsonobj;
+    }
 };
 
 

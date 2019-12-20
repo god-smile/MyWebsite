@@ -1,5 +1,5 @@
 var userId;
-var userNo;
+var userState;
 
 var fadeTime = 500;
 
@@ -14,6 +14,9 @@ $(function () {
     console.log("sss");
     // 生成用户数据
     loadData();
+
+    // 渲染 datetimer
+    datetimerfun.init();
 
     //删除按钮与修改按钮的出现与消失
     /*$('.bootstrap-table').change(function(){
@@ -69,8 +72,8 @@ function loadData() {
             {title: '手机号', field: 'phoneNumber'},
             {title: '注册日期', field: 'createTime', sortable: true, formatter: commonObj.timeFormatter},
             {title: '修改日期', field: 'modifyTime', sortable: true, formatter: commonObj.timeFormatter},
-            {title: '状态', field: 'dataState', align: 'center', formatter: stateFormatter},
-            {title: '操作', field: '', align: 'center', formatter: operateFormatter}
+            {title: '状态', field: 'userState', align: 'center', formatter: stateFormatter},
+            {title: '操作', field: 'userState', align: 'center', formatter: operateFormatter}
         ],
         locale: 'zh-CN',//中文支持,
     });
@@ -100,7 +103,14 @@ function stateFormatter(value, row, index) {
 function operateFormatter(value, row, index) {
     var html = "<a href='#' class='edit_user' onclick='editUser(" + row.id + ", \"" + row.userNo + "\")' id='edit_user' >修改</a> ";
     html += "&nbsp;&nbsp;&nbsp;";
-    html += "<a href='#' class='delete_user' onclick='changeUserState(" + row.id + ", \"" + row.userState + "\")' id='changestate_user' >删除</a> ";
+    var state = "";
+    if (value == '1') {
+        state = "冻结";
+    }else if (value == '0') {
+        state = "解冻";
+    }
+    html += "<a href='#' class='delete_user' onclick='changeUserState(" + row.id + ", \"" + value + "\")' id='changestate_user' >" + state +
+        "</a> ";
     html += "&nbsp;&nbsp;&nbsp;";
     html += "<a href='#' class='delete_user' onclick='deleteUser(" + row.id + ", \"" + row.userNo + "\")' id='delete_user' >删除</a> ";
     return html;
@@ -164,9 +174,8 @@ function addSaveUser() {
     $('#addUserForm').bootstrapValidator('validate');
     //如果表单验证正确，则请求后台添加用户
     if ($("#addUserForm").data('bootstrapValidator').isValid()) {
-        var user = $('#addUserForm').serialize();
-        user = decodeURIComponent(user,true);
-        var jsonUser = JSON.parse(commonObj.formToJson(user));
+        var jsonUser = commonObj.getJsonObjectByForm('addUserForm');
+
         var opt = {
             method: 'post',
             url: dataUrl.util.saveSysUserInfo(),
@@ -190,19 +199,6 @@ function addSaveUser() {
             }
         };
         getAjax(opt);
-        /*$.post(
-            "../index.php/admin/index/insertUser",
-            $('#addUserForm').serialize(),
-            function(data){
-                //后台返回添加成功
-                if(data.suc==true){
-
-                }
-                //否则
-                else{
-                }
-            }
-        )*/
     }
 }
 // 新增页面的返回按钮
@@ -242,10 +238,34 @@ function editUser(userId, userNo) {
         success: function (res) {
             if (res.code == '8888') {
                 $('#edit_id').val(id);
+                $('#edit_userNo').val(res.data.userNo);
                 $('#edit_userName').val(res.data.userName);
                 $('#edit_realName').val(res.data.realName);
+
+                switch (res.data.sex) {
+                    case 1:
+                        var ss = $('input[type="radio"][name="sex"]:eq(0)');
+                        ss.prop("checked", true);
+                        break;
+                    case 2:
+                        var ss = $('input[type="radio"][name="sex"]:eq(1)');
+                        ss.prop("checked", true);
+                        break;
+                    case 3:
+                        var ss = $('input[type="radio"][name="sex"]:eq(2)');
+                        ss.prop("checked", true);
+                        break;
+                }
+
+                $('#edit_password').val(res.data.password);
                 $('#edit_phoneNumber').val(res.data.phoneNumber);
+                $('#edit_cardNo').val(res.data.cardNo);
+                $('#edit_wechatNumber').val(res.data.wechatNumber);
                 $('#edit_email').val(res.data.email);
+                $('#edit_address').val(res.data.address);
+                $('#edit_remark').val(res.data.remark);
+                $('#edit_beginTime_value').val(res.data.beginTime);
+                $('#edit_endTime_value').val(res.data.endTime);
             }
         }
     };
@@ -256,9 +276,7 @@ function editSaveUser() {
     $('#editUserForm').bootstrapValidator('validate');
 
     if ($("#editUserForm").data('bootstrapValidator').isValid()) {
-        var user = $('#editUserForm').serialize();
-        user = decodeURIComponent(user,true);
-        var jsonUser = JSON.parse(commonObj.formToJson(user));
+        var jsonUser = commonObj.getJsonObjectByForm('editUserForm');
 
         var opt = {
             method: 'post',
@@ -298,6 +316,16 @@ function editCancel() {
 }
 // 修改状态
 function changeUserState(userId, userState) {
+    var state = "";
+    if (userState == '1') {
+        state = "冻结";
+    }else if (userState == '0') {
+        state = "解冻";
+    }
+
+    $('#changestate_msg').text('确定要' + state + '该用户吗?');
+    $('#changestate_window').addClass('bbox');
+
     var newState = -1;
     if (userState == '1') {
         newState = 0;
@@ -305,10 +333,21 @@ function changeUserState(userId, userState) {
         newState = 1;
     }
 
+    this.userId = userId;
+    this.userState = newState;
+}
+// 修改状态 确定按钮事件
+function changestateConfirm() {
+    $('#changestate_window').removeClass('bbox');
+
+    // 单用户删除
+    var id = this.userId;
+    var state = this.userState;
+
     //设置请求参数
     var req = {
-        id: userId,
-        newState: newState
+        id: id,
+        userState: state
     };
     var opt = {
         method: 'post',
@@ -318,11 +357,16 @@ function changeUserState(userId, userState) {
         dataType: 'json',
         success: function (res) {
             if (res.code == '8888') {
+                // alert 删除成功，刷新界面
                 refreshTable();
             }
         }
     };
     getAjax(opt);
+}
+// 修改状态 取消按钮事件
+function changestateCancel() {
+    $('#changestate_window').removeClass('bbox');
 }
 
 // 删除事件按钮
@@ -331,7 +375,6 @@ function deleteUser(userId, userNo) {
     $('#delete_window').addClass('bbox');
 
     this.userId = userId;
-    this.userNo = userNo;
 
     // 多用户删除
     /*var dataArr=$('#userContentTable').bootstrapTable('getSelections');
@@ -369,7 +412,6 @@ function deleteConfirm() {
 
     //设置请求参数
     var req = {
-        userNo: this.userNo,
         id: id,
         ids: ids
     };
@@ -417,10 +459,20 @@ function showUser(userId, userNo) {
         success: function (res) {
             if (res.code == '8888') {
                 $('#detail_id').val(id);
+                $('#detail_userNo').val(res.data.userNo);
                 $('#detail_userName').val(res.data.userName);
                 $('#detail_realName').val(res.data.realName);
+                $('#detail_sex').val(userSexMap[res.data.sex]);
+                $('#detail_password').val(res.data.password);
                 $('#detail_phoneNumber').val(res.data.phoneNumber);
+                $('#detail_cardNo').val(res.data.cardNo);
+                $('#detail_wechatNumber').val(res.data.wechatNumber);
                 $('#detail_email').val(res.data.email);
+                $('#detail_address').val(res.data.address);
+                $('#detail_level').val(userLevelMap[res.data.level]);
+                $('#detail_remark').val(res.data.remark);
+                $('#detail_beginTime').val(res.data.beginTime);
+                $('#detail_endTime').val(res.data.endTime);
             }
         }
     };

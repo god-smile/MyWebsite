@@ -59,10 +59,19 @@
                             <input type="text" class="form-control" name="realName" id="add_realName"/>
                         </div>
                     </div>
-                    <div class="hr-line-dashed" style="display:none"></div>
-                    <div class="form-group" style="display:none">
-                        <label class="col-sm-2 control-label">角色</label>
-                        <div class="col-sm-10 role add">
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10">
+                            <label>
+                                <input type="radio" name="sex" value=1/> 男
+                            </label>
+                            <label>
+                                <input type="radio" name="sex" value=2/> 女
+                            </label>
+                            <label>
+                                <input type="radio" name="sex" value=3/> 保密
+                            </label>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
@@ -81,6 +90,20 @@
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
+                        <label class="col-sm-2 control-label">身份证号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="cardNo" id="add_cardNo"/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">微信号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="wechatNumber" id="add_wechatNumber"/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">邮箱</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="email" id="add_email"/>
@@ -88,16 +111,53 @@
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">状态</label>
+                        <label class="col-sm-2 control-label">地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="address" id="add_address"/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">用户类别</label>
                         <div class="col-sm-10">
                             <label>
-                                <input type="radio" name="Attribute" value=1/> 正常
+                                <input type="radio" name="level" value=1/> 管理员
                             </label>
                             <label>
-                                <input type="radio" name="Attribute" value=2/> 锁定
+                                <input type="radio" name="level" value=2/> 普通用户
                             </label>
                         </div>
                     </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="remark" id="add_remark"/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">开始时间</label>
+                        <div class="col-md-5 input-group date form_datetime" data-link-field="add_beginTime"
+                             style="padding-left:15px">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <input type="hidden" id="add_beginTime" value="" name="beginTime"/><br/>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">结束时间</label>
+                        <div class="col-md-5 input-group date form_datetime" data-link-field="add_endTime"
+                             style="padding-left:15px">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <input type="hidden" id="add_endTime" value="" name="endTime"/><br/>
+                    </div>
+
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-2">
@@ -130,10 +190,18 @@
                             <input type="text" class="form-control" name="id" id="edit_id"/>
                         </div>
                     </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">用户编号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="userNo" id="edit_userNo" readonly/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">用户名</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="userName" id="edit_userName" readonly/>
+                            <input type="text" class="form-control" name="userName" id="edit_userName"/>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
@@ -143,16 +211,47 @@
                             <input type="text" class="form-control" name="realName" id="edit_realName"/>
                         </div>
                     </div>
-                    <div class="hr-line-dashed" style="display:none"></div>
-                    <div class="form-group" style="display:none">
-                        <label class="col-sm-2 control-label">角色</label>
-                        <div class="col-sm-10 role edit"></div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10">
+                            <label>
+                                <input type="radio" name="sex" value="1" /> 男
+                            </label>
+                            <label>
+                                <input type="radio" name="sex" value="2" /> 女
+                            </label>
+                            <label>
+                                <input type="radio" name="sex" value="3" /> 保密
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="password" id="edit_password"/>
+                        </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">手机号</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="phoneNumber" id="edit_phoneNumber"/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">身份证号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="cardNo" id="edit_cardNo"/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">微信号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="wechatNumber" id="edit_wechatNumber"/>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
@@ -164,16 +263,54 @@
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">状态</label>
+                        <label class="col-sm-2 control-label">地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="address" id="edit_address"/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">用户类别</label>
                         <div class="col-sm-10">
                             <label>
-                                <input type="radio" name="Attribute" value=1 id="edit_Attribute"/> 正常
+                                <input type="radio" name="level" value=1/> 管理员
                             </label>
                             <label>
-                                <input type="radio" name="Attribute" value=2 id="edit_Attribute"/> 锁定
+                                <input type="radio" name="level" value=2/> 普通用户
                             </label>
                         </div>
                     </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="remark" id="edit_remark"/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">开始时间</label>
+                        <div class="col-md-5 input-group date form_datetime" data-link-field="edit_beginTime"
+                             style="padding-left:15px">
+                            <input class="form-control" size="16" type="text" value="" id="edit_beginTime_value"
+                                   readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <input type="hidden" id="edit_beginTime" value="" name="beginTime"/><br/>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">结束时间</label>
+                        <div class="col-md-5 input-group date form_datetime" data-link-field="edit_endTime"
+                             style="padding-left:15px">
+                            <input class="form-control" size="16" type="text" value="" id="edit_endTime_value" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <input type="hidden" id="edit_endTime" value="" name="endTime"/><br/>
+                    </div>
+
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-2">
@@ -206,6 +343,14 @@
                             <input type="text" class="form-control" name="id" id="detail_id"/>
                         </div>
                     </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">用户编号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="userNo" id="detail_userNo" readonly/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">用户名</label>
                         <div class="col-sm-10">
@@ -219,16 +364,40 @@
                             <input type="text" class="form-control" name="realName" id="detail_realName" readonly/>
                         </div>
                     </div>
-                    <div class="hr-line-dashed" style="display:none"></div>
-                    <div class="form-group" style="display:none">
-                        <label class="col-sm-2 control-label">角色</label>
-                        <div class="col-sm-10 role edit"></div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="sex" id="detail_sex" readonly/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="password" id="detail_password" readonly/>
+                        </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">手机号</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="phoneNumber" id="detail_phoneNumber"
+                                   readonly/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">身份证号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="cardNo" id="detail_cardNo" readonly/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">微信号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="wechatNumber" id="detail_wechatNumber"
                                    readonly/>
                         </div>
                     </div>
@@ -241,16 +410,40 @@
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">状态</label>
+                        <label class="col-sm-2 control-label">地址</label>
                         <div class="col-sm-10">
-                            <label>
-                                <input type="radio" name="Attribute" value=1 id="edit_Attribute"/> 正常
-                            </label>
-                            <label>
-                                <input type="radio" name="Attribute" value=2 id="edit_Attribute"/> 锁定
-                            </label>
+                            <input type="text" class="form-control" name="address" id="detail_address" readonly/>
                         </div>
                     </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">用户类别</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="level" id="detail_level" readonly/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="remark" id="detail_remark" readonly/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">开始时间</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="beginTime" id="detail_beginTime" readonly/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">结束时间</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="endTime" id="detail_endTime" readonly/>
+                        </div>
+                    </div>
+
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-1">
@@ -264,10 +457,21 @@
         </div>
     </div>
 </div>
+<div class="popup_de xycenter" id="changestate_window">
+    <div class="popup_box">
+        <span class="popup_close" value="关闭">×</span>
+        <span class="show_msg" id="changestate_msg">确定要删除吗？</span>
+        <div class="btn_box">
+            <div class="popup_btn btn_submit" value="确定" id="changestate_confirm" onclick="changestateConfirm()">确定
+            </div>
+            <div class="popup_btn btn_cancel" value="取消" id="changestate_cancel" onclick="changestateCancel()">取消</div>
+        </div>
+    </div>
+</div>
 <div class="popup_de xycenter" id="delete_window">
     <div class="popup_box">
         <span class="popup_close" value="关闭">×</span>
-        <span class="show_msg" id="delete_msg">确定要删除该权限吗？</span>
+        <span class="show_msg" id="delete_msg">确定要删除吗？</span>
         <div class="btn_box">
             <div class="popup_btn btn_submit" value="确定" id="delete_confirm" onclick="deleteConfirm()">确定</div>
             <div class="popup_btn btn_cancel" value="取消" id="delete_cancel" onclick="deleteCancel()">取消</div>

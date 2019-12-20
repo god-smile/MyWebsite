@@ -9,6 +9,11 @@ document.write('' +
     '');
 
 document.write('' +
+    '<!-- 常量 map -->\n' +
+    '<script src="../util/constMap.js"></script>\n' +
+    '');
+
+document.write('' +
     '<!-- 引入封装的 errorAlert -->\n' +
     '<script src="../common/js/alert.js"></script>\n' +
     '');
@@ -62,6 +67,17 @@ document.write('' +
     '<link rel="stylesheet" href="../bootstrap-3.3.7/js/plugins/bootstrap-select/bootstrap-select.min.css">\n' +
     '<script src="../bootstrap-3.3.7/js/plugins/bootstrap-select/bootstrap-select.js"></script>\n' +
     '<script src="../bootstrap-3.3.7/js/plugins/bootstrap-select/bootstrap-select.min.js"></script>\n' +
+    '');
+
+document.write('' +
+    '<!-- 引入bootstrap-datetimepicker插件 -->\n' +
+    '<link rel="stylesheet" href="../bootstrap-3.3.7/css/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">\n' +
+    '<script src="../bootstrap-3.3.7/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>\n' +
+    '<script src="../bootstrap-3.3.7/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>\n' +
+    '');
+
+document.write('' +
+    '<script src="../util/datetimerUtil.js"></script>\n' +
     '');
 
 document.write('' +
