@@ -40,8 +40,10 @@ function SuccessAlertManual(e) {
     layui.use('layer', function () {
         var index = layer.alert(e, { title: successTitle, icon: 6});
         layer.style(index, {
-            color: '#777'/*,
-            top: '0px'*/
+            offset: 'auto',
+            color: '#777',
+            top: '250px',
+            //left: ($(window).width() - 20) / 2 + 'px'
         });
     });
 }

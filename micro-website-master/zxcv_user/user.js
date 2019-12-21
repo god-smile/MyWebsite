@@ -185,6 +185,7 @@ function addSaveUser() {
             success: function (res) {
                 if (res.code == '8888') {
                     SuccessAlertManual("用户添加成功！");
+
                     $('#addUser').addClass('animated slideOutLeft');
                     setTimeout(function () {
                         $('#addUser').removeClass('animated slideOutLeft').css('display', 'none');
@@ -192,9 +193,6 @@ function addSaveUser() {
                     $('#userContent').css('display', 'block').addClass('animated slideInRight');
                     refreshTable();
                     $('#addUserForm').data('bootstrapValidator').resetForm(true);
-                    //隐藏修改与删除按钮
-                    // $('#btn_delete').css('display','none');
-                    // $('#btn_edit').css('display','none');
                 }
             }
         };

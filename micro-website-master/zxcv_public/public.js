@@ -40,7 +40,9 @@ document.write('' +
     '');
 
 document.write('' +
-    '<link rel="stylesheet" href="../common/common.css">\n' +
+    '<!-- 引入 layui -->\n' +
+    '<link rel="stylesheet" href="../layui/css/layui.css">\n' +
+    '<script src="../layui/layui.js"></script>\n' +
     '');
 
 document.write('' +
@@ -80,9 +82,9 @@ document.write('' +
     '<script src="../util/datetimerUtil.js"></script>\n' +
     '');
 
+
 document.write('' +
-    '<!-- 引入 layui -->\n' +
-    '<link rel="stylesheet" href="../layui/css/layui.css">\n' +
-    '<script src="../layui/layui.js"></script>\n' +
+    '<!-- 引入 common.css， 里面有覆盖的样式，所以最后引入 -->\n' +
+    '<link rel="stylesheet" href="../common/common.css">\n' +
     '');
 document.write('<!-----------  公共js和css end----------->');

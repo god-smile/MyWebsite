@@ -260,3 +260,7 @@ nav .fir{
 /* .bs-bars.pull-right {
     margin-top: 0!important;
 } */
+
+.layui-layer-dialog .layui-layer-padding {
+	height: 65px !important;
+}
