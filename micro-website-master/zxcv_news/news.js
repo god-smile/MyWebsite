@@ -374,9 +374,9 @@ function showNews(newsId, newsNo) {
     $('#showNews').css('display', 'block');
     $('#showNews').addClass('animated slideInRight');
 
-    $('#detail_edit').empty();
+    $('#editor_detail').empty();
 
-    var id = userId;
+    var id = newsId;
     //设置请求参数
     var req = {
         id: id
@@ -393,7 +393,7 @@ function showNews(newsId, newsNo) {
                 $('#detail_id').val(id);
                 $('#detail_title').val(res.data.title);
                 // $('#detail_newsType').val(res.data.newsType);
-                $('#detail_edit').append(res.data.content);
+                $('#editor_detail').append(res.data.content);
             }
         }
     };
