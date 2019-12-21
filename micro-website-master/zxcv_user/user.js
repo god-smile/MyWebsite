@@ -242,16 +242,19 @@ function editUser(userId, userNo) {
 
                 switch (res.data.sex) {
                     case 1:
-                        var ss = $('input[type="radio"][name="sex"]:eq(0)');
-                        ss.prop("checked", true);
+                        // var ss = $('input[type="radio"][name="sex"]:eq(0)');
+                        // ss.prop("checked", true);
+                        $("input[name='sex'][value='1']").prop("checked", true);
                         break;
                     case 2:
-                        var ss = $('input[type="radio"][name="sex"]:eq(1)');
-                        ss.prop("checked", true);
+                        // var ss = $('input[type="radio"][name="sex"]:eq(1)');
+                        // ss.prop("checked", true);
+                        $("input[name='sex'][value='2']").prop("checked", true);
                         break;
                     case 3:
-                        var ss = $('input[type="radio"][name="sex"]:eq(2)');
-                        ss.prop("checked", true);
+                        // var ss = $('input[type="radio"][name="sex"]:eq(2)');
+                        // ss.prop("checked", true);
+                        $("input[name='sex'][value='3']").prop("checked", true);
                         break;
                 }
 
