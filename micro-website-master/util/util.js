@@ -257,6 +257,17 @@ var commonObj={
         obj = decodeURIComponent(obj,true);
         var jsonobj = JSON.parse(commonObj.formToJson(obj));
         return jsonobj;
+    },
+
+    /**
+     * 根据 form id 获取一个json 对象， 有 富文本， 附加中文编码
+     */
+    getJsonObjectByFormWithEditor: function (formId, editor) {
+        var obj = $('#' + formId).serialize();
+        obj = decodeURIComponent(obj,true);
+        var jsonobj = JSON.parse(commonObj.formToJson(obj));
+        jsonobj.newsContent = editor.txt.html();
+        return jsonobj;
     }
 };
 

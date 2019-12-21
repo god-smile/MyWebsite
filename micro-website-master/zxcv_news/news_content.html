@@ -51,9 +51,9 @@
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
-                        <label for="newsType" class="col-sm-2 control-label">新闻类型</label>
+                        <label for="add_newsType" class="col-sm-2 control-label">新闻类型</label>
                         <div class="col-md-10">
-                            <select id="newsType" class="form-control" name="newsType">
+                            <select id="add_newsType" class="form-control" name="newsType">
                                 <option value="1">新闻资讯</option>
                                 <option value="2">公告信息</option>
                                 <option value="3">招聘信息</option>
@@ -106,9 +106,13 @@
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">新闻类型</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="newsType" id="edit_newsType"/>
+                        <label for="edit_newsType" class="col-sm-2 control-label">新闻类型</label>
+                        <div class="col-md-10">
+                            <select id="edit_newsType" class="form-control" name="newsType">
+                                <option value="1">新闻资讯</option>
+                                <option value="2">公告信息</option>
+                                <option value="3">招聘信息</option>
+                            </select>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
@@ -184,7 +188,7 @@
 <div class="popup_de xycenter" id="delete_window">
     <div class="popup_box">
         <span class="popup_close" value="关闭">×</span>
-        <span class="show_msg" id="delete_msg">确定要删除该权限吗？</span>
+        <span class="show_msg" id="delete_msg">确定要删除吗？</span>
         <div class="btn_box">
             <div class="popup_btn btn_submit" value="确定" id="delete_confirm" onclick="deleteConfirm()">确定</div>
             <div class="popup_btn btn_cancel" value="取消" id="delete_cancel" onclick="deleteCancel()">取消</div>

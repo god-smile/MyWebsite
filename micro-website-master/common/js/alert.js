@@ -11,7 +11,9 @@ function ErrorAlertTime(e, time) {
     layui.use('layer', function () {
         var index = layer.alert(e, { icon: 5, time: time, offset: 't', closeBtn: 0, title: errorTitle, btn: [], anim: 2, shade: 0 });
         layer.style(index, {
-            color: '#777'
+            offset: 'auto',
+            color: '#777',
+            top: '250px',
         });
     });
 }
@@ -24,7 +26,9 @@ function ErrorAlertManual(e) {
     layui.use('layer', function () {
         var index = layer.alert(e, { title: errorTitle, icon: 5});
         layer.style(index, {
-            color: '#777'
+            offset: 'auto',
+            color: '#777',
+            top: '250px',
         });
     });
 }
@@ -43,7 +47,6 @@ function SuccessAlertManual(e) {
             offset: 'auto',
             color: '#777',
             top: '250px',
-            //left: ($(window).width() - 20) / 2 + 'px'
         });
     });
 }

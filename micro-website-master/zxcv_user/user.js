@@ -83,32 +83,12 @@ function userNameFormatter(value, row, index) {
     return html;
 }
 function stateFormatter(value, row, index) {
-    /*if(value==2){
-        return '<i class="fa fa-lock" style="color:red"></i>'
-    }else if(value==1){
-        return '<i class="fa fa-unlock" style="color:green"></i>'
-    }else{
-        return '数据错误'
-    }*/
-    if (value == '1') {
-        return "正常";
-    } else if (value == '0') {
-        return "冻结";
-    } else if (value == '3') {
-        return "删除";
-    } else {
-        return "其他";
-    }
+    return userStateMap[value];
 }
 function operateFormatter(value, row, index) {
     var html = "<a href='#' class='edit_user' onclick='editUser(" + row.id + ", \"" + row.userNo + "\")' id='edit_user' >修改</a> ";
     html += "&nbsp;&nbsp;&nbsp;";
-    var state = "";
-    if (value == '1') {
-        state = "冻结";
-    }else if (value == '0') {
-        state = "解冻";
-    }
+    var state = userStateChangeMap[value];
     html += "<a href='#' class='delete_user' onclick='changeUserState(" + row.id + ", \"" + value + "\")' id='changestate_user' >" + state +
         "</a> ";
     html += "&nbsp;&nbsp;&nbsp;";
@@ -192,7 +172,7 @@ function addSaveUser() {
                     }, fadeTime);
                     $('#userContent').css('display', 'block').addClass('animated slideInRight');
                     refreshTable();
-                    $('#addUserForm').data('bootstrapValidator').resetForm(true);
+                    $('#addUserForm').bootstrapValidator('resetForm', true);
                 }
             }
         };
@@ -206,7 +186,7 @@ function addCancel() {
         $('#addUser').removeClass('animated slideOutLeft').css('display', 'none');
     }, fadeTime);
     $('#userContent').css('display', 'block').addClass('animated slideInRight');
-    $('#addUserForm').data('bootstrapValidator').resetForm(true);
+    $('#addUserForm').bootstrapValidator('resetForm', true);
 }
 
 /*
@@ -299,7 +279,7 @@ function editSaveUser() {
                     //刷新人员管理主页
                     refreshTable();
                     //修改页面表单重置
-                    $('#editUserForm').data('bootstrapValidator').resetForm(true);
+                    $('#editUserForm').bootstrapValidator('resetForm', true);
                 }
             }
         };
@@ -313,26 +293,16 @@ function editCancel() {
         $('#updateUser').removeClass('animated slideOutLeft').css('display', 'none');
     }, fadeTime);
     $('#userContent').css('display', 'block').addClass('animated slideInRight');
-    $('#editUserForm').data('bootstrapValidator').resetForm(true);
+    $('#editUserForm').bootstrapValidator('resetForm', true);
 }
 // 修改状态
 function changeUserState(userId, userState) {
-    var state = "";
-    if (userState == '1') {
-        state = "冻结";
-    }else if (userState == '0') {
-        state = "解冻";
-    }
+    var state = userStateChangeMap[userState];
 
     $('#changestate_msg').text('确定要' + state + '该用户吗?');
     $('#changestate_window').addClass('bbox');
 
-    var newState = -1;
-    if (userState == '1') {
-        newState = 0;
-    } else if (userState == '0') {
-        newState = 1;
-    }
+    var newState = userNewStateMap[userState];
 
     this.userId = userId;
     this.userState = newState;
