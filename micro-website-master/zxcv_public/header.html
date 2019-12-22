@@ -1,5 +1,6 @@
-
 <script type="text/javascript" src="public.js"></script>
+
+<script type="text/javascript" src="header.js"></script>
 
 <body>
 <header class="header">
@@ -8,6 +9,12 @@
         <span>新闻资讯管理平台</span>
     </div>
     <div class="head-right">
+        <div class="hr-bell" style="width: 240px;">
+            <label for="myProject" style="text-align: right;">系统&nbsp;&nbsp;</label>
+            <select id="myProject" name="myProject" style="color: black;height: 30px;" onchange="projectChange()">
+            </select>
+        </div>
+
         <div class="hr-bell">
             <i class="fa fa-bell-o" aria-hidden="true">
                 <span class="badge">4</span>

@@ -9,22 +9,9 @@ document.write('' +
     '');
 
 document.write('' +
-    '<!-- 常量 map -->\n' +
-    '<script src="../util/constMap.js"></script>\n' +
-    '');
-
-document.write('' +
     '<!-- 引入封装的 errorAlert -->\n' +
     '<script src="../common/js/alert.js"></script>\n' +
     '');
-
-document.write('' +
-    '<!-- 引入 工具js -->\n' +
-    '<script type="text/javascript" src="../util/DateUtils.js"></script>\n' +
-    '<script type="text/javascript" src="../util/util.js"></script>\n' +
-    '');
-
-
 
 document.write('' +
     '<!-- 引入 bootstrap -->\n' +
@@ -79,9 +66,19 @@ document.write('' +
     '');
 
 document.write('' +
-    '<script src="../util/datetimerUtil.js"></script>\n' +
+    '<!-- 常量 map -->\n' +
+    '<script src="../util/constMap.js"></script>\n' +
+    '<!-- 常量 -->\n' +
+    '<script src="../util/constant.js"></script>\n' +
     '');
 
+document.write('' +
+    '<!-- 引入 工具js -->\n' +
+    '<script type="text/javascript" src="../util/DateUtils.js"></script>\n' +
+    '<script type="text/javascript" src="../util/util.js"></script>\n' +
+    '<script src="../util/datetimerUtil.js"></script>\n' +
+    '<script src="../util/editorUtil.js"></script>\n' +
+    '');
 
 document.write('' +
     '<!-- 引入 common.css， 里面有覆盖的样式，所以最后引入 -->\n' +

@@ -1,7 +1,7 @@
 //ajax的封装
 // var baseURL = 'http://47.104.166.165:8088';
-var baseURL = 'http://182.92.118.137:8088';
-// var baseURL = 'http://localhost:8088';
+// var baseURL = 'http://182.92.118.137:8088';
+var baseURL = 'http://localhost:8088';
 
 var dataUrl = {};
 dataUrl.util = {
@@ -49,6 +49,12 @@ dataUrl.util = {
         return baseURL + '/siteNewsInfo/deleteSiteNewsInfo';
     },
     /******************************新闻管理 end***********************/
+    /******************************项目管理 start***********************/
+    // 查询项目
+    getSysProjectInfoByUrl: function () {
+        return baseURL + '/sysProjectInfo/getSysProjectInfoByUrl';
+    },
+    /******************************项目管理 end***********************/
 };
 function getAjax(opts){
     

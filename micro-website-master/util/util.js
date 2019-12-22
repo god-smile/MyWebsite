@@ -254,19 +254,24 @@ var commonObj={
      */
     getJsonObjectByForm: function (formId) {
         var obj = $('#' + formId).serialize();
-        obj = decodeURIComponent(obj,true);
+        obj = decodeURIComponent(obj, true);
         var jsonobj = JSON.parse(commonObj.formToJson(obj));
+        jsonobj['projectNo'] = constant.globalProjectNo;
         return jsonobj;
     },
 
     /**
      * 根据 form id 获取一个json 对象， 有 富文本， 附加中文编码
+     * @param formId
+     * @param editor
+     * @returns {any}
      */
-    getJsonObjectByFormWithEditor: function (formId, editor) {
+    getJsonObjectByFormWithEditor: function (formId, editor, variable) {
         var obj = $('#' + formId).serialize();
-        obj = decodeURIComponent(obj,true);
+        obj = decodeURIComponent(obj, true);
         var jsonobj = JSON.parse(commonObj.formToJson(obj));
-        jsonobj.newsContent = editor.txt.html();
+        jsonobj[variable] = editor.txt.html();
+        jsonobj['projectNo'] = constant.globalProjectNo;
         return jsonobj;
     }
 };
