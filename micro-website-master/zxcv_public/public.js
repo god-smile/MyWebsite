@@ -76,6 +76,7 @@ document.write('' +
     '<link rel="stylesheet" href="../bootstrap-3.3.7/css/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">\n' +
     '<script src="../bootstrap-3.3.7/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>\n' +
     '<script src="../bootstrap-3.3.7/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>\n' +
+    '<script src="../bootstrap-3.3.7/js/plugins/bootstrap-datetimepicker/moment.js"></script>\n' +
     '');
 
 document.write('' +

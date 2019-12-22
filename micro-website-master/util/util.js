@@ -6,18 +6,37 @@
 var commonObj={
     refreshDataTime :60000,
     // 数据为null转为 "-"串处理
-    replacenull:function (value, row, index) {
+    replaceNull:function (value, row, index) {
         if(value===null||value===undefined||value===''){
             value = '-'
         }
-        return value
+        return value;
     },
     // 数据为null转为 空字符串处理
-    isnull:function (value, row, index) {
+    isNull:function (value, row, index) {
         if(value===null||value===undefined||value===''){
             value = '-'
         }
-        return value
+        return value;
+    },
+    /*
+     @切割字符串
+     @str原字符串
+     @num字符位数
+     */
+    cutString: function (str, num) {
+        var _str = "";
+        if(str == null){
+            return "";
+        }
+        if (str.length >= num) {
+            var strN = str.substring(0, num);
+            strN += "...";
+            _str = strN;
+        } else {
+            _str = str;
+        }
+        return _str;
     },
     // 金钱格式处理
     moneyFormatter: function (value) {
@@ -101,139 +120,7 @@ var commonObj={
              return str.substr(0,7);
         }
     },
-    //状态处理 10：在场 20：离场
-    inOutStateFormatter: function (value, row, index) {
-        if (value == 10) {
-            return "<span class='ITD-status-on'>在场</span>";
-        } else if(value == 20){
-            return "<span class='ITD-status-off'>离场</span>";
-        }else{
-            return "未知";
-        }
-    },
-    //支付方式处理
-    discPayTypeFormatter:function(value){
-        if (value==null||value==undefined||value=='') {
-            return "-";
-        }
-        else if(value == -1){
-            return "不限";
-        }
-        else if(value == 1){
-            return "支付宝";
-        }
-        else if (value == 2){
-            return "微信";
-        }
-        else if(value == 3){
-            return "银联";
-        }
-        else if(value == 4){
-            return "微信公众号";
-        }
-        else if(value == 6){
-            return "现金";
-        }
-        else{
-            return "未知";
-        }
-    },
-    //车型号处理
-    disCarTypeFormatter:function(value){
-        if (value==null||value==undefined||value=='') {
-            return "-";
-        }
-        else if(value == 1){
-            return "大型车";
-        }
-        else if (value == 2){
-            return "小型车";
-        }
-        else if(value == 3){
-            return "新能源车";
-        }
-        else{
-            return "未知";
-        }
-    },
-    //收费方式格式处理  免费0  收费1
-    psPayTypeFormatter:function(value){
-        if(value==null||value==undefined||value==''){
-            return "-";
-        }
-        else if(value == "0"){
-            return "免费";
-        }
-        else if(value == "1"){
-            return "收费";
-        }
-        else{
-            return "未知";
-        }
-    },
-    //车位来源格式处理 私有车位1 公共停车位2 写字楼3 商业园区4
-    psSourceTypeFormatter:function(value){
-        if(value==null||value==undefined||value==''){
-            return "-";
-        }
-        else if(value == "1"){
-            return "私有车位";
-        }
-        else if(value == "2"){
-            return "公共停车位";
-        }
-        else if(value == "3"){
-            return "写字楼";
-        }
-        else if(value == "4"){
-            return "商业园区";
-        }
-        else{
-            return "未知";
-        }
-    },
-    //车位状态格式处理 未租用0   租用 无车1   租用 有车2    异常3
-    psIsOccupyFormatter:function(value){
-        if(value==null||value==undefined||value==''){
-            return "-";
-        }
-        else if(value == "0"){
-            return "未租用";
-        }
-        else if(value == "1"){
-            return "租用 无车";
-        }
-        else if(value == "2"){
-            return "租用 有车";
-        }
-        else if(value == "3"){
-            return "异常";
-        }
-        else{
-            return "未知";
-        }
-    },
-    //审核状态格式处理  待审核0  审批中1  通过2  驳回3
-    psExamineStateFormatter:function(value){
-        if(value==null||value==undefined||value==''){
-            return "-";
-        }
-        else if(value == "0"){
-            return "待审核";
-        }
-        else if(value == "1"){
-            return "审批中";
-        }
-        else if(value == "2"){
-            return "通过";
-        }
-        else if(value == "3"){
-            return "驳回";
-        }
-        else{
-            return "未知";
-        }
-    },
+
     // 字符串转数字处理
 
 
