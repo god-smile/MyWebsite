@@ -354,3 +354,8 @@ label{width:100px;}
 .popup_de .btn_box{
 	text-align: center;
 }
+
+.selected_bg {
+	background-color: #1ab394;
+	color: #000000;
+}
