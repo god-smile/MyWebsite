@@ -1,7 +1,7 @@
 //ajax的封装
 // var baseURL = 'http://47.104.166.165:8088';
-var baseURL = 'http://182.92.118.137:8088';
-// var baseURL = 'http://localhost:8088';
+// var baseURL = 'http://182.92.118.137:8088';
+var baseURL = 'http://localhost:8088';
 
 var dataUrl = {};
 dataUrl.util = {
@@ -49,6 +49,34 @@ dataUrl.util = {
         return baseURL + '/siteNewsInfo/deleteSiteNewsInfo';
     },
     /******************************新闻管理 end***********************/
+    /******************************产品管理 start***********************/
+    // 分页查询产品
+    querySiteProductInfoForPage: function () {
+        return baseURL + '/siteProductInfo/querySiteProductInfoForPage';
+    },
+    // 新增产品
+    saveSiteProductInfo: function () {
+        return baseURL + '/siteProductInfo/saveSiteProductInfo';
+    },
+    // 查询产品
+    selectSiteProductInfo: function () {
+        return baseURL + '/siteProductInfo/selectSiteProductInfo';
+    },
+    // 修改产品
+    updateSiteProductInfoById: function () {
+        return baseURL + '/siteProductInfo/updateSiteProductInfoById';
+    },
+    // 删除产品
+    deleteSiteProductInfo: function () {
+        return baseURL + '/siteProductInfo/deleteSiteProductInfo';
+    },
+    /******************************产品管理 end***********************/
+    /******************************项目管理 start***********************/
+    // 查询项目
+    getSysProjectInfoByUrl: function () {
+        return baseURL + '/sysProjectInfo/getSysProjectInfoByUrl';
+    },
+    /******************************项目管理 end***********************/
 };
 function getAjax(opts){
     
