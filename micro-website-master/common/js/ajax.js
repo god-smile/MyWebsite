@@ -1,7 +1,7 @@
 //ajax的封装
 // var baseURL = 'http://47.104.166.165:8088';
-var baseURL = 'http://182.92.118.137:8088';
-// var baseURL = 'http://localhost:8088';
+// var baseURL = 'http://182.92.118.137:8088';
+var baseURL = 'http://localhost:8088';
 
 var dataUrl = {};
 dataUrl.util = {

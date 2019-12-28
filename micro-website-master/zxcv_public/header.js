@@ -18,6 +18,7 @@ var header = {
                     var length = res.data.length;
                     if (length > 0) {
                         constant.globalProjectNo = res.data[0].projectNo;
+                        sessionStorage.setItem("projectNo",constant.globalProjectNo);
                     }
                     for (var i = 0; i < length; i++) {
                         var pro = res.data[i];
@@ -62,6 +63,7 @@ function projectChange() {
 
     $('#myProject option[value="' + constant.globalProjectNo + '"]').removeAttr('style');
     constant.globalProjectNo = value;
+    sessionStorage.setItem("projectNo",constant.globalProjectNo);
     $('#myProject option[value="' + constant.globalProjectNo + '"]').css('background-color', 'red');
 
     // 选择项目后，刷新content 内容，根据 projectNo 查询

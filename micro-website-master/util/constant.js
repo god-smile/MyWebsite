@@ -31,6 +31,7 @@ var constant = {
      * 适用于 后台管理系统
      */
     initProjectNo: function () {
-
+        // 从session 中拿，如果没有
+        constant.globalProjectNo = sessionStorage.getItem("projectNo");
     }
 };

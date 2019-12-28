@@ -2,6 +2,8 @@ var newsId;
 var fadeTime = 500;
 
 $(function () {
+    constant.initProjectNo();
+
     //根据窗口调整表格高度
     $(window).resize(function () {
         $('#newsContentTable').bootstrapTable('resetView', {
@@ -77,9 +79,10 @@ function tableLoadRequest(params) {
     //条件查询
     req.pageReq = {
         pageNum: pageNum,
-        pageSize: pageSize,
-        projectNo: constant.globalProjectNo
+        pageSize: pageSize
     };
+    req.projectNo = constant.globalProjectNo;
+
     var newsTableAjax = {
         method: params.type,
         url: dataUrl.util.querySiteNewsInfoForPage(),
