@@ -2,9 +2,6 @@ var newsId;
 var fadeTime = 500;
 
 $(function () {
-    // 应该是登录完调用，这里要删除掉
-    constant.initProjectNoByUrl();
-
     //根据窗口调整表格高度
     $(window).resize(function () {
         $('#newsContentTable').bootstrapTable('resetView', {
@@ -80,7 +77,8 @@ function tableLoadRequest(params) {
     //条件查询
     req.pageReq = {
         pageNum: pageNum,
-        pageSize:pageSize
+        pageSize: pageSize,
+        projectNo: constant.globalProjectNo
     };
     var newsTableAjax = {
         method: params.type,

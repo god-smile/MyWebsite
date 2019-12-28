@@ -76,6 +76,10 @@ dataUrl.util = {
     getSysProjectInfoByUrl: function () {
         return baseURL + '/sysProjectInfo/getSysProjectInfoByUrl';
     },
+    // 查询项目
+    getSysProjectInfoByUserNo: function () {
+        return baseURL + '/sysProjectInfo/getSysProjectInfoByUserNo';
+    },
     /******************************项目管理 end***********************/
 };
 function getAjax(opts){
