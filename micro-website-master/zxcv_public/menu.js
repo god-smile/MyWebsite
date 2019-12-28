@@ -7,6 +7,11 @@ $(function () {
     var content = location.substring(location.lastIndexOf("/") + 1);
     content = content.substr(0, content.indexOf(".html"));
 
+    if (content == 'news' || content == 'product') {
+        parent.header.document.getElementById("pro_div").style.display = "block";
+    }
+
+
     console.log(content);
 
     $("#" + content).css({
