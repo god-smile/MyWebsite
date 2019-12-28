@@ -39,12 +39,12 @@ $(function () {
         })
     });
     console.log("product");
-    // 生成新闻数据
+    // 生成产品数据
     loadData();
 });
 /** 加载数据 */
 function loadData() {
-    //生成新闻数据
+    //生成产品数据
     $('#productContentTable').bootstrapTable('destroy').bootstrapTable({
         method: 'post',
         height: tableHeight(),//高度调整
@@ -219,9 +219,9 @@ function initEditor(editorId) {
     };
 }
 /**
- * 新闻管理增加新闻页面所有事件
+ * 产品管理增加产品页面所有事件
  */
-// 新增新闻
+// 新增产品
 function addProduct() {
     $('#productContent').addClass('animated slideOutLeft');
     setTimeout(function () {
@@ -237,9 +237,9 @@ function addProduct() {
 function addSaveProduct() {
     //点击保存时触发表单验证
     $('#addProductForm').bootstrapValidator('validate');
-    //如果表单验证正确，则请求后台添加新闻
+    //如果表单验证正确，则请求后台添加产品
     if ($("#addProductForm").data('bootstrapValidator').isValid()) {
-        var jsonProduct = commonObj.getJsonObjectByFormWithEditor('addProductForm', this.editor);
+        var jsonProduct = commonObj.getJsonObjectByFormWithEditor('addProductForm', this.editor,"content");
 
         var opt = {
             method: 'post',
@@ -249,7 +249,7 @@ function addSaveProduct() {
             dataType: 'json',
             success: function (res) {
                 if (res.code == '8888') {
-                    SuccessAlertManual("新闻添加成功！");
+                    SuccessAlertManual("产品添加成功！");
                     $('#addProduct').addClass('animated slideOutLeft');
                     setTimeout(function () {
                         $('#addProduct').removeClass('animated slideOutLeft').css('display', 'none');
@@ -274,9 +274,9 @@ function addCancel() {
 }
 
 /*
-* 新闻管理修改新闻页面所有事件
+* 产品管理修改产品页面所有事件
 */
-// 修改新闻
+// 修改产品
 function editProduct(productId, productNo) {
     $('#productContent').addClass('animated slideOutLeft');
     setTimeout(function () {
@@ -304,8 +304,9 @@ function editProduct(productId, productNo) {
             if (res.code == '8888') {
                 $('#edit_id').val(id);
                 $('#edit_title').val(res.data.title);
-                // $('#edit_productType').val(res.data.productType);
-                $('#editor_edit').append(res.data.content);
+                $('#edit_description').val(res.data.description);
+                // $('#editor_edit').append(res.data.content);
+                editor.txt.html(res.data.content);
             }
         }
     };
@@ -326,13 +327,13 @@ function editSaveProduct() {
             dataType: 'json',
             success: function (res) {
                 if (res.code == '8888') {
-                    //回退到 新闻管理主页
+                    //回退到 产品管理主页
                     $('#updateProduct').addClass('animated slideOutLeft');
                     setTimeout(function () {
                         $('#updateProduct').removeClass('animated slideOutLeft').css('display', 'none');
                     }, fadeTime);
                     $('#productContent').css('display', 'block').addClass('animated slideInRight');
-                    //刷新新闻管理主页
+                    //刷新产品管理主页
                     refreshTable();
                     //修改页面表单重置
                     $('#editProductForm').bootstrapValidator('resetForm', true);
@@ -354,7 +355,7 @@ function editCancel() {
 
 // 删除事件按钮
 function deleteProduct(productId, productNo) {
-    $('#delete_msg').text('确定要删除该新闻吗?');
+    $('#delete_msg').text('确定要删除该产品吗?');
     $('#delete_window').addClass('bbox');
 
     this.productId = productId;
@@ -363,7 +364,7 @@ function deleteProduct(productId, productNo) {
 function deleteConfirm() {
     $('#delete_window').removeClass('bbox');
 
-    // 单新闻删除
+    // 单产品删除
     var id = this.productId;
     var ids = [id];
 
@@ -392,7 +393,7 @@ function deleteCancel() {
     $('#delete_window').removeClass('bbox');
 }
 
-// 查看新闻详情
+// 查看产品详情
 function showProduct(productId, productNo) {
     $('#productContent').addClass('animated slideOutLeft');
     setTimeout(function () {
