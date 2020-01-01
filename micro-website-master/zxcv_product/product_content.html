@@ -4,8 +4,12 @@
 <!-- 引入wangEditor插件 -->
 <link rel="stylesheet" href="../common/wangEditor/wangEditor.min.css">
 <link rel="stylesheet" href="./product.css?version="+ Math.random()>
+<link rel="stylesheet" href="../common/fileupload/css/iconfont.css" type="text/css"/>
+<link rel="stylesheet" href="../common/fileupload/css/fileUpload.css" type="text/css">
+<script src="../common/fileupload/js/fileUpload.js"></script>
 <script src="../common/wangEditor/wangEditor.min.js"></script>
 <script src="./product.js?version="+ Math.random()></script>
+
 <!-- 产品控制管理 -->
 <div class="tableBody" id="productContent">
     <table id="productContentTable">
@@ -68,13 +72,16 @@
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
-                    <form class="uploadimg" enctype="multipart/form-data" method="post" id='formBox' name="form">
-                        <div class="head-img">
-                            <input type="file" id="chooseImage0" name="file">
-                            <!-- 保存用户自定义的背景图片 -->
-                            <img id="picture0" value='custom' alt="选择图片" data-address='' src="../common/images/add-picture.jpg" title=""/>
-                        </div>
-                    </form>
+                    <!--<form class="uploadimg" enctype="multipart/form-data" method="post" id='formBox' name="form">-->
+                        <!--<div class="head-img">-->
+                            <!--<input type="file" id="chooseImage0" name="file">-->
+                            <!--&lt;!&ndash; 保存用户自定义的背景图片 &ndash;&gt;-->
+                            <!--<img id="picture0" value='custom' alt="选择图片" data-address='' src="../common/images/add-picture.jpg" title=""/>-->
+                        <!--</div>-->
+                    <!--</form>-->
+                    <div id="fileUploadContent" class="fileUploadContent"></div>
+
+                    <button onclick="testUpload()">提交</button>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <div id="editor_add">
