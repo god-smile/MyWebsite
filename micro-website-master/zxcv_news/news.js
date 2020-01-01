@@ -81,7 +81,7 @@ function tableLoadRequest(params) {
         pageNum: pageNum,
         pageSize: pageSize
     };
-    req.projectNo = constant.globalProjectNo;
+    req.projectNo = sessionStorage.getItem("projectNo");
 
     var newsTableAjax = {
         method: params.type,

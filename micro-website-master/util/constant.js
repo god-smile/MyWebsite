@@ -1,6 +1,4 @@
 var constant = {
-    // 登录成功后调用
-    globalProjectNo: "default",
     /**
      * 后端管理系统：适用于 该用户只有一个 同类型系统 或 前端网站访问
      */
@@ -20,8 +18,7 @@ var constant = {
             dataType: 'json',
             success: function (res) {
                 if (res.code == '8888') {
-                    constant.globalProjectNo = res.data.projectNo;
-                    console.log("projectNo:" + this.globalProjectNo);
+                    sessionStorage.setItem("projectNo", res.data.projectNo);
                 }
             }
         };
@@ -32,6 +29,5 @@ var constant = {
      */
     initProjectNo: function () {
         // 从session 中拿，如果没有
-        constant.globalProjectNo = sessionStorage.getItem("projectNo");
     }
 };

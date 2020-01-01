@@ -143,7 +143,7 @@ var commonObj={
         var obj = $('#' + formId).serialize();
         obj = decodeURIComponent(obj, true);
         var jsonobj = JSON.parse(commonObj.formToJson(obj));
-        jsonobj['projectNo'] = constant.globalProjectNo;
+        jsonobj['projectNo'] = sessionStorage.getItem("projectNo");
         return jsonobj;
     },
 
@@ -158,7 +158,7 @@ var commonObj={
         obj = decodeURIComponent(obj, true);
         var jsonobj = JSON.parse(commonObj.formToJson(obj));
         jsonobj[variable] = editor.txt.html();
-        jsonobj['projectNo'] = constant.globalProjectNo;
+        jsonobj['projectNo'] = sessionStorage.getItem("projectNo");
         return jsonobj;
     }
 };

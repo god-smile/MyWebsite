@@ -191,7 +191,7 @@ function tableLoadRequest(params) {
         pageSize:pageSize
     };
 
-    req.projectNo = constant.globalProjectNo;
+    req.projectNo = sessionStorage.getItem("projectNo");
 
     var productTableAjax = {
         method: params.type,

@@ -20,6 +20,10 @@ dataUrl.util = {
     userLogin: function () {
         return baseURL + '/sysUserInfo/userLogin';
     },
+    // 退出登录
+    logout: function () {
+        return baseURL + '/sysUserInfo/logout';
+    },
     // 分页查询用户
     querySysUserInfoForPage: function () {
         return baseURL + '/sysUserInfo/querySysUserInfoForPage';

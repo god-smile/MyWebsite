@@ -174,8 +174,11 @@ layui.use('layer', function () {
                             $('.success').fadeIn(1000);
                             // 这里写 返回的正常结果
                             $('.success').html("");
+
+                            initSessionValue(res.data);
+
                             // 从返回结果中取出 默认的项目入口 进行跳转
-                            window.open(res.data.entranceUrl, "_top");
+                            window.open(res.data.indexUrl, "_top");
                         } else {
                             // 这里写 异常的结果
                             ErrorAlertManual(res.msg);
@@ -205,19 +208,15 @@ function fullscreen() {
     }
 }
 
-if (ajaxmockjax == 1) {
-    $.mockjax({
-        url: 'Ajax/Login',
-        status: 200,
-        responseTime: 50,
-        responseText: {"Status": "ok", "Text": "登陆成功<br /><br />欢迎回来"}
-    });
-    $.mockjax({
-        url: 'Ajax/LoginFalse',
-        status: 200,
-        responseTime: 50,
-        responseText: {"Status": "Erro", "Erro": "账号名或密码或验证码有误"}
-    });
+function initSessionValue(user) {
+    sessionStorage.setItem("userId", user.id);
+    sessionStorage.setItem("userName", user.userName);
+    sessionStorage.setItem("userNo", user.userNo);
+    sessionStorage.setItem("projectNo", user.projectNo);
+    // 他的登录url
+    sessionStorage.setItem("loginUrl", user.loginUrl);
+    // 跳转的url，所有用户都一样，在后台存的变量
+    sessionStorage.setItem("indexUrl", user.indexUrl);
 }
 
 //获取元素距离页面边缘的距离
