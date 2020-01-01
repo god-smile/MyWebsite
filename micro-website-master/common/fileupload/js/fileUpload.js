@@ -517,12 +517,16 @@ var uploadEvent = {
      * 删除文件对应的事件
      * */
     "deleteFileEvent":function(opt,obj){
+        debugger;
         var fileItem = $(obj).parent().parent();
         var fileCodeId = fileItem.attr("fileCodeId");
         var fileListArray = uploadFileList.getFileList(opt);
         delete fileListArray[fileCodeId];
         uploadFileList.setFileList(fileListArray,opt);
         fileItem.remove();
+        //清空隐藏图片url
+        //TODO 此处如果要支持多个，得换种思路 2020-01-01 wangfei
+        $(".fileHideUrl").val('');
 
     },
     /**
@@ -581,6 +585,8 @@ var uploadEvent = {
         uploadFileList.setFileList([],opt);
         $("#"+uploadId+" .box").html("");
         uploadTools.initWithUpload(opt);//初始化上传
+        //清空隐藏图片url
+        $(".fileHideUrl").val('');
     }
 };
 

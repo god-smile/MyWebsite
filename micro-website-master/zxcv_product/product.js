@@ -61,6 +61,7 @@ $(function () {
  * 上传文件
  */
 function uploadFileFun(){
+    $("#addPictureHide").val('');
     var opt = uploadTools.getOpt("fileUploadContent");
     uploadTools.flushOpt(opt);
     if(opt.beforeUpload!=null&&(typeof opt.beforeUpload === "function")) {
@@ -72,7 +73,6 @@ function uploadFileFun(){
     var formData = new FormData();
     var fileNumber = uploadTools.getFileNumber(opt);
     if(fileNumber<=0){
-        debugger;
         ErrorAlertManual("没有文件，不支持上传");
         return false;
     }
@@ -311,6 +311,7 @@ function initEditor(editorId) {
  */
 // 新增产品
 function addProduct() {
+    $("#addPictureHide").val('');
     $('#productContent').addClass('animated slideOutLeft');
     setTimeout(function () {
         $('#productContent').removeClass('animated slideOutLeft').css('display', 'none');
@@ -323,7 +324,7 @@ function addProduct() {
     $("#fileUploadContent").initUpload({
         "uploadUrl":dataUrl.util.uploadPicture(),//上传文件信息地址
         //"size":350,//文件大小限制，单位kb,默认不限制
-        "maxFileNumber":1,//文件个数限制，为整数
+        "maxFileNumber":3,//文件个数限制，为整数
         //"filelSavePath":"",//文件上传地址，后台设置的根目录
         // "beforeUpload":beforeUploadFun,//在上传前执行的函数
         //"onUpload":onUploadFun，//在上传后执行的函数
@@ -338,33 +339,40 @@ function addProduct() {
 }
 // 新增页面表单验证
 function addSaveProduct() {
-    //点击保存时触发表单验证
-    $('#addProductForm').bootstrapValidator('validate');
-    //如果表单验证正确，则请求后台添加产品
-    if ($("#addProductForm").data('bootstrapValidator').isValid()) {
-        var jsonProduct = commonObj.getJsonObjectByFormWithEditor('addProductForm', this.editor,"content");
 
-        var opt = {
-            method: 'post',
-            url: dataUrl.util.saveSiteProductInfo(),
-            data: JSON.stringify(jsonProduct),
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            success: function (res) {
-                if (res.code == '8888') {
-                    SuccessAlertManual("产品添加成功！");
-                    $('#addProduct').addClass('animated slideOutLeft');
-                    setTimeout(function () {
-                        $('#addProduct').removeClass('animated slideOutLeft').css('display', 'none');
-                    }, fadeTime);
-                    $('#productContent').css('display', 'block').addClass('animated slideInRight');
-                    refreshTable();
-                    $('#addProductForm').bootstrapValidator('resetForm', true);
-                }
-            }
-        };
-        getAjax(opt);
+    var jsonProduct = commonObj.getJsonObjectByFormWithEditor('addProductForm', this.editor,"content");
+    var pictureUrl = $("#addPictureHide").val();
+    if(jsonProduct.title == null || jsonProduct.title == ''){
+        ErrorAlertManual("请输入产品名称！");
+        return;
     }
+    if(pictureUrl == null || pictureUrl == ''){
+        ErrorAlertManual("请上传一张封面图！");
+        return;
+    }
+    jsonProduct.projectNo = sessionStorage.getItem("projectNo");
+    jsonProduct.picUrl = pictureUrl;
+    var opt = {
+        method: 'post',
+        url: dataUrl.util.saveSiteProductInfo(),
+        data: JSON.stringify(jsonProduct),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (res) {
+            if (res.code == '8888') {
+                SuccessAlertManual("产品添加成功！");
+                $('#addProduct').addClass('animated slideOutLeft');
+                setTimeout(function () {
+                    $('#addProduct').removeClass('animated slideOutLeft').css('display', 'none');
+                }, fadeTime);
+                $('#productContent').css('display', 'block').addClass('animated slideInRight');
+                refreshTable();
+                $('#addProductForm').bootstrapValidator('resetForm', true);
+            }
+        }
+    };
+    getAjax(opt);
+
 }
 // 新增页面的返回按钮
 function addCancel() {
