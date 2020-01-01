@@ -1,6 +1,9 @@
 <script type="text/javascript" src="public.js"></script>
 
 <script type="text/javascript" src="header.js"></script>
+<link rel="stylesheet" href="../layui/css/layui.css">
+<script src="../layui/layui.js"></script>
+<script type="text/javascript" src="../common/js/alert.js"></script>
 
 <body>
 <header class="header">
@@ -13,6 +16,11 @@
             <label for="myProject" style="text-align: right;">系统&nbsp;&nbsp;</label>
             <select id="myProject" name="myProject" style="color: black;height: 30px;" onchange="projectChange()">
             </select>
+        </div>
+
+        <div class="hr-bell" onclick="openPortal()">
+            <i class="fa fa-link" aria-hidden="true"></i>
+            <span>跳转</span>
         </div>
 
         <div class="hr-bell">

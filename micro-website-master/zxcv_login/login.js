@@ -178,7 +178,7 @@ layui.use('layer', function () {
                             initSessionValue(res.data);
 
                             // 从返回结果中取出 默认的项目入口 进行跳转
-                            window.open(res.data.indexUrl, "_top");
+                            window.open("../zxcv_index/index.html", "_top");
                         } else {
                             // 这里写 异常的结果
                             ErrorAlertManual(res.msg);
@@ -209,13 +209,12 @@ function fullscreen() {
 }
 
 function initSessionValue(user) {
+    sessionStorage.clear();
+
     sessionStorage.setItem("userId", user.id);
     sessionStorage.setItem("userName", user.userName);
     sessionStorage.setItem("userNo", user.userNo);
     sessionStorage.setItem("projectNo", user.projectNo);
-    // 他的登录url
-    sessionStorage.setItem("loginUrl", user.loginUrl);
-    // 跳转的url，所有用户都一样，在后台存的变量
     sessionStorage.setItem("indexUrl", user.indexUrl);
 }
 

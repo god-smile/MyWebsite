@@ -23,13 +23,15 @@ var header = {
                     if (length > 0) {
                         if (sessionStorage.getItem("projectNo") == "") {
                             sessionStorage.setItem("projectNo", res.data[0].projectNo);
+                            sessionStorage.setItem("indexUrl", res.data[0].indexUrl);
                         }
                     }
                     for (var i = 0; i < length; i++) {
                         var pro = res.data[i];
                         var projectNo = pro.projectNo;
                         var projectName = pro.projectName;
-                        projects[projectNo] = projectName;
+                        var indexUrl = pro.indexUrl;
+                        projects[projectNo] = {projectName, indexUrl};
                     }
                     header.initProSelect();
                 }
@@ -46,9 +48,9 @@ var header = {
         for (var key in project) {
             // 如果该 projectNo 和 session 中的 projectNo 相等，需要选中
             if (key == projectNo) {
-                myPro.options[myPro.length] = new Option(project[key], key, true, true);
+                myPro.options[myPro.length] = new Option(project[key].projectName, key, true, true);
             }else {
-                myPro.options[myPro.length] = new Option(project[key], key);
+                myPro.options[myPro.length] = new Option(project[key].projectName, key);
             }
 
         }
@@ -72,10 +74,20 @@ function projectChange() {
     $('#myProject option[value="' + projectNo + '"]').removeAttr('style');
 
     sessionStorage.setItem("projectNo", value);
+    sessionStorage.setItem("indexUrl", projects[value].indexUrl);
     $('#myProject option[value="' + value + '"]').css('background-color', 'red');
 
     // 选择项目后，刷新content 内容，根据 projectNo 查询
     parent.content.location.reload();
+}
+
+function openPortal() {
+    var indexUrl = sessionStorage.getItem("indexUrl");
+    if (indexUrl == null || indexUrl == '' || indexUrl == undefined) {
+        parent.content.ErrorAlertManual("系统错误，请联系管理员！");
+        return;
+    }
+    parent.open(indexUrl, "_blank");
 }
 
 function logout() {
@@ -88,11 +100,8 @@ function logout() {
         dataType: 'json',
         success: function (res) {
             if (res.code == '8888') {
-                // session 中取出 默认的项目入口 进行跳转
-                var loginUrl = sessionStorage.getItem("loginUrl");
-                window.open(loginUrl, "_top");
-
                 destroySessionValue();
+                window.open("../zxcv_login/login.html", "_top");
             } else {
                 // 这里写 异常的结果
                 ErrorAlertManual(res.msg);
