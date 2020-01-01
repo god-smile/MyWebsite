@@ -105,6 +105,11 @@ function uploadFileFun(){
                 if(opt.isAutoClean){
                     setTimeout(function () {uploadEvent.cleanFileEvent(opt);},2000) ;
                 }
+                if (data.code == '8888' && data.data != null && data.data != '') {
+                    $("#addPictureHide").val(data.data);
+                }else{
+                    ErrorAlertManual('图片上传错误！');
+                }
             },
             error:function(e){
                 ErrorAlertManual('系统错误，请联系管理员！');
