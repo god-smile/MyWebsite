@@ -3,7 +3,7 @@ $(function () {
     var location = top.location.href;
     console.log(location);
 
-    // index.html
+    // login.html
     var content = location.substring(location.lastIndexOf("/") + 1);
     content = content.substr(0, content.indexOf(".html"));
 

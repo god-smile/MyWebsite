@@ -8,7 +8,7 @@ var constant = {
         // http://localhost:63342/boot-cloud-pages/micro-website-master/zxcv_login/index.html
         // http://localhost:63342/boot-cloud-pages/micro-website-master/zxcv_news/news.html
         // var location = top.location.href;
-        var location = "http://localhost:63342/boot-cloud-pages/micro-website-master/zxcv_login/index.html";
+        var location = "http://localhost:63342/boot-cloud-pages/micro-website-master/zxcv_index/index.html";
         var req = {
             indexUrl: location
         };
