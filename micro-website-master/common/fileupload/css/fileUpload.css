@@ -82,13 +82,22 @@
     float: left;
     margin-right: 15px;
 }
-.fileUploadContent .uploadBts>div .selectFileBt{
+/*.fileUploadContent .uploadBts>div .selectFileBt{
     border: none;
     background-color: #0099FF;
     color: #FFFFFF;
     padding: 10px;
     font-size: 15px;
     border-radius: 5px;
+    cursor: pointer;
+}*/
+.fileUploadContent .uploadBts>div .selectFileBt{
+    border: none;
+    background-color: #0099FF;
+    color: #FFFFFF;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 3px;
     cursor: pointer;
 }
 .fileUploadContent .uploadBts>div .selectFileBt:hover{

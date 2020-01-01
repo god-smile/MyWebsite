@@ -7,8 +7,12 @@ var dataUrl = {};
 dataUrl.util = {
     /******************************公共接口 start***********************/
     // 上传图片
-    deleteSiteProductInfo: function () {
+    uploadPicture: function () {
         return baseURL + '/common/uploadPicture';
+    },
+    // 批量上传图片
+    uploadPictures: function () {
+        return baseURL + '/common/uploadPictures';
     },
     /******************************公共接口 end***********************/
     /******************************用户管理 start***********************/

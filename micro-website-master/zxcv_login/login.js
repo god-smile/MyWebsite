@@ -94,20 +94,20 @@ $('input[name="userName"],input[name="password"]').keyup(function () {
 });
 
 layui.use('layer', function () {
-    var msgalert = '默认账号:' + truelogin + '<br/> 默认密码:' + truepwd;
-    var index = layer.alert(msgalert, {
-        icon: 6,
-        time: 4000,
-        offset: 't',
-        closeBtn: 0,
-        title: '友情提示',
-        btn: [],
-        anim: 2,
-        shade: 0
-    });
-    layer.style(index, {
-        color: '#777'
-    });
+    // var msgalert = '默认账号:' + truelogin + '<br/> 默认密码:' + truepwd;
+    // var index = layer.alert(msgalert, {
+    //     icon: 6,
+    //     time: 4000,
+    //     offset: 't',
+    //     closeBtn: 0,
+    //     title: '友情提示',
+    //     btn: [],
+    //     anim: 2,
+    //     shade: 0
+    // });
+    // layer.style(index, {
+    //     color: '#777'
+    // });
     //非空验证
     $('#login_submit').click(function () {
         var userName = $('input[name="userName"]').val();

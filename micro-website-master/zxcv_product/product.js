@@ -46,19 +46,80 @@ $(function () {
 });
 
 
-function beforeUploadFun(opt){
-    opt.otherData =[{"name":"name","value":"zxm"}];
-}
-function onUploadFun(opt,data){
-    alert(data);
-    uploadTools.uploadError(opt);//显示上传错误
-    uploadTools.uploadSuccess(opt);//显示上传成功
-}
-function testUpload(){
-    var opt = uploadTools.getOpt("fileUploadContent");
-    uploadEvent.uploadFileEvent(opt);
-}
+// function beforeUploadFun(opt){
+//     opt.otherData =[{"name":"name","value":"zxm"}];
+// }
+// function onUploadFun(opt,data){
+//     alert(data);
+//     uploadTools.uploadError(opt);//显示上传错误
+//     uploadTools.uploadSuccess(opt);//显示上传成功
+// }
 
+
+
+/**
+ * 上传文件
+ */
+function uploadFileFun(){
+    var opt = uploadTools.getOpt("fileUploadContent");
+    uploadTools.flushOpt(opt);
+    if(opt.beforeUpload!=null&&(typeof opt.beforeUpload === "function")) {
+        opt.beforeUpload(opt);
+    }
+    var uploadUrl = opt.uploadUrl;
+    var fileList = uploadFileList.getFileList(opt);
+
+    var formData = new FormData();
+    var fileNumber = uploadTools.getFileNumber(opt);
+    if(fileNumber<=0){
+        debugger;
+        ErrorAlertManual("没有文件，不支持上传");
+        return false;
+    }
+
+    for(var i=0;i<fileList.length;i++){
+        if(fileList[i]!=null){
+            formData.append("pictureFile",fileList[i]);
+        }
+    }
+    if(opt.otherData!=null&&opt.otherData!=""){
+        for(var j=0;j<opt.otherData.length;j++){
+            formData.append(opt.otherData[j].name,opt.otherData[j].value);
+        }
+    }
+
+    formData.append("filelSavePath",opt.filelSavePath);
+    if(uploadUrl!="#"&&uploadUrl!=""){
+        uploadTools.disableFileUpload(opt);//禁用文件上传
+        uploadTools.disableCleanFile(opt);//禁用清除文件
+
+        $.ajax({
+            type:"post",
+            url:uploadUrl,
+            data:formData,
+            processData : false,
+            contentType : false,
+            success:function(data){
+                uploadTools.initWithCleanFile(opt);
+                setTimeout(function(){opt.onUpload(opt,data)},500);
+                if(opt.isAutoClean){
+                    setTimeout(function () {uploadEvent.cleanFileEvent(opt);},2000) ;
+                }
+            },
+            error:function(e){
+                ErrorAlertManual('系统错误，请联系管理员！');
+            }
+        });
+
+    }else{
+        uploadTools.disableFileUpload(opt);//禁用文件上传
+        uploadTools.disableCleanFile(opt);//禁用清除文件
+    }
+    if(opt.uploadUrl=="#"||opt.uploadUrl=="") {
+        uploadTools.getFileUploadPregressMsg(opt);
+    }
+
+}
 
 /** 加载数据 */
 function loadData() {
@@ -253,15 +314,17 @@ function addProduct() {
     $('#addProduct').addClass('animated slideInRight');
 
     // 初始化 上传文件组件
+    $("#fileUploadContent").empty();
     $("#fileUploadContent").initUpload({
-        "uploadUrl":"#",//上传文件信息地址
+        "uploadUrl":dataUrl.util.uploadPicture(),//上传文件信息地址
         //"size":350,//文件大小限制，单位kb,默认不限制
-        //"maxFileNumber":3,//文件个数限制，为整数
+        "maxFileNumber":1,//文件个数限制，为整数
         //"filelSavePath":"",//文件上传地址，后台设置的根目录
-        "beforeUpload":beforeUploadFun,//在上传前执行的函数
+        // "beforeUpload":beforeUploadFun,//在上传前执行的函数
         //"onUpload":onUploadFun，//在上传后执行的函数
         //autoCommit:true,//文件是否自动上传
-        "fileType":['png','jpg','docx','doc']//文件类型限制，默认不限制，注意写的是文件后缀
+        isHiddenUploadBt:true,
+        "fileType":['png','jpg']//文件类型限制，默认不限制，注意写的是文件后缀
     });
 
 
