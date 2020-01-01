@@ -6,6 +6,11 @@
 <link rel="stylesheet" href="./product.css?version="+ Math.random()>
 <script src="../common/wangEditor/wangEditor.min.js"></script>
 <script src="./product.js?version="+ Math.random()></script>
+
+<link href="../fileUpload/css/iconfont.css" rel="stylesheet" type="text/css"/>
+<link href="../fileUpload/css/fileUpload.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../fileUpload/js/fileUpload.js"></script>
+
 <!-- 产品控制管理 -->
 <div class="tableBody" id="productContent">
     <table id="productContentTable">
@@ -68,12 +73,17 @@
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
-                    <form class="uploadimg" enctype="multipart/form-data" method="post" id='formBox' name="form">
+                    <!--<form class="uploadimg" enctype="multipart/form-data" method="post" id='formBox' name="form">
                         <div class="head-img">
                             <input type="file" id="chooseImage0" name="file">
-                            <!-- 保存用户自定义的背景图片 -->
+                            &lt;!&ndash; 保存用户自定义的背景图片 &ndash;&gt;
                             <img id="picture0" value='custom' alt="选择图片" data-address='' src="../common/images/add-picture.jpg" title=""/>
                         </div>
+                    </form>-->
+                    <form class="uploadimg" enctype="multipart/form-data" method="post" id='formBox' name="form">
+                        <div id="fileUploadContent" class="fileUploadContent"></div>
+
+                        <button onclick="testUpload()">提交</button>
                     </form>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">

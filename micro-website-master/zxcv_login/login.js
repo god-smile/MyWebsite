@@ -112,12 +112,12 @@ layui.use('layer', function () {
     $('#login_submit').click(function () {
         var login = $('input[name="login"]').val();
         var pwd = $('input[name="pwd"]').val();
-        var code = $('input[name="code"]').val();
+        var code = slideValue;
         if (login == '') {
             ErroAlert('请输入您的账号');
         } else if (pwd == '') {
             ErroAlert('请输入密码');
-        } else if (code == '' || code.length != 4) {
+        } else if (!code) {
             ErroAlert('请开始验证');
         } else {
             //认证中..
