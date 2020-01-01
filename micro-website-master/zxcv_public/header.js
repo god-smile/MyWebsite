@@ -17,8 +17,12 @@ var header = {
                 if (res.code == '8888') {
                     var length = res.data.length;
                     if (length > 0) {
-                        constant.globalProjectNo = res.data[0].projectNo;
-                        sessionStorage.setItem("projectNo",constant.globalProjectNo);
+                        if (constant.globalProjectNo == "default") {
+                            constant.globalProjectNo = res.data[0].projectNo;
+                        }
+                        if (sessionStorage.getItem("projectNo") == "") {
+                            sessionStorage.setItem("projectNo",constant.globalProjectNo);
+                        }
                     }
                     for (var i = 0; i < length; i++) {
                         var pro = res.data[i];
@@ -36,18 +40,34 @@ var header = {
         var myPro = document.getElementById("myProject");
         var project = projects;
         // 如果该 projectNo 和 全局设置的 globalProjectNo 相等，需要选中
+        var isDefault = false;
+        if (sessionStorage.getItem("projectNo") == "") {
+            isDefault = true;
+        }
+
         for (var key in project) {
-
             // 如果 session 中有 projectNo ， 先 按 session 中的存，如果 session 中没有，说明是 第一次打开
-
-            if (key == constant.globalProjectNo) {
-                myPro.options[myPro.length] = new Option(project[key], key, true, true);
-            }else {
-                myPro.options[myPro.length] = new Option(project[key], key);
+            if (isDefault) {
+                if (key == constant.globalProjectNo) {
+                    myPro.options[myPro.length] = new Option(project[key], key, true, true);
+                }else {
+                    myPro.options[myPro.length] = new Option(project[key], key);
+                }
+            } else {
+                if (key == sessionStorage.getItem("projectNo")) {
+                    myPro.options[myPro.length] = new Option(project[key], key, true, true);
+                }else {
+                    myPro.options[myPro.length] = new Option(project[key], key);
+                }
             }
         }
         myPro.parentElement.appendChild(myPro);
-        $('#myProject option[value="' + constant.globalProjectNo + '"]').css('background-color', 'red');
+
+        if (isDefault) {
+            $('#myProject option[value="' + constant.globalProjectNo + '"]').css('background-color', 'red');
+        } else {
+            $('#myProject option[value="' + sessionStorage.getItem("projectNo") + '"]').css('background-color', 'red');
+        }
     }
 };
 
@@ -61,7 +81,12 @@ function projectChange() {
     var value = myPro.options[index].value; // 选中值
     console.log(value);
 
-    $('#myProject option[value="' + constant.globalProjectNo + '"]').removeAttr('style');
+    if (sessionStorage.getItem("projectNo") == "") {
+        $('#myProject option[value="' + constant.globalProjectNo + '"]').removeAttr('style');
+    }else {
+        $('#myProject option[value="' + sessionStorage.getItem("projectNo") + '"]').removeAttr('style');
+    }
+
     constant.globalProjectNo = value;
     sessionStorage.setItem("projectNo",constant.globalProjectNo);
     $('#myProject option[value="' + constant.globalProjectNo + '"]').css('background-color', 'red');

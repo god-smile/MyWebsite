@@ -5,8 +5,10 @@ var editor;
 var fadeTime = 500;
 
 $(function () {
-    $("#beginTime").val(moment().subtract('days', 30).format('YYYY-MM-DD'));
-    $("#beginTime").datetimepicker({
+    constant.initProjectNo();
+
+    $("#search_beginTime").val(moment().subtract('days', 30).format('YYYY-MM-DD'));
+    $("#search_beginTime").datetimepicker({
         endDate: moment().subtract('days', 0).format('YYYY-MM-DD'),
         format: 'yyyy-mm-dd',
         autoclose: true,
@@ -18,8 +20,8 @@ $(function () {
         language: 'zh-CN',
         pickerPosition: "bottom-left"
     });
-    $("#endTime").val(moment().subtract('days', 0).format('YYYY-MM-DD'));
-    $("#endTime").datetimepicker({
+    $("#search_endTime").val(moment().subtract('days', 0).format('YYYY-MM-DD'));
+    $("#search_endTime").datetimepicker({
         endDate: moment().subtract('days', 0).format('YYYY-MM-DD'),
         format: 'yyyy-mm-dd',
         autoclose: true,
@@ -106,6 +108,9 @@ function tableLoadRequest(params) {
         pageNum: pageNum,
         pageSize:pageSize
     };
+
+    req.projectNo = constant.globalProjectNo;
+
     var productTableAjax = {
         method: params.type,
         url: dataUrl.util.querySiteProductInfoForPage(),
@@ -127,7 +132,8 @@ function tableLoadRequest(params) {
 function queryParams() {
     return {
         title: $('#search_title').val(),
-        //phoneNumber: $('#search_phoneNumber').val()
+        beginTime: new Date($('#search_beginTime').val() + " 00:00:00"),
+        endTime: new Date($('#search_endTime').val() + " 23:59:59"),
     }
 }
 //查询按钮事件

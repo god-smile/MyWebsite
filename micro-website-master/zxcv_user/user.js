@@ -67,11 +67,11 @@ function loadData() {
         columns: [
             /*{title: '全选', field: 'select', checkbox: true, width: 25, align: 'center', valign: 'middle'},*/
             {title: 'id', field: 'id', visible: false},
-            {title: '用户名', field: 'userName', sortable: true, formatter: userNameFormatter},
-            {title: '姓名', field: 'realName', sortable: true},
+            {title: '用户名', field: 'userName', sortable: false, formatter: userNameFormatter},
+            {title: '姓名', field: 'realName', sortable: false},
             {title: '手机号', field: 'phoneNumber'},
-            {title: '注册日期', field: 'createTime', sortable: true, formatter: commonObj.timeFormatter},
-            {title: '修改日期', field: 'modifyTime', sortable: true, formatter: commonObj.timeFormatter},
+            {title: '注册日期', field: 'createTime', sortable: false, formatter: commonObj.timeFormatter},
+            {title: '修改日期', field: 'modifyTime', sortable: false, formatter: commonObj.timeFormatter},
             {title: '状态', field: 'userState', align: 'center', formatter: stateFormatter},
             {title: '操作', field: 'userState', align: 'center', formatter: operateFormatter}
         ],

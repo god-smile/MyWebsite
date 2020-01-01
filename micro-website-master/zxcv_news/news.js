@@ -46,10 +46,10 @@ function loadData() {
         columns: [
             /*{title: '全选', field: 'select', checkbox: true, width: 25, align: 'center', valign: 'middle'},*/
             {title: 'id', field: 'id', visible: false},
-            {title: '新闻标题', field: 'title', sortable: true, formatter: titleFormatter},
-            {title: '阅读量', field: 'readNum', sortable: true},
-            {title: '新闻类型', field: 'newsType', sortable: true, formatter: typeFormatter},
-            {title: '创建时间', field: 'createTime', sortable: true, formatter: commonObj.timeFormatter},
+            {title: '新闻标题', field: 'title', sortable: false, formatter: titleFormatter},
+            {title: '阅读量', field: 'readNum', sortable: false},
+            {title: '新闻类型', field: 'newsType', sortable: false, formatter: typeFormatter},
+            {title: '创建时间', field: 'createTime', sortable: false, formatter: commonObj.timeFormatter},
             {title: '操作', field: '', align: 'center', formatter: operateFormatter}
         ],
         locale: 'zh-CN',//中文支持,
