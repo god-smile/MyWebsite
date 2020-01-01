@@ -22,7 +22,6 @@ $(function () {
 });
 
 
-
 function clickMenu(target) {
     switch(target){
         case 'index':

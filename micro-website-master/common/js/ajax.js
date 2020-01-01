@@ -10,7 +10,12 @@ dataUrl.util = {
     deleteSiteProductInfo: function () {
         return baseURL + '/common/uploadPicture';
     },
+    /******************************公共接口 end***********************/
     /******************************用户管理 start***********************/
+    // 登录
+    userLogin: function () {
+        return baseURL + '/sysUserInfo/userLogin';
+    },
     // 分页查询用户
     querySysUserInfoForPage: function () {
         return baseURL + '/sysUserInfo/querySysUserInfoForPage';
@@ -136,11 +141,67 @@ function getAjax(opts){
                 console.log(errorThrown);
             }*/
             defaults.error();
-
         }
     });
-    
 }
+
+/**
+ * 登录ajax
+ * @param opts
+ */
+function loginAjax(opts){
+
+    //一.设置默认参数
+    var defaults = {
+        method: 'POST',
+        url: '',
+        dataType: 'json',
+        data: '',
+        async: true,
+        cache: false,
+        processData: true,
+        contentType: 'application/json; charset=utf-8',
+        success: function () {
+        },
+        error: function () {
+            ErrorAlertManual("系统出错，请重试或联系管理员！");
+        }
+    };
+    //二.用户参数覆盖默认参数
+    for (var key in opts) {
+        defaults[key] = opts[key];
+    }
+    $.ajax({
+        type: defaults.method,
+        url: defaults.url,
+        dataType: defaults.dataType,
+        contentType: defaults.contentType,
+        data: defaults.data,
+        async: defaults.async,
+        processData: defaults.processData,
+        beforeSend: function (xhr) {
+            //设置请求头
+            //xhr.setRequestHeader("User-Agent", "headertest");
+            //console.log(JSON.stringify(sysComm));
+            //xhr.setRequestHeader("x-auth-token","43399b23-b673-4f1e-97d6-5ee6105a860c");
+
+        },
+        success: function (res, status, xhr) {
+            defaults.success(res, status, xhr);
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            /*if (textStatus == "timeout") {
+                //alert('请求超时，请重试');
+            } else {
+                //alert("请求报错")
+                console.log(errorThrown);
+            }*/
+            defaults.error();
+        }
+    });
+}
+
 var documentBindFunc = {
     /**
      * @param event  事件名称如：click

@@ -69,7 +69,7 @@ $(document).keypress(function (e) {
 //     $(this).css("border", "2px solid rgba(57, 61, 82, 0)");
 //
 // });
-$('input[name="pwd"]').focus(function () {
+$('input[name="password"]').focus(function () {
     $(this).attr('type', 'password');
 });
 $('input[type="text"]').focus(function () {
@@ -78,7 +78,7 @@ $('input[type="text"]').focus(function () {
 $('input[type="text"],input[type="password"]').blur(function () {
     $(this).prev().animate({'opacity': '.5'}, 200);
 });
-$('input[name="login"],input[name="pwd"]').keyup(function () {
+$('input[name="userName"],input[name="password"]').keyup(function () {
     var Len = $(this).val().length;
     if (!$(this).val() == '' && Len >= 5) {
         $(this).next().animate({
@@ -110,16 +110,16 @@ layui.use('layer', function () {
     });
     //非空验证
     $('#login_submit').click(function () {
-        var login = $('input[name="login"]').val();
-        var pwd = $('input[name="pwd"]').val();
-        var code = $('input[name="code"]').val();
-        if (login == '') {
+        var userName = $('input[name="userName"]').val();
+        var password = $('input[name="password"]').val();
+        var code = slideValue;
+        if (userName == '') {
             ErroAlert('请输入您的账号');
-        } else if (pwd == '') {
+        } else if (password == '') {
             ErroAlert('请输入密码');
         } /*else if (code == '' || code.length != 4) {
             ErroAlert('请开始验证');
-        }*/else if (!slideValue) {
+        }*/ else if (!code) {
             ErroAlert('请开始验证');
         } else {
             //认证中..
@@ -140,21 +140,17 @@ layui.use('layer', function () {
                 }).addClass('visible');
             }, 500);
 
-            //登陆
-            var JsonData = {login: login, pwd: pwd, code: code};
-            //此处做为ajax内部判断
-            var url = "";
-            if (JsonData.login == truelogin && JsonData.pwd == truepwd && JsonData.code.toUpperCase() == CodeVal.toUpperCase()) {
-                url = "Ajax/Login";
-            } else {
-                url = "Ajax/LoginFalse";
-            }
 
-            AjaxPost(url, JsonData,
-                function () {
-                    //ajax加载中
-                },
-                function (data) {
+            //登陆
+            var JsonData = {userName: userName, password: password, code: code};
+            //此处做为ajax内部判断
+            var opt = {
+                method: 'post',
+                url: dataUrl.util.userLogin(),
+                data: JSON.stringify(JsonData),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (res) {
                     //ajax返回
                     //认证完成
                     setTimeout(function () {
@@ -172,18 +168,25 @@ layui.use('layer', function () {
                     setTimeout(function () {
                         $('.authent').hide();
                         $('.login').removeClass('test');
-                        if (data.Status == 'ok') {
+                        if (res.code == '8888') {
                             //登录成功
                             $('.login div').fadeOut(100);
                             $('.success').fadeIn(1000);
-                            $('.success').html(data.Text);
-                            //跳转操作
-
+                            // 这里写 返回的正常结果
+                            $('.success').html("");
+                            // 从返回结果中取出 默认的项目入口 进行跳转
+                            window.open(res.data.entranceUrl, "_top");
                         } else {
-                            AjaxErro(data);
+                            // 这里写 异常的结果
+                            ErrorAlertManual(res.msg);
                         }
                     }, 2400);
-                })
+                },
+                error: function () {
+                    ErrorAlertManual("登录异常，请联系管理员");
+                }
+            };
+            getAjax(opt);
         }
     })
 });
