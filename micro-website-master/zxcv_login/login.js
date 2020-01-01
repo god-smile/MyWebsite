@@ -61,14 +61,14 @@ $(document).keypress(function (e) {
     lineColor: '#133b88'
 });*/
 
-$("input").focus(function () {
-    $(this).css("border", "2px solid gray");
-
-});
-$("input").blur(function () {
-    $(this).css("border", "2px solid rgba(57, 61, 82, 0)");
-
-});
+// $("input").focus(function () {
+//     $(this).css("border", "2px solid gray");
+//
+// });
+// $("input").blur(function () {
+//     $(this).css("border", "2px solid rgba(57, 61, 82, 0)");
+//
+// });
 $('input[name="pwd"]').focus(function () {
     $(this).attr('type', 'password');
 });
@@ -112,12 +112,14 @@ layui.use('layer', function () {
     $('#login_submit').click(function () {
         var login = $('input[name="login"]').val();
         var pwd = $('input[name="pwd"]').val();
-        var code = slideValue;
+        var code = $('input[name="code"]').val();
         if (login == '') {
             ErroAlert('请输入您的账号');
         } else if (pwd == '') {
             ErroAlert('请输入密码');
-        } else if (!code) {
+        } /*else if (code == '' || code.length != 4) {
+            ErroAlert('请开始验证');
+        }*/else if (!slideValue) {
             ErroAlert('请开始验证');
         } else {
             //认证中..
