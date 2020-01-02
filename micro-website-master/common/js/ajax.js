@@ -153,7 +153,7 @@ function getAjax(opts){
 
             if (res.code == "2003") {
                 //授权令牌不存在或已失效，请重新登录后在尝试
-                alert("登录信息失效，请重新登录！");
+                ErrorAlertManual("登录信息失效，请重新登录！");
                 window.open("../zxcv_login/login.html", "_top");
             }else{
                 defaults.success(res, status, xhr);
