@@ -216,6 +216,7 @@ function initSessionValue(user) {
     sessionStorage.setItem("userNo", user.userNo);
     sessionStorage.setItem("projectNo", user.projectNo);
     sessionStorage.setItem("indexUrl", user.indexUrl);
+    commonFun.setToken(user.token);
 }
 
 //获取元素距离页面边缘的距离

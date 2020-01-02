@@ -1,88 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="03d38b81-30d0-4b39-845d-4162f39a3f36" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.project" beforeDir="false" afterPath="$PROJECT_DIR$/../.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-api/target/zxcv-api-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-api/target/zxcv-api-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-api/target/zxcv-api-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-api/target/zxcv-api-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/logs/zxcv-busi/zxcv-busi.log" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/logs/zxcv-busi/zxcv-busi.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/ZXCVBusiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/ZXCVBusiApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/biz/sys/TsOpServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/biz/sys/TsOpServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/biz/sys/UserInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/biz/sys/UserInfoServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/ListenerAsyncConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/ListenerAsyncConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/TimedCacheFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/TimedCacheFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/druid/DruidAutoConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/druid/DruidAutoConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/druid/DruidProperties.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/druid/DruidProperties.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/mybatisplus/MybatisPlusConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/mybatisplus/MybatisPlusConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/xxljob/XxlJobCondition.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/xxljob/XxlJobCondition.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/xxljob/XxlJobConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/configs/xxljob/XxlJobConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/domain/sys/TsOp.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/domain/sys/TsOp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/domain/sys/UserInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/domain/sys/UserInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/mapper/sys/TsOpMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/mapper/sys/TsOpMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/mapper/sys/UserInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/mapper/sys/UserInfoMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/util/generator/Generator$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/util/generator/Generator$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/util/generator/Generator$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/util/generator/Generator$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/util/generator/Generator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/util/generator/Generator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/util/generator/GeneratorJavaCode$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/util/generator/GeneratorJavaCode$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/util/generator/GeneratorJavaCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/classes/com/zxcv/busi/util/generator/GeneratorJavaCode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-busi/target/test-classes/sys/TsOrgTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-busi/target/test-classes/sys/TsOrgTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/FrameworkMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/FrameworkMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/annotation/NoAuth.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/annotation/NoAuth.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/annotation/SysLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/annotation/SysLog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/annotation/payAuth.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/annotation/payAuth.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/RedisKeyEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/RedisKeyEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/SequenceTypeEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/SequenceTypeEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/TimeConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/TimeConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/TrackLogConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/TrackLogConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/event/EventTopicConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/event/EventTopicConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/rocketmq/RocketMQTopic.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/rocketmq/RocketMQTopic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/rocketmq/RocketParkMQGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/rocketmq/RocketParkMQGroup.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/sys/CodeValKindEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/sys/CodeValKindEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/sys/CodeValueEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/constants/sys/CodeValueEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/filter/dubbo/RPCConsumerFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/filter/dubbo/RPCConsumerFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/filter/dubbo/RPCProviderFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/filter/dubbo/RPCProviderFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisCacheConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisCacheConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisCacheFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisCacheFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisCacheUtil$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisCacheUtil$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisCacheUtil$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisCacheUtil$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisCacheUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisCacheUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/RedisUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/TestConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/redis/TestConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/AmountUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/AmountUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/BeanValidatorsUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/BeanValidatorsUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/CSVUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/CSVUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/DateUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/DateUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/ExceptionUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/ExceptionUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/IOUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/IOUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/IPUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/IPUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/JsonUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/JsonUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/ListCopyUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/ListCopyUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/MD5Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/MD5Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/PaymentUtil$BillType.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/PaymentUtil$BillType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/PaymentUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/PaymentUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/ResultUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/ResultUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/SnowflakeIdWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/SnowflakeIdWorker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/SnowflakeIdWorkerTest$Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/SnowflakeIdWorkerTest$Worker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/SnowflakeIdWorkerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/SnowflakeIdWorkerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/SpringContextUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/SpringContextUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/WxConfigUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/WxConfigUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/XmlHelper$XmlHelperHolder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/XmlHelper$XmlHelperHolder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/XmlHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/XmlHelper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/ZIpUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/ZIpUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/app/AppRsesultUtil$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/app/AppRsesultUtil$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/app/AppRsesultUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/app/AppRsesultUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/app/ApprntSignUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/app/ApprntSignUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/app/JsonUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/app/JsonUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/pagepager/PageBeanUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/utils/pagepager/PageBeanUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/web/SpringContextUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-framework/target/classes/com/zxcv/commom/web/SpringContextUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-web/target/classes/META-INF/maven/com.zxcv/zxcv-web/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-web/target/classes/META-INF/maven/com.zxcv/zxcv-web/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-web/target/classes/com/zxcv/portal/common/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-web/target/classes/com/zxcv/portal/common/BaseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-web/target/classes/com/zxcv/portal/web/sys/UserInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-web/target/classes/com/zxcv/portal/web/sys/UserInfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zxcv-web/target/classes/dubbo/dubbo-web-consumer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../zxcv-web/target/classes/dubbo/dubbo-web-consumer.xml" afterDir="false" />
+    <list default="true" id="03d38b81-30d0-4b39-845d-4162f39a3f36" name="Default Changelist" comment="ignore">
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -103,9 +24,99 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-32481889">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.12" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="1" />
+          <entry key="js" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="1" />
+          <entry key="JavaScript" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="js" value="1" />
+          <entry key="txt" value="13" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JavaScript" value="1" />
+          <entry key="PLAIN_TEXT" value="13" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/common/js/ajax.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zxcv_public/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="104" selection-start-line="13" selection-start-column="97" selection-end-line="13" selection-end-column="110" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/util/constant.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/util/util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="36" lean-forward="true" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>cutString</find>
+      <find>getSysProjectInfoByUrl</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/common/js/ajax.js" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -114,10 +125,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1346" />
-    <option name="height" value="688" />
+    <option name="x" value="14" />
+    <option name="y" value="-19" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -132,14 +143,48 @@
               <item name="micro-website-master" type="b2602c69:ProjectViewProjectNode" />
               <item name="micro-website-master" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="micro-website-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="micro-website-master" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="micro-website-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="micro-website-master" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="micro-website-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="micro-website-master" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="micro-website-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="micro-website-master" type="462c0819:PsiDirectoryNode" />
+              <item name="zxcv_index" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="micro-website-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="micro-website-master" type="462c0819:PsiDirectoryNode" />
+              <item name="zxcv_product" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="micro-website-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="micro-website-master" type="462c0819:PsiDirectoryNode" />
+              <item name="zxcv_public" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="head&#9;FILE&#9;file://D:/workspace_private/works/boot-cloud-pages/micro-website-master/zxcv_public/header.js&#10;util&#9;FILE&#9;file://D:/workspace_private/works/boot-cloud-pages/micro-website-master/util/util.js&#10;ajax&#9;FILE&#9;file://D:/workspace_private/works/boot-cloud-pages/micro-website-master/common/js/ajax.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -168,22 +213,31 @@
       <option name="presentableId" value="Default" />
       <updated>1572166042139</updated>
       <workItem from="1572166044314" duration="53000" />
+      <workItem from="1577501310126" duration="5365000" />
+      <workItem from="1577668878378" duration="591000" />
     </task>
+    <task id="LOCAL-00001" summary="product">
+      <created>1577501801196</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1577501801196</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53000" />
+    <option name="totallyTimeSpent" value="6009000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24330357" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25071633" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -191,9 +245,18 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.3286908" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,5 +264,49 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="product" />
+    <option name="LAST_COMMIT_MESSAGE" value="product" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/zxcv_public/header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="65" column="65" lean-forward="true" selection-start-line="65" selection-start-column="65" selection-end-line="65" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/js/ajax.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zxcv_public/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="104" selection-start-line="13" selection-start-column="97" selection-end-line="13" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/constant.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="36" lean-forward="true" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

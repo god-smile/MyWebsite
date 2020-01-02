@@ -1,7 +1,8 @@
 //ajax的封装
 // var baseURL = 'http://47.104.166.165:8088';
 // var baseURL = 'http://182.92.118.137:8088';
-var baseURL = 'http://localhost:8088';
+// var baseURL = 'http://localhost:8088';
+var baseURL = 'http://182.92.118.137:8088';
 
 var dataUrl = {};
 dataUrl.util = {
@@ -18,11 +19,11 @@ dataUrl.util = {
     /******************************用户管理 start***********************/
     // 登录
     userLogin: function () {
-        return baseURL + '/sysUserInfo/userLogin';
+        return baseURL + '/sysAuth/userLogin';
     },
     // 退出登录
     logout: function () {
-        return baseURL + '/sysUserInfo/logout';
+        return baseURL + '/sysAuth/logout';
     },
     // 分页查询用户
     querySysUserInfoForPage: function () {
@@ -100,6 +101,17 @@ dataUrl.util = {
     },
     /******************************项目管理 end***********************/
 };
+
+//公共接口
+commonFun = {
+    getToken:function(){
+        var token = sessionStorage.getItem("token");
+        return token;
+    },
+    setToken:function(token){
+        sessionStorage.setItem("token",token);
+    },
+}
 function getAjax(opts){
     
     //一.设置默认参数
@@ -134,11 +146,18 @@ function getAjax(opts){
             //设置请求头
             //xhr.setRequestHeader("User-Agent", "headertest");
             //console.log(JSON.stringify(sysComm));
-            //xhr.setRequestHeader("x-auth-token","43399b23-b673-4f1e-97d6-5ee6105a860c");
+            xhr.setRequestHeader("x-auth-token",commonFun.getToken());
             
         },
         success: function (res, status, xhr) {
-            defaults.success(res, status, xhr);
+
+            if (res.code == "2003") {
+                //授权令牌不存在或已失效，请重新登录后在尝试
+                alert("登录信息失效，请重新登录！");
+                window.open("../zxcv_login/login.html", "_top");
+            }else{
+                defaults.success(res, status, xhr);
+            }
             
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
