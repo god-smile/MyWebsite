@@ -286,7 +286,7 @@ function deleteNews(newsId, newsNo) {
     //$('#delete_window').addClass('bbox');
 }
 // 删除 确定按钮事件
-function deleteConfirm() {
+/*function deleteConfirm() {
     //$('#delete_window').removeClass('bbox');
 
     // 单新闻删除
@@ -312,7 +312,7 @@ function deleteConfirm() {
         }
     };
     getAjax(opt);
-}
+}*/
 // 删除 取消按钮事件
 /*function deleteCancel() {
     $('#delete_window').removeClass('bbox');

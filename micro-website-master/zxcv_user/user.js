@@ -334,7 +334,7 @@ function changeUserState(userId, userState) {
     });
 }
 // 修改状态 确定按钮事件
-function changestateConfirm() {
+/*function changestateConfirm() {
     //$('#changestate_window').removeClass('bbox');
 
     // 单用户
@@ -360,11 +360,11 @@ function changestateConfirm() {
         }
     };
     getAjax(opt);
-}
+}*/
 // 修改状态 取消按钮事件
-function changestateCancel() {
+/*function changestateCancel() {
     $('#changestate_window').removeClass('bbox');
-}
+}*/
 
 // 删除事件按钮
 function deleteUser(userId, userNo) {

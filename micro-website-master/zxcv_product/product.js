@@ -659,14 +659,40 @@ function editCancel() {
 
 // 删除事件按钮
 function deleteProduct(productId, productNo) {
-    $('#delete_msg').text('确定要删除该产品吗?');
-    $('#delete_window').addClass('bbox');
+    //$('#delete_msg').text('确定要删除该产品吗?');
+    //$('#delete_window').addClass('bbox');
 
     this.productId = productId;
+
+    ConfirmAndCallback('确定要删除该产品吗?', '确定', '取消', function () {
+        // 单产品删除
+        var id = this.productId;
+        var ids = [id];
+
+        //设置请求参数
+        var req = {
+            id: id,
+            ids: ids
+        };
+        var opt = {
+            method: 'post',
+            url: dataUrl.util.deleteSiteProductInfo(),
+            data: JSON.stringify(req),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == '8888') {
+                    // alert 删除成功，刷新界面
+                    refreshTable();
+                }
+            }
+        };
+        getAjax(opt);
+    });
 }
 // 删除 确定按钮事件
-function deleteConfirm() {
-    $('#delete_window').removeClass('bbox');
+/*function deleteConfirm() {
+    //$('#delete_window').removeClass('bbox');
 
     // 单产品删除
     var id = this.productId;
@@ -691,11 +717,11 @@ function deleteConfirm() {
         }
     };
     getAjax(opt);
-}
+}*/
 // 删除 取消按钮事件
-function deleteCancel() {
+/*function deleteCancel() {
     $('#delete_window').removeClass('bbox');
-}
+}*/
 
 // 查看产品详情
 function showProduct(productId, productNo) {
