@@ -299,19 +299,45 @@ function editCancel() {
 function changeUserState(userId, userState) {
     var state = userStateChangeMap[userState];
 
-    $('#changestate_msg').text('确定要' + state + '该用户吗?');
-    $('#changestate_window').addClass('bbox');
-
     var newState = userNewStateMap[userState];
 
     this.userId = userId;
     this.userState = newState;
+
+    //$('#changestate_msg').text('确定要' + state + '该用户吗?');
+    //$('#changestate_window').addClass('bbox');
+
+    ConfirmAndCallback('确定要' + state + '该用户吗?', '确定', '取消', function () {
+        // 单用户
+        var id = this.userId;
+        var state = this.userState;
+
+        //设置请求参数
+        var req = {
+            id: id,
+            userState: state
+        };
+        var opt = {
+            method: 'post',
+            url: dataUrl.util.updateSysUserInfoById(),
+            data: JSON.stringify(req),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == '8888') {
+                    // alert 删除成功，刷新界面
+                    refreshTable();
+                }
+            }
+        };
+        getAjax(opt);
+    });
 }
 // 修改状态 确定按钮事件
 function changestateConfirm() {
-    $('#changestate_window').removeClass('bbox');
+    //$('#changestate_window').removeClass('bbox');
 
-    // 单用户删除
+    // 单用户
     var id = this.userId;
     var state = this.userState;
 
@@ -342,40 +368,41 @@ function changestateCancel() {
 
 // 删除事件按钮
 function deleteUser(userId, userNo) {
-    $('#delete_msg').text('确定要删除该用户吗?');
-    $('#delete_window').addClass('bbox');
+    //$('#delete_msg').text('确定要删除该用户吗?');
+    //$('#delete_window').addClass('bbox');
 
     this.userId = userId;
 
-    // 多用户删除
-    /*var dataArr=$('#userContentTable').bootstrapTable('getSelections');
-    $('.popup_de .show_msg').text('确定要删除该用户吗?');
-    $('.popup_de').addClass('bbox');
-    $('.popup_de .btn_submit').one('click',function(){
-        var id=[];
-        for(var i=0;i<dataArr.length;i++){
-            id[i]=dataArr[i].id;
-        }
-        $.post("../index.php/admin/index/deleteUserById",
-            {id:id},
-            function(data){
-                if(data.suc==true){
-                    $('.popup_de .show_msg').text('删除成功！');
-                    $('.popup_de .btn_cancel').css('display','none');
-                    $('.popup_de').addClass('bbox');
-                    $('.popup_de .btn_submit').one('click',function(){
-                        $('.popup_de').removeClass('bbox');
-                    })
-                    $('#userContentTable').bootstrapTable('refresh', {url: '../index.php/admin/index/userManagement'});
-                }else{
+    ConfirmAndCallback('确定要删除该用户吗?', '确定', '取消', function () {
+        // 单用户删除
+        var id = this.userId;
+        var ids = [id];
+
+        //设置请求参数
+        var req = {
+            id: id,
+            ids: ids
+        };
+        var opt = {
+            method: 'post',
+            url: dataUrl.util.deleteSysUserInfo(),
+            data: JSON.stringify(req),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == '8888') {
+                    // alert 删除成功，刷新界面
+                    refreshTable();
                 }
-            });
-    });*/
+            }
+        };
+        getAjax(opt);
+    });
 }
 
 // 删除 确定按钮事件
-function deleteConfirm() {
-    $('#delete_window').removeClass('bbox');
+/*function deleteConfirm() {
+    //$('#delete_window').removeClass('bbox');
 
     // 单用户删除
     var id = this.userId;
@@ -400,11 +427,11 @@ function deleteConfirm() {
         }
     };
     getAjax(opt);
-}
+}*/
 // 删除 取消按钮事件
-function deleteCancel() {
+/*function deleteCancel() {
     $('#delete_window').removeClass('bbox');
-}
+}*/
 
 // 查看用户详情
 function showUser(userId, userNo) {

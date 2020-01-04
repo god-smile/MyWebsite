@@ -72,3 +72,29 @@ function AlertAndOpen(e, url) {
     });
 }
 /******************************************************token失效提示，并跳转其他url end*******************************************************/
+
+
+/******************************************************询问框 start*******************************************************/
+/**
+ * 询问框
+ * @param e
+ * @param b1
+ * @param b2
+ * @param callback
+ * @constructor
+ */
+function ConfirmAndCallback(e, b1, b2, callback) {
+    parent.layui.use('layer', function () {
+        var index = parent.layer.confirm(e, {btn: [b1, b2], title: successTitle }, function(){
+                callback();
+                parent.layer.close(index);
+            }, function(){
+            });
+        parent.layer.style(index, {
+            offset: 'auto',
+            color: '#777',
+            top: '250px',
+        });
+    });
+}
+/******************************************************询问框 end*******************************************************/

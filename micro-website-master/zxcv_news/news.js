@@ -254,14 +254,40 @@ function editCancel() {
 
 // 删除事件按钮
 function deleteNews(newsId, newsNo) {
-    $('#delete_msg').text('确定要删除该新闻吗?');
-    $('#delete_window').addClass('bbox');
-
     this.newsId = newsId;
+
+    ConfirmAndCallback('确定要删除该新闻吗?', '确定', '取消', function () {
+        // 单新闻删除
+        var id = this.newsId;
+        var ids = [id];
+
+        //设置请求参数
+        var req = {
+            id: id,
+            ids: ids
+        };
+        var opt = {
+            method: 'post',
+            url: dataUrl.util.deleteSiteNewsInfo(),
+            data: JSON.stringify(req),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == '8888') {
+                    // alert 删除成功，刷新界面
+                    refreshTable();
+                }
+            }
+        };
+        getAjax(opt);
+    });
+
+    //$('#delete_msg').text('确定要删除该新闻吗?');
+    //$('#delete_window').addClass('bbox');
 }
 // 删除 确定按钮事件
 function deleteConfirm() {
-    $('#delete_window').removeClass('bbox');
+    //$('#delete_window').removeClass('bbox');
 
     // 单新闻删除
     var id = this.newsId;
@@ -288,9 +314,9 @@ function deleteConfirm() {
     getAjax(opt);
 }
 // 删除 取消按钮事件
-function deleteCancel() {
+/*function deleteCancel() {
     $('#delete_window').removeClass('bbox');
-}
+}*/
 
 // 查看新闻详情
 function showNews(newsId, newsNo) {

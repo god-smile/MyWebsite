@@ -91,29 +91,30 @@ function openPortal() {
 }
 
 function logout() {
-    //登陆
-    //此处做为ajax内部判断
-    var opt = {
-        method: 'post',
-        url: dataUrl.util.logout(),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        success: function (res) {
-            if (res.code == '8888') {
-                destroySessionValue();
-                window.open("../zxcv_login/login.html", "_top");
-            } else {
-                // 这里写 异常的结果
-                ErrorAlertManual(res.msg);
+    ConfirmAndCallback('确定要退出登录吗?', '确定', '取消', function () {
+        // 退出登陆
+        // 此处做为ajax内部判断
+        var opt = {
+            method: 'post',
+            url: dataUrl.util.logout(),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == '8888') {
+                    destroySessionValue();
+                    window.open("../zxcv_login/login.html", "_top");
+                } else {
+                    // 这里写 异常的结果
+                    ErrorAlertManual(res.msg);
+                }
+            },
+            error: function () {
+                ErrorAlertManual("退出登录异常，请联系管理员");
             }
-        },
-        error: function () {
-            ErrorAlertManual("退出登录异常，请联系管理员");
-        }
-    };
-    getAjax(opt);
+        };
+        getAjax(opt);
+    });
 }
-
 function destroySessionValue() {
     sessionStorage.clear();
 }
