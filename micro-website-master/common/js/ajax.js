@@ -53,7 +53,7 @@ dataUrl.util = {
     },
     // 新增新闻
     saveNewsInfo: function () {
-        return baseURL + '/siteNewsInfo/saveNewsInfo';
+        return baseURL + '/siteNewsInfo/saveSiteNewsInfo';
     },
     // 查询新闻
     selectSiteNewsInfo: function () {
@@ -153,8 +153,10 @@ function getAjax(opts){
 
             if (res.code == "2003") {
                 //授权令牌不存在或已失效，请重新登录后在尝试
-                ErrorAlertManual("登录信息失效，请重新登录！");
-                window.open("../zxcv_login/login.html", "_top");
+                /*ErrorAlertManual("登录信息失效，请重新登录！");
+                parent.open("../zxcv_login/login.html", "_top");*/
+
+                AlertAndOpen("登录信息失效，请重新登录！", "../zxcv_login/login.html");
             }else{
                 defaults.success(res, status, xhr);
             }

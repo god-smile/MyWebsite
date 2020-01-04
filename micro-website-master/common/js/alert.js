@@ -51,3 +51,24 @@ function SuccessAlertManual(e) {
     });
 }
 /******************************************************正确提示 end*******************************************************/
+
+/******************************************************token失效提示，并跳转其他url start*******************************************************/
+/**
+ *
+ * @param e
+ * @param url
+ * @constructor
+ */
+function AlertAndOpen(e, url) {
+    layui.use('layer', function () {
+        var index = layer.alert(e, { title: errorTitle, icon: 5}, function () {
+            window.open(url, "_top");
+        });
+        layer.style(index, {
+            offset: 'auto',
+            color: '#777',
+            top: '250px',
+        });
+    });
+}
+/******************************************************token失效提示，并跳转其他url end*******************************************************/
