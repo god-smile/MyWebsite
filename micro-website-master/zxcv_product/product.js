@@ -539,6 +539,12 @@ function editProduct(productId, productNo) {
                     // fileList.push(file);
                     // debugger;
                     // uploadTools.addFileList(fileList,opt);
+
+
+                    getImgToBase64(data.picUrl,function(data){
+                        var myFile = dataURLtoFile(data,'testimgtestimgtestimg');
+                        console.log(myFile);
+                    });
                 }
                 if(data.picUrl1 != null && data.picUrl1 != ''){
                     html = '<div class="fileItem" filecodeid="1">'
@@ -576,6 +582,32 @@ function editProduct(productId, productNo) {
     };
     getAjax(opt);
 }
+function getImgToBase64(url,callback){
+    var canvas = document.createElement('canvas'),
+        ctx = canvas.getContext('2d'),
+        img = new Image;
+        img.crossOrigin = 'Anonymous';
+        img.onload = function(){
+            canvas.height = img.height;
+            canvas.width = img.width;
+            ctx.drawImage(img,0,0);
+            var dataURL = canvas.toDataURL('image/png');
+            callback(dataURL);
+            canvas = null;
+        };
+        img.src = url;
+}
+function dataURLtoFile(dataurl, filename) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, {type:mime});
+}
+
+
+
 //修改页面保存按钮事件
 function editSaveProduct() {
     var jsonProduct = commonObj.getJsonObjectByFormWithEditor('editProductForm', this.editor);
