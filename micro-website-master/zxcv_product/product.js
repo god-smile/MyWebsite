@@ -46,22 +46,15 @@ $(function () {
 });
 
 
-// function beforeUploadFun(opt){
-//     opt.otherData =[{"name":"name","value":"zxm"}];
-// }
-// function onUploadFun(opt,data){
-//     alert(data);
-//     uploadTools.uploadError(opt);//显示上传错误
-//     uploadTools.uploadSuccess(opt);//显示上传成功
-// }
-
 
 
 /**
  * 上传文件
  */
 function uploadFileFun(){
-    $("#addPictureHide").val('');
+    $("#addPictureHide0").val('');
+    $("#addPictureHide1").val('');
+    $("#addPictureHide2").val('');
     var opt = uploadTools.getOpt("fileUploadContent");
     uploadTools.flushOpt(opt);
     if(opt.beforeUpload!=null&&(typeof opt.beforeUpload === "function")) {
@@ -77,21 +70,17 @@ function uploadFileFun(){
         return false;
     }
 
+    //多图片上传
     for(var i=0;i<fileList.length;i++){
         if(fileList[i]!=null){
-            formData.append("pictureFile",fileList[i]);
-        }
-    }
-    if(opt.otherData!=null&&opt.otherData!=""){
-        for(var j=0;j<opt.otherData.length;j++){
-            formData.append(opt.otherData[j].name,opt.otherData[j].value);
+            formData.append("pictureFiles",fileList[i]);
         }
     }
 
-    formData.append("filelSavePath",opt.filelSavePath);
+
     if(uploadUrl!="#"&&uploadUrl!=""){
-        uploadTools.disableFileUpload(opt);//禁用文件上传
-        uploadTools.disableCleanFile(opt);//禁用清除文件
+        // uploadTools.disableFileUpload(opt);//禁用文件上传
+        // uploadTools.disableCleanFile(opt);//禁用清除文件
 
         $.ajax({
             type:"post",
@@ -99,14 +88,21 @@ function uploadFileFun(){
             data:formData,
             processData : false,
             contentType : false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("x-auth-token",commonFun.getToken());
+            },
             success:function(data){
                 uploadTools.initWithCleanFile(opt);
                 setTimeout(function(){opt.onUpload(opt,data)},500);
                 if(opt.isAutoClean){
                     setTimeout(function () {uploadEvent.cleanFileEvent(opt);},2000) ;
                 }
-                if (data.code == '8888' && data.data != null && data.data != '') {
-                    $("#addPictureHide").val(data.data);
+                if (data.code == '8888' && data.data != null && data.data != '' && (data.data).length > 0) {
+                    uploadTools.getFileUploadPregressMsg(opt);
+                    $.each((data.data),function(i,n){
+                        $("#addPictureHide"+i).val(n);
+                    });
+
                 }else{
                     ErrorAlertManual('图片上传错误！');
                 }
@@ -120,9 +116,87 @@ function uploadFileFun(){
         uploadTools.disableFileUpload(opt);//禁用文件上传
         uploadTools.disableCleanFile(opt);//禁用清除文件
     }
-    if(opt.uploadUrl=="#"||opt.uploadUrl=="") {
-        uploadTools.getFileUploadPregressMsg(opt);
+
+
+}
+
+/**
+ * 上传文件-修改
+ */
+function editUploadFileFun(){
+
+    var opt = uploadTools.getOpt("editFileUploadContent");
+    uploadTools.flushOpt(opt);
+    if(opt.beforeUpload!=null&&(typeof opt.beforeUpload === "function")) {
+        opt.beforeUpload(opt);
     }
+    var uploadUrl = opt.uploadUrl;
+    var fileList = uploadFileList.getFileList(opt);
+
+    var formData = new FormData();
+    var fileNumber = uploadTools.getFileNumber(opt);
+    if(fileNumber<=0){
+        ErrorAlertManual("没有文件，不支持上传");
+        return false;
+    }
+
+    //多图片上传
+    for(var i=0;i<fileList.length;i++){
+        if(fileList[i]!=null){
+            formData.append("pictureFiles",fileList[i]);
+        }
+    }
+
+
+    if(uploadUrl!="#"&&uploadUrl!=""){
+        // uploadTools.disableFileUpload(opt);//禁用文件上传
+        // uploadTools.disableCleanFile(opt);//禁用清除文件
+
+        $.ajax({
+            type:"post",
+            url:uploadUrl,
+            data:formData,
+            processData : false,
+            contentType : false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("x-auth-token",commonFun.getToken());
+            },
+            success:function(data){
+                uploadTools.initWithCleanFile(opt);
+                setTimeout(function(){opt.onUpload(opt,data)},500);
+                if(opt.isAutoClean){
+                    setTimeout(function () {uploadEvent.cleanFileEvent(opt);},2000) ;
+                }
+                if (data.code == '8888' && data.data != null && data.data != '' && (data.data).length > 0) {
+                    uploadTools.getFileUploadPregressMsg(opt);
+                    for(let i=0;i<(data.data).length;i++){
+                        if($("#editPictureHide0").val() == null || $("#editPictureHide0").val() == ''){
+                            $("#editPictureHide0").val((data.data)[i]);
+                            continue;
+                        }if($("#editPictureHide1").val() == null || $("#editPictureHide1").val() == ''){
+                            $("#editPictureHide1").val((data.data)[i]);
+                            continue;
+                        }if($("#editPictureHide2").val() == null || $("#editPictureHide2").val() == ''){
+                            $("#editPictureHide2").val((data.data)[i]);
+                            continue;
+                        }
+                    }
+
+
+                }else{
+                    ErrorAlertManual('图片上传错误！');
+                }
+            },
+            error:function(e){
+                ErrorAlertManual('系统错误，请联系管理员！');
+            }
+        });
+
+    }else{
+        uploadTools.disableFileUpload(opt);//禁用文件上传
+        uploadTools.disableCleanFile(opt);//禁用清除文件
+    }
+
 
 }
 
@@ -251,8 +325,6 @@ function initEditor(editorId) {
         'undo',  // 撤销
         'redo'  // 重复
     ];
-    // editor.customConfig.uploadImgServer = '/Upload/wang_editor';  // 上传图片到服务器
-    //editor.customConfig.uploadImgServer = '/upload';
     this.editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
     // 3M
     this.editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
@@ -311,7 +383,11 @@ function initEditor(editorId) {
  */
 // 新增产品
 function addProduct() {
-    $("#addPictureHide").val('');
+    $("#addPictureHide0").val('');
+    $("#addPictureHide1").val('');
+    $("#addPictureHide2").val('');
+    $("#add_title").val('');
+    $("#add_description").val('');
     $('#productContent').addClass('animated slideOutLeft');
     setTimeout(function () {
         $('#productContent').removeClass('animated slideOutLeft').css('display', 'none');
@@ -322,8 +398,8 @@ function addProduct() {
     // 初始化 上传文件组件
     $("#fileUploadContent").empty();
     $("#fileUploadContent").initUpload({
-        "uploadUrl":dataUrl.util.uploadPicture(),//上传文件信息地址
-        //"size":350,//文件大小限制，单位kb,默认不限制
+        "uploadUrl":dataUrl.util.uploadPictures(),//上传文件信息地址
+        "size":500,//文件大小限制，单位kb,默认不限制
         "maxFileNumber":3,//文件个数限制，为整数
         //"filelSavePath":"",//文件上传地址，后台设置的根目录
         // "beforeUpload":beforeUploadFun,//在上传前执行的函数
@@ -341,17 +417,22 @@ function addProduct() {
 function addSaveProduct() {
 
     var jsonProduct = commonObj.getJsonObjectByFormWithEditor('addProductForm', this.editor,"content");
-    var pictureUrl = $("#addPictureHide").val();
+    var pictureUrl0 = $("#addPictureHide0").val();
+    var pictureUrl1 = $("#addPictureHide1").val();
+    var pictureUrl2 = $("#addPictureHide2").val();
     if(jsonProduct.title == null || jsonProduct.title == ''){
         ErrorAlertManual("请输入产品名称！");
         return;
     }
-    if(pictureUrl == null || pictureUrl == ''){
+    if((pictureUrl0 == null || pictureUrl0 == '') && (pictureUrl1 == null || pictureUrl1 == '')
+        && (pictureUrl2 == null || pictureUrl2 == '')){
         ErrorAlertManual("请上传一张封面图！");
         return;
     }
     jsonProduct.projectNo = sessionStorage.getItem("projectNo");
-    jsonProduct.picUrl = pictureUrl;
+    jsonProduct.picUrl = pictureUrl0;
+    jsonProduct.picUrl1 = pictureUrl1;
+    jsonProduct.picUrl2 = pictureUrl2;
     var opt = {
         method: 'post',
         url: dataUrl.util.saveSiteProductInfo(),
@@ -389,6 +470,26 @@ function addCancel() {
 */
 // 修改产品
 function editProduct(productId, productNo) {
+    $("#edit_title").val('');
+    $("#edit_description").val('');
+    $("#editPictureHide0").val('');
+    $("#editPictureHide1").val('');
+    $("#editPictureHide2").val('');
+
+    // 初始化 上传文件组件
+    $("#editFileUploadContent").empty();
+    $("#editFileUploadContent").initUpload({
+        "uploadUrl":dataUrl.util.uploadPictures(),//上传文件信息地址
+        "size":500,//文件大小限制，单位kb,默认不限制
+        "maxFileNumber":3,//文件个数限制，为整数
+        //"filelSavePath":"",//文件上传地址，后台设置的根目录
+        // "beforeUpload":beforeUploadFun,//在上传前执行的函数
+        //"onUpload":onUploadFun，//在上传后执行的函数
+        //autoCommit:true,//文件是否自动上传
+        isHiddenUploadBt:true,
+        "fileType":['png','jpg']//文件类型限制，默认不限制，注意写的是文件后缀
+    });
+
     $('#productContent').addClass('animated slideOutLeft');
     setTimeout(function () {
         $('#productContent').removeClass('animated slideOutLeft').css('display', 'none');
@@ -413,11 +514,63 @@ function editProduct(productId, productNo) {
         dataType: 'json',
         success: function (res) {
             if (res.code == '8888') {
+                var data = res.data;
                 $('#edit_id').val(id);
-                $('#edit_title').val(res.data.title);
-                $('#edit_description').val(res.data.description);
-                // $('#editor_edit').append(res.data.content);
-                editor.txt.html(res.data.content);
+                $('#edit_title').val(data.title);
+                $('#edit_description').val(data.description);
+                // $('#editor_edit').append(data.content);
+                editor.txt.html(data.content);
+                //图片
+                var opt = uploadTools.getOpt("editFileUploadContent");
+                var html='';
+                var fileList=[];
+                if(data.picUrl != null && data.picUrl != ''){
+                    html = '<div class="fileItem" filecodeid="0">'
+                        +'<div class="imgShow">'
+                        +'<img src="'+data.picUrl+'">'
+                        +'</div>'
+                        +'<div class="status"><i class="iconfont icon-gou"></i>'
+                        +'</div>'
+                        +'<div class="fileName">封面1.jpg</div>'
+                        +'</div>';
+                    $("#editFileUploadContent .box").append(html);
+                    $("#editPictureHide0").val(data.picUrl);
+                    // let file = commonObj.getFile("封面1.jpg");
+                    // fileList.push(file);
+                    // debugger;
+                    // uploadTools.addFileList(fileList,opt);
+                }
+                if(data.picUrl1 != null && data.picUrl1 != ''){
+                    html = '<div class="fileItem" filecodeid="1">'
+                        +'<div class="imgShow">'
+                        +'<img src="'+data.picUrl1+'">'
+                        +'</div>'
+                        +'<div class="status"><i class="iconfont icon-gou"></i>'
+                        +'</div>'
+                        +'<div class="fileName">封面2.jpg</div>'
+                        +'</div>';
+                    $("#editFileUploadContent .box").append(html);
+                    $("#editPictureHide1").val(data.picUrl1);
+                    // let file = commonObj.getFile("封面1.jpg");
+                    // fileList.push(file);
+                    // uploadTools.addFileList(fileList,opt);
+                }
+                if(data.picUrl2 != null && data.picUrl2 != ''){
+                    html = '<div class="fileItem" filecodeid="2">'
+                        +'<div class="imgShow">'
+                        +'<img src="'+data.picUrl2+'">'
+                        +'</div>'
+                        +'<div class="status"><i class="iconfont icon-gou"></i>'
+                        +'</div>'
+                        +'<div class="fileName">封面3.jpg</div>'
+                        +'</div>';
+                    $("#editFileUploadContent .box").append(html);
+                    $("#editPictureHide2").val(data.picUrl2);
+                    // let file = commonObj.getFile("封面1.jpg");
+                    // fileList.push(file);
+                    // uploadTools.addFileList(fileList,opt);
+                }
+
             }
         }
     };
@@ -425,34 +578,42 @@ function editProduct(productId, productNo) {
 }
 //修改页面保存按钮事件
 function editSaveProduct() {
-    $('#editProductForm').bootstrapValidator('validate');
+    var jsonProduct = commonObj.getJsonObjectByFormWithEditor('editProductForm', this.editor);
+    var pictureUrl0 = $("#editPictureHide0").val();
+    var pictureUrl1 = $("#editPictureHide1").val();
+    var pictureUrl2 = $("#editPictureHide2").val();
 
-    if ($("#editProductForm").data('bootstrapValidator').isValid()) {
-        var jsonProduct = commonObj.getJsonObjectByFormWithEditor('editProductForm', this.editor);
-
-        var opt = {
-            method: 'post',
-            url: dataUrl.util.updateSiteProductInfoById(),
-            data: JSON.stringify(jsonProduct),
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            success: function (res) {
-                if (res.code == '8888') {
-                    //回退到 产品管理主页
-                    $('#updateProduct').addClass('animated slideOutLeft');
-                    setTimeout(function () {
-                        $('#updateProduct').removeClass('animated slideOutLeft').css('display', 'none');
-                    }, fadeTime);
-                    $('#productContent').css('display', 'block').addClass('animated slideInRight');
-                    //刷新产品管理主页
-                    refreshTable();
-                    //修改页面表单重置
-                    $('#editProductForm').bootstrapValidator('resetForm', true);
-                }
-            }
-        };
-        getAjax(opt);
+    if((pictureUrl0 == null || pictureUrl0 == '') && (pictureUrl1 == null || pictureUrl1 == '')
+        && (pictureUrl2 == null || pictureUrl2 == '')){
+        ErrorAlertManual("请上传一张封面图！");
+        return;
     }
+    jsonProduct.picUrl = pictureUrl0;
+    jsonProduct.picUrl1 = pictureUrl1;
+    jsonProduct.picUrl2 = pictureUrl2;
+
+    var opt = {
+        method: 'post',
+        url: dataUrl.util.updateSiteProductInfoById(),
+        data: JSON.stringify(jsonProduct),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (res) {
+            if (res.code == '8888') {
+                //回退到 产品管理主页
+                $('#updateProduct').addClass('animated slideOutLeft');
+                setTimeout(function () {
+                    $('#updateProduct').removeClass('animated slideOutLeft').css('display', 'none');
+                }, fadeTime);
+                $('#productContent').css('display', 'block').addClass('animated slideInRight');
+                //刷新产品管理主页
+                refreshTable();
+                //修改页面表单重置
+                $('#editProductForm').bootstrapValidator('resetForm', true);
+            }
+        }
+    };
+    getAjax(opt);
 }
 // 修改页面回退按钮事件
 function editCancel() {

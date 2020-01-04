@@ -73,16 +73,11 @@
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
-                    <!--<form class="uploadimg" enctype="multipart/form-data" method="post" id='formBox' name="form">
-                        <div class="head-img">
-                            <input type="file" id="chooseImage0" name="file">
-                            &lt;!&ndash; 保存用户自定义的背景图片 &ndash;&gt;
-                            <img id="picture0" value='custom' alt="选择图片" data-address='' src="../common/images/add-picture.jpg" title=""/>
-                        </div>
-                    </form>-->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">封面图片：</label>
-                        <input id="addPictureHide" class="fileHideUrl" style="display: none"/>
+                        <input id="addPictureHide0" class="fileHideUrl" style="display: none"/>
+                        <input id="addPictureHide1" class="fileHideUrl" style="display: none"/>
+                        <input id="addPictureHide2" class="fileHideUrl" style="display: none"/>
                         <form class="uploadimg" enctype="multipart/form-data" method="post" id='formBox' name="form">
                             <div id="fileUploadContent" class="fileUploadContent"></div>
                         </form>
@@ -143,6 +138,20 @@
                         <label class="col-sm-2 control-label">产品描述：</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="description" id="edit_description"/>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">封面图片：</label>
+                        <input id="editPictureHide0" class="fileHideUrl" style="display: none"/>
+                        <input id="editPictureHide1" class="fileHideUrl" style="display: none"/>
+                        <input id="editPictureHide2" class="fileHideUrl" style="display: none"/>
+                        <form class="uploadimg" enctype="multipart/form-data" method="post" id='editFormBox' name="form">
+                            <div id="editFileUploadContent" class="fileUploadContent"></div>
+                        </form>
+                        <div class="col-sm-1 col-sm-offset-0" style="margin-top: 10px">
+                            <button type="button" class="btn btn-primary btn-block" onclick="editUploadFileFun()">上传
+                            </button>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>

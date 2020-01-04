@@ -160,8 +160,15 @@ var commonObj={
         jsonobj[variable] = editor.txt.html();
         jsonobj['projectNo'] = sessionStorage.getItem("projectNo");
         return jsonobj;
-    }
+    },
+
+
+
+
+
 };
+
+
 
 
 

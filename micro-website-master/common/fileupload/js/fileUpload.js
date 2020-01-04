@@ -419,7 +419,7 @@ var uploadTools = {
     "getFileUploadPregressMsg":function(opt){
         var uploadId = opt.uploadId;
         $("#"+uploadId+" .box .fileItem .status>i").removeClass();
-        if(opt.uploadUrl=="#"||opt.uploadUrl==""){
+        if(opt.uploadUrl !="#" && opt.uploadUrl !=""){
             if(opt.velocity==null||opt.velocity==""||opt.velocity<=0){
                 opt.velocity = 1;
             }
@@ -517,7 +517,7 @@ var uploadEvent = {
      * 删除文件对应的事件
      * */
     "deleteFileEvent":function(opt,obj){
-        debugger;
+        // debugger;
         var fileItem = $(obj).parent().parent();
         var fileCodeId = fileItem.attr("fileCodeId");
         var fileListArray = uploadFileList.getFileList(opt);
@@ -525,7 +525,6 @@ var uploadEvent = {
         uploadFileList.setFileList(fileListArray,opt);
         fileItem.remove();
         //清空隐藏图片url
-        //TODO 此处如果要支持多个，得换种思路 2020-01-01 wangfei
         $(".fileHideUrl").val('');
 
     },
