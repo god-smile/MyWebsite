@@ -523,10 +523,27 @@ var uploadEvent = {
         var fileListArray = uploadFileList.getFileList(opt);
         delete fileListArray[fileCodeId];
         uploadFileList.setFileList(fileListArray,opt);
-        fileItem.remove();
-        //清空隐藏图片url
-        $(".fileHideUrl").val('');
 
+        // 需要放到 remove 前面
+        var i0 = $("#fileUploadContent .fileItem .status i")[0];
+        if (obj == i0) {
+            $("addPictureHide0").val('');
+        }
+
+        var i1 = $("#fileUploadContent .fileItem .status i")[1];
+        if (obj == i1) {
+            $("addPictureHide1").val('');
+        }
+
+        var i2 = $("#fileUploadContent .fileItem .status i")[2];
+        if (obj == i2) {
+            $("addPictureHide2").val('');
+        }
+
+        fileItem.remove();
+
+        //清空隐藏图片url
+        //$(".fileHideUrl").val('');
     },
     /**
      * 选择文件按钮事件
