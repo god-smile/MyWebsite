@@ -170,16 +170,17 @@ function editUploadFileFun(){
                 if (data.code == '8888' && data.data != null && data.data != '' && (data.data).length > 0) {
                     uploadTools.getFileUploadPregressMsg(opt);
                     for(let i=0;i<(data.data).length;i++){
-                        if($("#editPictureHide0").val() == null || $("#editPictureHide0").val() == ''){
-                            $("#editPictureHide0").val((data.data)[i]);
-                            continue;
-                        }if($("#editPictureHide1").val() == null || $("#editPictureHide1").val() == ''){
-                            $("#editPictureHide1").val((data.data)[i]);
-                            continue;
-                        }if($("#editPictureHide2").val() == null || $("#editPictureHide2").val() == ''){
-                            $("#editPictureHide2").val((data.data)[i]);
-                            continue;
-                        }
+                        $("#editPictureHide"+i).val((data.data)[i]);
+                        // if($("#editPictureHide0").val() == null || $("#editPictureHide0").val() == ''){
+                        //     $("#editPictureHide0").val((data.data)[i]);
+                        //     continue;
+                        // }if($("#editPictureHide1").val() == null || $("#editPictureHide1").val() == ''){
+                        //     $("#editPictureHide1").val((data.data)[i]);
+                        //     continue;
+                        // }if($("#editPictureHide2").val() == null || $("#editPictureHide2").val() == ''){
+                        //     $("#editPictureHide2").val((data.data)[i]);
+                        //     continue;
+                        // }
                     }
 
 
