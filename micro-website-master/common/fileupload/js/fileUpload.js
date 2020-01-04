@@ -38,6 +38,7 @@ var uploadTools = {
         //url test测试需要更改
         var initOption={
             "uploadId":uploadId,
+            "pictureHide":"#",// 必须，隐藏域id，不带编号，编号从0开始
             "uploadUrl":"#",//必须，上传地址
             "selfUploadBtId":"",//自定义文件上传按钮id
             "scheduleStandard":false,//模拟进度的模式
@@ -521,25 +522,21 @@ var uploadEvent = {
         var fileItem = $(obj).parent().parent();
         var fileCodeId = fileItem.attr("fileCodeId");
         var fileListArray = uploadFileList.getFileList(opt);
-        delete fileListArray[fileCodeId];
-        uploadFileList.setFileList(fileListArray,opt);
+
+        var uploadId = opt.uploadId;
+        var pictureHide = opt.pictureHide;
+        var length = fileListArray.length;
 
         // 需要放到 remove 前面
-        var i0 = $("#fileUploadContent .fileItem .status i")[0];
-        if (obj == i0) {
-            $("addPictureHide0").val('');
+        for (let i = 0; i < length; i++) {
+            var deletei = $("#" + uploadId + " .fileItem .status i")[i];
+            if (obj == deletei) {
+                $("#" + pictureHide + i).val('');
+            }
         }
 
-        var i1 = $("#fileUploadContent .fileItem .status i")[1];
-        if (obj == i1) {
-            $("addPictureHide1").val('');
-        }
-
-        var i2 = $("#fileUploadContent .fileItem .status i")[2];
-        if (obj == i2) {
-            $("addPictureHide2").val('');
-        }
-
+        delete fileListArray[fileCodeId];
+        uploadFileList.setFileList(fileListArray,opt);
         fileItem.remove();
 
         //清空隐藏图片url

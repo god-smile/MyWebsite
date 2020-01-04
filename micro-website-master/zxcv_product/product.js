@@ -398,6 +398,7 @@ function addProduct() {
     // 初始化 上传文件组件
     $("#fileUploadContent").empty();
     $("#fileUploadContent").initUpload({
+        "pictureHide":"addPictureHide",// 必须，隐藏域id，不带编号，编号从0开始
         "uploadUrl":dataUrl.util.uploadPictures(),//上传文件信息地址
         "size":500,//文件大小限制，单位kb,默认不限制
         "maxFileNumber":3,//文件个数限制，为整数
@@ -479,6 +480,7 @@ function editProduct(productId, productNo) {
     // 初始化 上传文件组件
     $("#editFileUploadContent").empty();
     $("#editFileUploadContent").initUpload({
+        "pictureHide":"editPictureHide",// 必须，隐藏域id，不带编号，编号从0开始
         "uploadUrl":dataUrl.util.uploadPictures(),//上传文件信息地址
         "size":500,//文件大小限制，单位kb,默认不限制
         "maxFileNumber":3,//文件个数限制，为整数
