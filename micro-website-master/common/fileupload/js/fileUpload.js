@@ -525,13 +525,33 @@ var uploadEvent = {
 
         var uploadId = opt.uploadId;
         var pictureHide = opt.pictureHide;
-        var length = fileListArray.length;
+        var length = uploadTools.getFileNumber(opt);
 
         // 需要放到 remove 前面
         for (let i = 0; i < length; i++) {
             var deletei = $("#" + uploadId + " .fileItem .status i")[i];
             if (obj == deletei) {
-                $("#" + pictureHide + i).val('');
+                for (let j = i; j < length + i; j++) {
+                    if ($("#" + pictureHide + j).val() == '' || $("#" + pictureHide + j).val() == null) {
+                        continue;
+                    } else {
+                        $("#" + pictureHide + j).val('');
+                        break;
+                    }
+                }
+            }
+        }
+
+        var is = $("#" + uploadId + " .fileItem .status i");
+        var ilength = is.length;
+        for (let i = 0; i < length; i++) {
+            var deletei = is[i];
+            if (obj == deletei) {
+                // 这个 i 就是被删除的 下标
+                for (let j = i; j < length; j++) {
+                    $("#" + pictureHide + j).val($("#" + pictureHide + (j + 1)).val());
+                }
+                break;
             }
         }
 

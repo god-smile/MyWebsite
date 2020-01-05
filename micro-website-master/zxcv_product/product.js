@@ -169,6 +169,7 @@ function editUploadFileFun(){
                 }
                 if (data.code == '8888' && data.data != null && data.data != '' && (data.data).length > 0) {
                     uploadTools.getFileUploadPregressMsg(opt);
+                    $(".fileHideUrl").val('');
                     for(let i=0;i<(data.data).length;i++){
                         $("#editPictureHide"+i).val((data.data)[i]);
                         // if($("#editPictureHide0").val() == null || $("#editPictureHide0").val() == ''){
