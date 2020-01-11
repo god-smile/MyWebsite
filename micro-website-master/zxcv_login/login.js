@@ -180,12 +180,14 @@ layui.use('layer', function () {
                             // 从返回结果中取出 默认的项目入口 进行跳转
                             window.open("../zxcv_index/index.html", "_top");
                         } else {
+                            resetSlide();
                             // 这里写 异常的结果
                             ErrorAlertManual(res.msg);
                         }
                     }, 2400);
                 },
                 error: function () {
+                    resetSlide();
                     ErrorAlertManual("登录异常，请联系管理员");
                 }
             };
@@ -194,6 +196,15 @@ layui.use('layer', function () {
     })
 });
 
+//滑块重置
+function resetSlide(){
+    slideValue = false;
+    var html = '<input type="text" name="code" class="code-input"/>\n' +
+        '                    <p></p>\n' +
+        '                    <span style="background-color: #0d95e8">>>></span>&emsp;&emsp;&emsp;&emsp;拖动滑块验证';
+    $("#code-box").html(html);
+    new moveCode("sajoiw");
+}
 // 全屏特效
 function fullscreen() {
     elem = document.body;
