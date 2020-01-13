@@ -3,7 +3,7 @@ var header = {
     // 登录后调用，先关联出 “我”的项目
     initMyProject: function () {
         // var location = top.location.href;
-        var userNo = sessionStorage.getItem("userNo");
+        var userNo = commonFun.getLoginUserNo();
         var req = {
             userNo: userNo
         };
@@ -17,13 +17,13 @@ var header = {
                 if (res.code == '8888') {
                     var length = res.data.length;
                     if (length <= 0) {
-                        ErrorAlertManual("该用户没有关联项目，请联系管理员");
+                        parent.content.ErrorAlertManual("该用户没有关联项目，请联系管理员");
                         return;
                     }
                     if (length > 0) {
-                        if (sessionStorage.getItem("projectNo") == "") {
-                            sessionStorage.setItem("projectNo", res.data[0].projectNo);
-                            sessionStorage.setItem("indexUrl", res.data[0].indexUrl);
+                        if (commonFun.getProjectNo() == "") {
+                            commonFun.setProjectNo(res.data[0].projectNo);
+                            commonFun.setProjectIndexUrl(res.data[0].indexUrl);
                         }
                     }
                     for (var i = 0; i < length; i++) {
@@ -43,7 +43,7 @@ var header = {
         var myPro = document.getElementById("myProject");
         var project = projects;
 
-        var projectNo = sessionStorage.getItem("projectNo");
+        var projectNo = commonFun.getProjectNo();
 
         for (var key in project) {
             // 如果该 projectNo 和 session 中的 projectNo 相等，需要选中
@@ -70,11 +70,11 @@ function projectChange() {
     var value = myPro.options[index].value; // 选中值
     console.log(value);
 
-    var projectNo = sessionStorage.getItem("projectNo");
+    var projectNo = commonFun.getProjectNo();
     $('#myProject option[value="' + projectNo + '"]').removeAttr('style');
 
-    sessionStorage.setItem("projectNo", value);
-    sessionStorage.setItem("indexUrl", projects[value].indexUrl);
+    commonFun.setProjectNo(value);
+    commonFun.setProjectIndexUrl(projects[value].indexUrl);
     $('#myProject option[value="' + value + '"]').css('background-color', 'red');
 
     // 选择项目后，刷新content 内容，根据 projectNo 查询
@@ -82,7 +82,7 @@ function projectChange() {
 }
 
 function openPortal() {
-    var indexUrl = sessionStorage.getItem("indexUrl");
+    var indexUrl = commonFun.getProjectIndexUrl();
     if (indexUrl == null || indexUrl == '' || indexUrl == undefined) {
         parent.content.ErrorAlertManual("系统错误，请联系管理员！");
         return;
@@ -105,11 +105,11 @@ function logout() {
                     window.open("../zxcv_login/login.html", "_top");
                 } else {
                     // 这里写 异常的结果
-                    ErrorAlertManual(res.msg);
+                    parent.content.ErrorAlertManual(res.msg);
                 }
             },
             error: function () {
-                ErrorAlertManual("退出登录异常，请联系管理员");
+                parent.content.ErrorAlertManual("退出登录异常，请联系管理员");
             }
         };
         getAjax(opt);

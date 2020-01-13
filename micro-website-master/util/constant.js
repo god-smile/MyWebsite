@@ -18,7 +18,7 @@ var constant = {
             dataType: 'json',
             success: function (res) {
                 if (res.code == '8888') {
-                    sessionStorage.setItem("projectNo", res.data.projectNo);
+                    commonFun.setProjectNo(res.data.projectNo);
                 }
             }
         };

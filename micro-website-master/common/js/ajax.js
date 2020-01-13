@@ -109,6 +109,27 @@ commonFun = {
     setToken:function(token){
         sessionStorage.setItem("token",token);
     },
+    setUser:function (user) {
+        sessionStorage.setItem("user", JSON.stringify(user));
+    },
+    getLoginUserNo:function () {
+        return JSON.parse(sessionStorage.getItem("user")).userNo;
+    },
+    getLoginUserName:function () {
+        return JSON.parse(sessionStorage.getItem("user")).userName;
+    },
+    getProjectNo:function () {
+        return sessionStorage.getItem("projectNo");
+    },
+    setProjectNo:function (projectNo) {
+        sessionStorage.setItem("projectNo", projectNo);
+    },
+    getProjectIndexUrl:function () {
+        return sessionStorage.getItem("indexUrl");
+    },
+    setProjectIndexUrl:function (indexUrl) {
+        sessionStorage.setItem("indexUrl", indexUrl);
+    },
 }
 function getAjax(opts){
     

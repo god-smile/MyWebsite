@@ -267,7 +267,7 @@ function tableLoadRequest(params) {
         pageSize:pageSize
     };
 
-    req.projectNo = sessionStorage.getItem("projectNo");
+    req.projectNo = commonFun.getProjectNo();
 
     var productTableAjax = {
         method: params.type,
@@ -432,7 +432,7 @@ function addSaveProduct() {
         ErrorAlertManual("请上传一张封面图！");
         return;
     }
-    jsonProduct.projectNo = sessionStorage.getItem("projectNo");
+    jsonProduct.projectNo = commonFun.getProjectNo();
     jsonProduct.picUrl = pictureUrl0;
     jsonProduct.picUrl1 = pictureUrl1;
     jsonProduct.picUrl2 = pictureUrl2;

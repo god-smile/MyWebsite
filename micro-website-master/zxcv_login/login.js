@@ -222,11 +222,15 @@ function fullscreen() {
 function initSessionValue(user) {
     sessionStorage.clear();
 
-    sessionStorage.setItem("userId", user.id);
+    /*sessionStorage.setItem("userId", user.id);
     sessionStorage.setItem("userName", user.userName);
     sessionStorage.setItem("userNo", user.userNo);
     sessionStorage.setItem("projectNo", user.projectNo);
-    sessionStorage.setItem("indexUrl", user.indexUrl);
+    sessionStorage.setItem("indexUrl", user.indexUrl);*/
+
+    commonFun.setUser(user);
+    commonFun.setProjectNo(user.projectNo)
+    commonFun.setProjectIndexUrl(user.indexUrl);
     commonFun.setToken(user.token);
 }
 
