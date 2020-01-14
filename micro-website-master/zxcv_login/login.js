@@ -176,15 +176,17 @@ layui.use('layer', function () {
                             $('.success').html("");
 
                             initSessionValue(res.data);
-
-                            // 从返回结果中取出 默认的项目入口 进行跳转
-                            window.open("../zxcv_index/index.html", "_top");
+                            commonFun.getUserProjects();
+                            setTimeout(function () {
+                                // 从返回结果中取出 默认的项目入口 进行跳转
+                                window.open("../zxcv_index/index.html", "_top");
+                            },500);//加了500毫秒延迟 避免页面跳转和ajax异步，01-14
                         } else {
                             resetSlide();
                             // 这里写 异常的结果
                             ErrorAlertManual(res.msg);
                         }
-                    }, 2400);
+                    }, 1200);
                 },
                 error: function () {
                     resetSlide();
@@ -232,6 +234,7 @@ function initSessionValue(user) {
     commonFun.setProjectNo(user.projectNo)
     commonFun.setProjectIndexUrl(user.indexUrl);
     commonFun.setToken(user.token);
+
 }
 
 //获取元素距离页面边缘的距离

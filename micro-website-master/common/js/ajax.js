@@ -130,6 +130,44 @@ commonFun = {
     setProjectIndexUrl:function (indexUrl) {
         sessionStorage.setItem("indexUrl", indexUrl);
     },
+    getUserProjects:function(){
+        var projects = sessionStorage.getItem('projects');
+
+        if(projects != undefined && projects != null){
+            projects = JSON.parse(projects);
+            return projects
+        }
+        if(projects == undefined || projects == null){
+            var userNo = commonFun.getLoginUserNo();
+            var req = {
+                userNo: userNo
+            };
+            var opt = {
+                method: 'post',
+                url: dataUrl.util.getSysProjectInfoByUserNo(),
+                data: JSON.stringify(req),
+                sync:false,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == '8888') {
+                        var length = res.data.length;
+                        if (length <= 0) {
+                            parent.content.ErrorAlertManual("该用户没有关联项目，请联系管理员");
+                            return;
+                        }else{
+                            var data =res.data;
+                            sessionStorage.setItem("projects", JSON.stringify(data));
+                            return data;
+                        }
+
+                    }
+                }
+            };
+            getAjax(opt);
+        }
+
+    }
 }
 function getAjax(opts){
     
