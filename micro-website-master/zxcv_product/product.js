@@ -545,12 +545,37 @@ function editProduct(productId, productNo) {
                     // uploadTools.addFileList(fileList,opt);
 
 
-                    getImgToBase64(data.picUrl,function(data){
+                    /*getImgToBase64(data.picUrl,function(data){
+                        console.log(1);
                         var file = dataURLtoFile(data,"封面1.jpg");
                         fileList =[];
                         fileList.push(file);
                         uploadTools.addFileList(fileList,opt);
-                    });
+                    });*/
+
+
+
+                    var canvas = document.createElement('canvas'),
+                        ctx = canvas.getContext('2d'),
+                        img = new Image;
+                    img.crossOrigin = 'Anonymous';
+                    img.onload = function(){
+                        canvas.height = img.height;
+                        canvas.width = img.width;
+                        ctx.drawImage(img,0,0);
+                        var dataURL = canvas.toDataURL('image/png');
+
+                        console.log(1);
+                        var file = dataURLtoFile(dataURL,"封面1.jpg");
+                        fileList =[];
+                        fileList.push(file);
+                        uploadTools.addFileList(fileList,opt);
+
+                        canvas = null;
+                    };
+                    img.src = data.picUrl;
+
+
                 }
                 if(data.picUrl1 != null && data.picUrl1 != ''){
                     // html = '<div class="fileItem" filecodeid="1">'
@@ -563,12 +588,36 @@ function editProduct(productId, productNo) {
                     //     +'</div>';
                     // $("#editFileUploadContent .box").append(html);
                     $("#editPictureHide1").val(data.picUrl1);
-                    getImgToBase64(data.picUrl1,function(data){
+                    /*getImgToBase64(data.picUrl1,function(data){
+                        console.log(2);
                         var file = dataURLtoFile(data,"封面2.jpg");
                         fileList =[];
                         fileList.push(file);
                         uploadTools.addFileList(fileList,opt);
-                    });
+                    });*/
+
+
+                    setTimeout(200);//加了500毫秒延迟
+
+                    var canvas1 = document.createElement('canvas'),
+                        ctx1 = canvas1.getContext('2d'),
+                        img1 = new Image;
+                    img1.crossOrigin = 'Anonymous';
+                    img1.onload = function(){
+                        canvas1.height = img1.height;
+                        canvas1.width = img1.width;
+                        ctx1.drawImage(img1,0,0);
+                        var dataURL1 = canvas1.toDataURL('image/png');
+
+                        console.log(2);
+                        var file = dataURLtoFile(dataURL1,"封面2.jpg");
+                        fileList =[];
+                        fileList.push(file);
+                        uploadTools.addFileList(fileList,opt);
+
+                        canvas1 = null;
+                    };
+                    img1.src = data.picUrl1;
                 }
                 if(data.picUrl2 != null && data.picUrl2 != ''){
                     // html = '<div class="fileItem" filecodeid="2">'
@@ -581,12 +630,35 @@ function editProduct(productId, productNo) {
                     //     +'</div>';
                     // $("#editFileUploadContent .box").append(html);
                     $("#editPictureHide2").val(data.picUrl2);
-                    getImgToBase64(data.picUrl2,function(data){
+                    /*getImgToBase64(data.picUrl2,function(data){
+                        console.log(3);
                         var file = dataURLtoFile(data,"封面3.jpg");
                         fileList =[];
                         fileList.push(file);
                         uploadTools.addFileList(fileList,opt);
-                    });
+                    });*/
+
+                    setTimeout(500);//加了500毫秒延迟
+
+                    var canvas2 = document.createElement('canvas'),
+                        ctx2 = canvas2.getContext('2d'),
+                        img2 = new Image;
+                    img2.crossOrigin = 'Anonymous';
+                    img2.onload = function(){
+                        canvas2.height = img2.height;
+                        canvas2.width = img2.width;
+                        ctx2.drawImage(img2,0,0);
+                        var dataURL2 = canvas2.toDataURL('image/png');
+
+                        console.log(3);
+                        var file = dataURLtoFile(dataURL2,"封面3.jpg");
+                        fileList =[];
+                        fileList.push(file);
+                        uploadTools.addFileList(fileList,opt);
+
+                        canvas2 = null;
+                    };
+                    img2.src = data.picUrl2;
                 }
 
             }
