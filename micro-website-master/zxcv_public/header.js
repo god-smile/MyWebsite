@@ -2,42 +2,22 @@ var projects = {};
 var header = {
     // 登录后调用，先关联出 “我”的项目
     initMyProject: function () {
-        // var location = top.location.href;
-        var userNo = commonFun.getLoginUserNo();
-        var req = {
-            userNo: userNo
-        };
-        var opt = {
-            method: 'post',
-            url: dataUrl.util.getSysProjectInfoByUserNo(),
-            data: JSON.stringify(req),
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            success: function (res) {
-                if (res.code == '8888') {
-                    var length = res.data.length;
-                    if (length <= 0) {
-                        parent.content.ErrorAlertManual("该用户没有关联项目，请联系管理员");
-                        return;
-                    }
-                    if (length > 0) {
-                        if (commonFun.getProjectNo() == "") {
-                            commonFun.setProjectNo(res.data[0].projectNo);
-                            commonFun.setProjectIndexUrl(res.data[0].indexUrl);
-                        }
-                    }
-                    for (var i = 0; i < length; i++) {
-                        var pro = res.data[i];
-                        var projectNo = pro.projectNo;
-                        var projectName = pro.projectName;
-                        var indexUrl = pro.indexUrl;
-                        projects[projectNo] = {projectName, indexUrl};
-                    }
-                    header.initProSelect();
-                }
+        projectList = commonFun.getUserProjects();
+        if (projectList.length > 0) {
+            if (commonFun.getProjectNo() == "") {
+                commonFun.setProjectNo(projectList[0].projectNo);
+                commonFun.setProjectIndexUrl(projectList[0].indexUrl);
             }
-        };
-        getAjax(opt);
+        }
+        for (var i = 0; i < projectList.length; i++) {
+            var pro = projectList[i];
+            var projectNo = pro.projectNo;
+            var projectName = pro.projectName;
+            var indexUrl = pro.indexUrl;
+            projects[projectNo] = {projectName, indexUrl};
+        }
+        header.initProSelect();
+
     },
     initProSelect: function () {
         var myPro = document.getElementById("myProject");
