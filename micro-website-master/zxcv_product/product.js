@@ -577,6 +577,9 @@ function editProduct(productId, productNo) {
 
 
                 }
+
+                setTimeout(200);//加了500毫秒延迟
+
                 if(data.picUrl1 != null && data.picUrl1 != ''){
                     // html = '<div class="fileItem" filecodeid="1">'
                     //     +'<div class="imgShow">'
@@ -595,9 +598,6 @@ function editProduct(productId, productNo) {
                         fileList.push(file);
                         uploadTools.addFileList(fileList,opt);
                     });*/
-
-
-                    setTimeout(200);//加了500毫秒延迟
 
                     var canvas1 = document.createElement('canvas'),
                         ctx1 = canvas1.getContext('2d'),
@@ -619,6 +619,9 @@ function editProduct(productId, productNo) {
                     };
                     img1.src = data.picUrl1;
                 }
+
+                setTimeout(1200);//加了500毫秒延迟
+
                 if(data.picUrl2 != null && data.picUrl2 != ''){
                     // html = '<div class="fileItem" filecodeid="2">'
                     //     +'<div class="imgShow">'
@@ -637,8 +640,6 @@ function editProduct(productId, productNo) {
                         fileList.push(file);
                         uploadTools.addFileList(fileList,opt);
                     });*/
-
-                    setTimeout(500);//加了500毫秒延迟
 
                     var canvas2 = document.createElement('canvas'),
                         ctx2 = canvas2.getContext('2d'),
@@ -816,7 +817,11 @@ function showProduct(productId, productNo) {
     $('#showProduct').css('display', 'block');
     $('#showProduct').addClass('animated slideInRight');
 
-    $('#editor_detail').empty();
+    $("#detail_description").val('');
+    $("#detailPictureHide0").val('');
+    $("#detailPictureHide1").val('');
+    $("#detailPictureHide2").val('');
+    initEditor("editor_detail");
 
     var id = productId;
     //设置请求参数
@@ -831,11 +836,52 @@ function showProduct(productId, productNo) {
         dataType: 'json',
         success: function (res) {
             if (res.code == '8888') {
-
+                var data = res.data;
                 $('#detail_id').val(id);
-                $('#detail_title').val(res.data.title);
-                // $('#detail_productType').val(res.data.productType);
-                $('#editor_detail').append(res.data.content);
+                $('#detail_title').val(data.title);
+                $('#detail_description').val(data.description);
+
+                editor.txt.html(data.content);
+
+                $("#detailFileUploadContent .box").empty();
+                var html;
+                // 图片
+                if(data.picUrl != null && data.picUrl != ''){
+                    html = '<div class="fileItem" filecodeid="0">'
+                        +'<div class="imgShow">'
+                        +'<img src="'+data.picUrl+'">'
+                        +'</div>'
+                        +'<div class="fileName">封面1.jpg</div>'
+                        +'</div>';
+                    $("#detailFileUploadContent .box").append(html);
+                    $("#detailPictureHide0").val(data.picUrl);
+                }
+
+                setTimeout(200);//加了500毫秒延迟
+
+                if(data.picUrl1 != null && data.picUrl1 != ''){
+                    html = '<div class="fileItem" filecodeid="1">'
+                        +'<div class="imgShow">'
+                        +'<img src="'+data.picUrl1+'">'
+                        +'</div>'
+                        +'<div class="fileName">封面2.jpg</div>'
+                        +'</div>';
+                    $("#detailFileUploadContent .box").append(html);
+                    $("#detailPictureHide1").val(data.picUrl1);
+                }
+
+                setTimeout(1200);//加了500毫秒延迟
+
+                if(data.picUrl2 != null && data.picUrl2 != ''){
+                    html = '<div class="fileItem" filecodeid="2">'
+                        +'<div class="imgShow">'
+                        +'<img src="'+data.picUrl2+'">'
+                        +'</div>'
+                        +'<div class="fileName">封面3.jpg</div>'
+                        +'</div>';
+                    $("#detailFileUploadContent .box").append(html);
+                    $("#detailPictureHide2").val(data.picUrl2);
+                }
             }
         }
     };

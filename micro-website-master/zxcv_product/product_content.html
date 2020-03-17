@@ -3,9 +3,9 @@
 
 <!-- 引入wangEditor插件 -->
 <link rel="stylesheet" href="../common/wangEditor/wangEditor.min.css">
-<link rel="stylesheet" href="./product.css?version="+ Math.random()>
+<link rel="stylesheet" href="./product.css?version=" + Math.random()>
 <script src="../common/wangEditor/wangEditor.min.js"></script>
-<script src="./product.js?version="+ Math.random()></script>
+<script src="./product.js?version=" + Math.random()></script>
 
 <link href="../common/fileupload/css/iconfont.css" rel="stylesheet" type="text/css"/>
 <link href="../common/fileupload/css/fileUpload.css" rel="stylesheet" type="text/css">
@@ -23,11 +23,13 @@
                 <div class="col-sm-6">
                     <label class="col-sm-3 control-label" style="text-align: right; margin-top:5px">开始日期：</label>
                     <div class="col-sm-3  date form_datetime" data-link-field="beginTime">
-                        <input class="form-control" size="16" type="text" value="" id="search_beginTime" name="search_beginTime" readonly>
+                        <input class="form-control" size="16" type="text" value="" id="search_beginTime"
+                               name="search_beginTime" readonly>
                     </div>
                     <label class="col-sm-3 control-label" style="text-align: right; margin-top:5px">结束日期：</label>
                     <div class="col-sm-3  date form_datetime" data-link-field="endTime">
-                        <input class="form-control" size="16" type="text" value="" id="search_endTime" name="search_beginTime" readonly>
+                        <input class="form-control" size="16" type="text" value="" id="search_endTime"
+                               name="search_beginTime" readonly>
                     </div>
                 </div>
                 <div class="col-sm-2 pull-right">
@@ -88,7 +90,7 @@
                     </div>
                     <div class="hr-line-dashed"></div>
                     <!--<div class="form-group">-->
-                        <!--<label class="col-sm-1 control-label">正文：</label>-->
+                    <!--<label class="col-sm-1 control-label">正文：</label>-->
                     <!--</div>-->
                     <div class="form-group" style="margin-top: 30px">
                         <div id="editor_add">
@@ -147,7 +149,8 @@
                         <input id="editPictureHide1" class="fileHideUrl" type="text" style="width: 800px"/></br>
                         <input id="editPictureHide2" class="fileHideUrl" type="text" style="width: 800px"/></br>
 
-                        <form class="uploadimg" enctype="multipart/form-data" method="post" id='editFormBox' name="form">
+                        <form class="uploadimg" enctype="multipart/form-data" method="post" id='editFormBox'
+                              name="form">
                             <div id="editFileUploadContent" class="fileUploadContent"></div>
                         </form>
                         <div class="col-sm-1 col-sm-offset-0" style="margin-top: 10px">
@@ -186,7 +189,7 @@
                 <h5>产品详情信息</h5>
             </div>
             <div class="ibox-content">
-                <form id="showUserForm" method="post" class="form-horizontal">
+                <form id="detailUserForm" method="post" class="form-horizontal">
                     <div class="form-group" style="display:none">
                         <label class="col-sm-2 control-label">id</label>
                         <div class="col-sm-10">
@@ -194,18 +197,29 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">产品名称</label>
+                        <label class="col-sm-2 control-label">产品名称：</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="title" id="detail_title" readonly/>
                         </div>
                     </div>
+                    <div class="hr-line-dashed"></div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">产品描述</label>
+                        <label class="col-sm-2 control-label">产品描述：</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="title" id="detail_description" readonly/>
+                            <input type="text" class="form-control" name="description" id="detail_description"/>
                         </div>
                     </div>
-
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">封面图片：</label>
+                        <input id="detailPictureHide0" class="fileHideUrl" type="text" style="width: 800px"/></br>
+                        <input id="detailPictureHide1" class="fileHideUrl" type="text" style="width: 800px"/></br>
+                        <input id="detailPictureHide2" class="fileHideUrl" type="text" style="width: 800px"/></br>
+                        <div id="detailFileUploadContent" class="fileUploadContent">
+                            <div class="box">
+                            </div>
+                        </div>
+                    </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <div id="editor_detail">
@@ -221,6 +235,7 @@
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
