@@ -1,7 +1,7 @@
 var common = {
     initProjectNoByUrl: function () {
         var url = window.location.href;
-        url = url.substring(0,url.indexOf(".html?") + 5);
+        url = url.substring(0, url.indexOf(".html") + 5);
         console.log(url);
 
         var req = {

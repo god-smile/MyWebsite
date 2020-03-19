@@ -18,6 +18,7 @@
 
     <!-- Stylesheets -->
     <link href="../css/style.css" rel="stylesheet">
+
     <link href="../css/common.css" rel="stylesheet">
 
     <!--Favicon-->
@@ -40,9 +41,9 @@
     <section class="page-title text-center" style="background-image:url(../images/background/3.jpg);">
         <div class="container">
             <div class="title-text">
-                <h1>产品</h1>
+                <h1>新闻</h1>
                 <ul class="title-menu clearfix">
-                    <li>产品明细</li>
+                    <li>新闻展示</li>
                 </ul>
             </div>
         </div>
@@ -53,23 +54,36 @@
     <section class="blog-section style-four section">
         <div class="container">
             <div class="row">
-                <div class="col-md-9 col-sm-12 col-xs-12">
-                    <div class="left-side">
-                        <div class="item-holder">
-                            <div class="content-text">
-                                <h2 id="ptitle">产品名称</h2>
-                                创建时间:<br><span id="pcreateTime"></span><br>
-                                简述:<p id="pdesc">产品描述</p>
+                <div class="col-md-3 col-sm-12 col-xs-12 news-list100">
+                    <div class="right-side">
+                        <div class="categorise-menu" id="news-list-div">
+                            <!--<ul class="categorise-list">
+                                <li></li>
+                                <li><a href="#">Alumni <span>(20)</span></a></li>
+                                <li><a href="#">Psycology <span>(4)</span></a></li>
+                                <li><a href="#">Sonogram <span>(2)</span></a></li>
+                                <li><a href="#">x-ray <span>(9)</span></a></li>
+                                <li><a href="#">Dental <span>(2)</span></a></li>
+                                <li></li>
+                            </ul>-->
+                        </div>
+                        <div class="tag-list">
+                            <div class="text-title">
+                                <h6>新闻类型</h6>
                             </div>
-
-                            正文:
-                            <!--富文本-->
-                            <div id="pcontent">
-
-                            </div>
+                            <a href="#">Dormamu</a><a href="#">Medical</a><a href="#">hospitality</a>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="styled-pagination">
+                <ul>
+                    <li><a class="prev" href="#"><span class="fa fa-angle-left" aria-hidden="true"></span></a></li>
+                    <li><a href="#" class="active">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a class="next" href="#"><span class="fa fa-angle-right" aria-hidden="true"></span></a></li>
+                </ul>
             </div>
         </div>
     </section>
@@ -109,7 +123,7 @@
 <script src="../js/util/DateUtils.js"></script>
 <script src="../js/util/util.js"></script>
 
-<script src="product-detail.js"></script>
+<script src="news.js"></script>
 </body>
 
 </html>

@@ -6,8 +6,8 @@ $(function () {
     $("#public-header").load("../zxcv_public/public-header.html");
     $("#public-footer").load("../zxcv_public/public-footer.html");
 
-    loadProduct();
-    // generateProductObject();
+    loadNews();
+    // generateNewsObject();
 });
 
 
@@ -17,49 +17,42 @@ $(function () {
  * 图片如果没有，找一个 默认的图片填充进去
  * 标题、描述 都截取一定的长度展示
  */
-function loadProduct() {
-
+function loadNews() {
     var url = window.location.href;
-    var pno = url.substring(url.indexOf("pno") + 4);
-    console.log(pno);
+    var nno = url.substring(url.indexOf("nno") + 4);
+    console.log(nno);
 
     var req = {
-        productNo: pno,
+        newsNo: nno,
         projectNo: commonFun.getProjectNo()
     };
     var opt = {
         method: 'post',
-        url: dataUrl.util.selectWebSiteProductInfo(),
+        url: dataUrl.util.selectWebSiteNewsInfo(),
         data: JSON.stringify(req),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         success: function (res) {
             if (res.code == '8888') {
                 console.log(res);
-                generateProductObject(res.data);
+                generateNewsObject(res.data);
             }
         }
     };
     getAjax(opt);
 }
 
-function generateProductObject(data) {
-    console.log('generateProductList');
+function generateNewsObject(data) {
+    console.log('generateNewsObject');
 
-    $('#ptitle').html(data.title);
-    $('#pcreateTime').html(commonObj.timeFormatter(data.createTime));
-    $('#pdesc').html(data.description);
+    $('#ntitle').html(data.title);
+    $('#ncreateTime').html(commonObj.timeFormatter(data.createTime));
+    $('#nreadNum').html(data.readNum);
+    $('#ndesc').html(data.description);
 
-    $('#pcontent').html(data.content);
-
-        /*<h6 id="ptitle">产品名称</h6>
-        <span id="pcreateTime">创建时间</span>
-        <p id="pdesc">产品描述</p>
-        <!--富文本-->
-        <div id="pcontent">*/
+    $('#ncontent').html(data.content);
 }
 
-function generateProductObject2() {
+function generateNewsObject2() {
     var html = "";
-
 }

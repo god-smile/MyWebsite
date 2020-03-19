@@ -46,24 +46,16 @@ dataUrl.util = {
     /******************************用户管理 end***********************/
     /******************************新闻管理 start***********************/
     // 分页查询新闻
-    querySiteNewsInfoForPage: function () {
-        return baseURL + '/siteNewsInfo/querySiteNewsInfoForPage';
-    },
-    // 新增新闻
-    saveNewsInfo: function () {
-        return baseURL + '/siteNewsInfo/saveSiteNewsInfo';
+    queryWebSiteNewsInfoForPage: function () {
+        return baseURL + '/webSiteNewsInfo/queryWebSiteNewsInfoForPage';
     },
     // 查询新闻
-    selectSiteNewsInfo: function () {
-        return baseURL + '/siteNewsInfo/selectSiteNewsInfo';
+    selectWebSiteNewsInfo: function () {
+        return baseURL + '/webSiteNewsInfo/selectWebSiteNewsInfo';
     },
     // 修改新闻
     updateSiteNewsInfoById: function () {
         return baseURL + '/siteNewsInfo/updateSiteNewsInfoById';
-    },
-    // 删除新闻
-    deleteSiteNewsInfo: function () {
-        return baseURL + '/siteNewsInfo/deleteSiteNewsInfo';
     },
     /******************************新闻管理 end***********************/
     /******************************产品管理 start***********************/
@@ -119,11 +111,16 @@ commonFun = {
     getLoginUserName: function () {
         return JSON.parse(sessionStorage.getItem("user")).userName;
     },
-    getProjectNo: function () {
-        return sessionStorage.getItem("projectNo");
+    getProjectNo:function () {
+        return localStorage.getItem("projectNo");
     },
-    setProjectNo: function (projectNo) {
-        sessionStorage.setItem("projectNo", projectNo);
+    setProjectNo:function (projectNo) {
+        if(!window.localStorage){
+            alert("浏览器不支持localstorage");
+            return false;
+        }else {
+            localStorage.setItem("projectNo", projectNo);
+        }
     },
     getProjectIndexUrl: function () {
         return sessionStorage.getItem("indexUrl");
