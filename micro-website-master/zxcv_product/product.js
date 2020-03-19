@@ -578,90 +578,91 @@ function editProduct(productId, productNo) {
 
                 }
 
-                setTimeout(200);//加了500毫秒延迟
+                setTimeout(function () {
+                    if(data.picUrl1 != null && data.picUrl1 != ''){
+                        // html = '<div class="fileItem" filecodeid="1">'
+                        //     +'<div class="imgShow">'
+                        //     +'<img src="'+data.picUrl1+'">'
+                        //     +'</div>'
+                        //     +'<div class="status"><i class="iconfont icon-gou"></i>'
+                        //     +'</div>'
+                        //     +'<div class="fileName">封面2.jpg</div>'
+                        //     +'</div>';
+                        // $("#editFileUploadContent .box").append(html);
+                        $("#editPictureHide1").val(data.picUrl1);
+                        /*getImgToBase64(data.picUrl1,function(data){
+                            console.log(2);
+                            var file = dataURLtoFile(data,"封面2.jpg");
+                            fileList =[];
+                            fileList.push(file);
+                            uploadTools.addFileList(fileList,opt);
+                        });*/
 
-                if(data.picUrl1 != null && data.picUrl1 != ''){
-                    // html = '<div class="fileItem" filecodeid="1">'
-                    //     +'<div class="imgShow">'
-                    //     +'<img src="'+data.picUrl1+'">'
-                    //     +'</div>'
-                    //     +'<div class="status"><i class="iconfont icon-gou"></i>'
-                    //     +'</div>'
-                    //     +'<div class="fileName">封面2.jpg</div>'
-                    //     +'</div>';
-                    // $("#editFileUploadContent .box").append(html);
-                    $("#editPictureHide1").val(data.picUrl1);
-                    /*getImgToBase64(data.picUrl1,function(data){
-                        console.log(2);
-                        var file = dataURLtoFile(data,"封面2.jpg");
-                        fileList =[];
-                        fileList.push(file);
-                        uploadTools.addFileList(fileList,opt);
-                    });*/
+                        var canvas1 = document.createElement('canvas'),
+                            ctx1 = canvas1.getContext('2d'),
+                            img1 = new Image;
+                        img1.crossOrigin = 'Anonymous';
+                        img1.onload = function(){
+                            canvas1.height = img1.height;
+                            canvas1.width = img1.width;
+                            ctx1.drawImage(img1,0,0);
+                            var dataURL1 = canvas1.toDataURL('image/png');
 
-                    var canvas1 = document.createElement('canvas'),
-                        ctx1 = canvas1.getContext('2d'),
-                        img1 = new Image;
-                    img1.crossOrigin = 'Anonymous';
-                    img1.onload = function(){
-                        canvas1.height = img1.height;
-                        canvas1.width = img1.width;
-                        ctx1.drawImage(img1,0,0);
-                        var dataURL1 = canvas1.toDataURL('image/png');
+                            console.log(2);
+                            var file = dataURLtoFile(dataURL1,"封面2.jpg");
+                            fileList =[];
+                            fileList.push(file);
+                            uploadTools.addFileList(fileList,opt);
 
-                        console.log(2);
-                        var file = dataURLtoFile(dataURL1,"封面2.jpg");
-                        fileList =[];
-                        fileList.push(file);
-                        uploadTools.addFileList(fileList,opt);
+                            canvas1 = null;
+                        };
+                        img1.src = data.picUrl1;
+                    }
+                }, 20);//加了500毫秒延迟
 
-                        canvas1 = null;
-                    };
-                    img1.src = data.picUrl1;
-                }
 
-                setTimeout(1200);//加了500毫秒延迟
 
-                if(data.picUrl2 != null && data.picUrl2 != ''){
-                    // html = '<div class="fileItem" filecodeid="2">'
-                    //     +'<div class="imgShow">'
-                    //     +'<img src="'+data.picUrl2+'">'
-                    //     +'</div>'
-                    //     +'<div class="status"><i class="iconfont icon-gou"></i>'
-                    //     +'</div>'
-                    //     +'<div class="fileName">封面3.jpg</div>'
-                    //     +'</div>';
-                    // $("#editFileUploadContent .box").append(html);
-                    $("#editPictureHide2").val(data.picUrl2);
-                    /*getImgToBase64(data.picUrl2,function(data){
-                        console.log(3);
-                        var file = dataURLtoFile(data,"封面3.jpg");
-                        fileList =[];
-                        fileList.push(file);
-                        uploadTools.addFileList(fileList,opt);
-                    });*/
+                setTimeout(function () {
+                    if(data.picUrl2 != null && data.picUrl2 != ''){
+                        // html = '<div class="fileItem" filecodeid="2">'
+                        //     +'<div class="imgShow">'
+                        //     +'<img src="'+data.picUrl2+'">'
+                        //     +'</div>'
+                        //     +'<div class="status"><i class="iconfont icon-gou"></i>'
+                        //     +'</div>'
+                        //     +'<div class="fileName">封面3.jpg</div>'
+                        //     +'</div>';
+                        // $("#editFileUploadContent .box").append(html);
+                        $("#editPictureHide2").val(data.picUrl2);
+                        /*getImgToBase64(data.picUrl2,function(data){
+                            console.log(3);
+                            var file = dataURLtoFile(data,"封面3.jpg");
+                            fileList =[];
+                            fileList.push(file);
+                            uploadTools.addFileList(fileList,opt);
+                        });*/
 
-                    var canvas2 = document.createElement('canvas'),
-                        ctx2 = canvas2.getContext('2d'),
-                        img2 = new Image;
-                    img2.crossOrigin = 'Anonymous';
-                    img2.onload = function(){
-                        canvas2.height = img2.height;
-                        canvas2.width = img2.width;
-                        ctx2.drawImage(img2,0,0);
-                        var dataURL2 = canvas2.toDataURL('image/png');
+                        var canvas2 = document.createElement('canvas'),
+                            ctx2 = canvas2.getContext('2d'),
+                            img2 = new Image;
+                        img2.crossOrigin = 'Anonymous';
+                        img2.onload = function(){
+                            canvas2.height = img2.height;
+                            canvas2.width = img2.width;
+                            ctx2.drawImage(img2,0,0);
+                            var dataURL2 = canvas2.toDataURL('image/png');
 
-                        console.log(3);
-                        var file = dataURLtoFile(dataURL2,"封面3.jpg");
-                        fileList =[];
-                        fileList.push(file);
-                        uploadTools.addFileList(fileList,opt);
+                            console.log(3);
+                            var file = dataURLtoFile(dataURL2,"封面3.jpg");
+                            fileList =[];
+                            fileList.push(file);
+                            uploadTools.addFileList(fileList,opt);
 
-                        canvas2 = null;
-                    };
-                    img2.src = data.picUrl2;
-                }
-
+                            canvas2 = null;
+                        };
+                        img2.src = data.picUrl2;
+                    }
+                }, 80);//加了500毫秒延迟
             }
         }
     };
@@ -695,7 +696,7 @@ function dataURLtoFile(dataurl, filename) {
 
 //修改页面保存按钮事件
 function editSaveProduct() {
-    var jsonProduct = commonObj.getJsonObjectByFormWithEditor('editProductForm', this.editor);
+    var jsonProduct = commonObj.getJsonObjectByFormWithEditor('editProductForm', this.editor, "content");
     var pictureUrl0 = $("#editPictureHide0").val();
     var pictureUrl1 = $("#editPictureHide1").val();
     var pictureUrl2 = $("#editPictureHide2").val();
@@ -821,7 +822,6 @@ function showProduct(productId, productNo) {
     $("#detailPictureHide0").val('');
     $("#detailPictureHide1").val('');
     $("#detailPictureHide2").val('');
-    initEditor("editor_detail");
 
     var id = productId;
     //设置请求参数
@@ -841,7 +841,7 @@ function showProduct(productId, productNo) {
                 $('#detail_title').val(data.title);
                 $('#detail_description').val(data.description);
 
-                editor.txt.html(data.content);
+                $('#editor_detail').html(data.content);
 
                 $("#detailFileUploadContent .box").empty();
                 var html;
@@ -857,8 +857,6 @@ function showProduct(productId, productNo) {
                     $("#detailPictureHide0").val(data.picUrl);
                 }
 
-                setTimeout(200);//加了500毫秒延迟
-
                 if(data.picUrl1 != null && data.picUrl1 != ''){
                     html = '<div class="fileItem" filecodeid="1">'
                         +'<div class="imgShow">'
@@ -869,8 +867,6 @@ function showProduct(productId, productNo) {
                     $("#detailFileUploadContent .box").append(html);
                     $("#detailPictureHide1").val(data.picUrl1);
                 }
-
-                setTimeout(1200);//加了500毫秒延迟
 
                 if(data.picUrl2 != null && data.picUrl2 != ''){
                     html = '<div class="fileItem" filecodeid="2">'
