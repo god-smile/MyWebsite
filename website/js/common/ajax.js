@@ -71,64 +71,70 @@ dataUrl.util = {
     queryWebSiteProductInfoForPage: function () {
         return baseURL + '/webSiteProductInfo/queryWebSiteProductInfoForPage';
     },
-    // 查询产品
-    selectSiteProductInfo: function () {
-        return baseURL + '/siteProductInfo/selectSiteProductInfo';
+    // 查询所有产品
+    queryAllWebSiteProductInfo: function () {
+        return baseURL + '/webSiteProductInfo/queryAllWebSiteProductInfo';
     },
-    // 修改产品
+// 查询产品
+    selectWebSiteProductInfo: function () {
+        return baseURL + '/webSiteProductInfo/selectWebSiteProductInfo';
+    }
+    ,
+// 修改产品
     updateSiteProductInfoById: function () {
         return baseURL + '/siteProductInfo/updateSiteProductInfoById';
-    },
-    // 删除产品
-    deleteSiteProductInfo: function () {
-        return baseURL + '/siteProductInfo/deleteSiteProductInfo';
-    },
+    }
+    ,
     /******************************产品管理 end***********************/
     /******************************项目管理 start***********************/
-    // 查询项目
+// 查询项目
     getSysProjectInfoByUrl: function () {
         return baseURL + '/webSiteProjectInfo/getWebSiteProjectInfoByUrl';
-    },
-    // 查询项目
+    }
+    ,
+// 查询项目
     getSysProjectInfoByUserNo: function () {
         return baseURL + '/sysProjectInfo/getSysProjectInfoByUserNo';
-    },
+    }
+    ,
     /******************************项目管理 end***********************/
-};
+}
+;
 
 //公共接口
 commonFun = {
-    getToken:function(){
+    getToken: function () {
         var token = sessionStorage.getItem("token");
         return token;
     },
-    setToken:function(token){
-        sessionStorage.setItem("token",token);
+    setToken: function (token) {
+        sessionStorage.setItem("token", token);
     },
-    setUser:function (user) {
+    setUser: function (user) {
         sessionStorage.setItem("user", JSON.stringify(user));
     },
-    getLoginUserNo:function () {
+    getLoginUserNo: function () {
         return JSON.parse(sessionStorage.getItem("user")).userNo;
     },
-    getLoginUserName:function () {
+    getLoginUserName: function () {
         return JSON.parse(sessionStorage.getItem("user")).userName;
     },
-    getProjectNo:function () {
+    getProjectNo: function () {
         return sessionStorage.getItem("projectNo");
     },
-    setProjectNo:function (projectNo) {
+    setProjectNo: function (projectNo) {
         sessionStorage.setItem("projectNo", projectNo);
     },
-    getProjectIndexUrl:function () {
+    getProjectIndexUrl: function () {
         return sessionStorage.getItem("indexUrl");
     },
-    setProjectIndexUrl:function (indexUrl) {
+    setProjectIndexUrl: function (indexUrl) {
         sessionStorage.setItem("indexUrl", indexUrl);
     },
 }
-function getAjax(opts){
-    
+
+function getAjax(opts) {
+
     //一.设置默认参数
     var defaults = {
         method: 'POST',
@@ -161,8 +167,8 @@ function getAjax(opts){
             //设置请求头
             //xhr.setRequestHeader("User-Agent", "headertest");
             //console.log(JSON.stringify(sysComm));
-            xhr.setRequestHeader("x-auth-token",commonFun.getToken());
-            
+            xhr.setRequestHeader("x-auth-token", commonFun.getToken());
+
         },
         success: function (res, status, xhr) {
 
@@ -172,10 +178,10 @@ function getAjax(opts){
                 parent.open("../zxcv_login/login.html", "_top");*/
 
                 AlertAndOpen("登录信息失效，请重新登录！", "../zxcv_login/login.html");
-            }else{
+            } else {
                 defaults.success(res, status, xhr);
             }
-            
+
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             /*if (textStatus == "timeout") {
@@ -193,7 +199,7 @@ function getAjax(opts){
  * 登录ajax
  * @param opts
  */
-function loginAjax(opts){
+function loginAjax(opts) {
 
     //一.设置默认参数
     var defaults = {

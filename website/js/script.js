@@ -122,6 +122,8 @@
 			}
 		]
 	});
+
+
 	// Item Slider
 	$('.items-container').slick({
 		infinite: true,
@@ -146,6 +148,8 @@
 			}
 		]
 	});
+
+
 	// Testimonial Slider
 	$('.testimonial-carousel').slick({
 		infinite: true,
