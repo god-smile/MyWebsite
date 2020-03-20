@@ -11,8 +11,24 @@
 }
 
 .product-img20 {
-    width:250px !important;
-    height: 250px !important;
+    /* width:250px !important;
+    height: 250px !important; */
+    width: 180px !important;
+    height: 240px !important;
+    margin-right: 18px;
+    margin-left: 18px;
+    margin-bottom: 20px;
+    box-shadow: #ccc 5px 5px 15px 3px;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+.product-img20 img{
+    width: 180px;
+    height: 180px;
+}
+
+.product-title {
+    margin-top: 10px;
 }
 
 .news-list100 {

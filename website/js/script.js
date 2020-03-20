@@ -125,7 +125,7 @@
 
 
 	// Item Slider
-	$('.items-container').slick({
+	/*$('.items-container').slick({
 		infinite: true,
 		arrows: true,
 		autoplay: true,
@@ -147,7 +147,7 @@
 				}
 			}
 		]
-	});
+	});*/
 
 
 	// Testimonial Slider

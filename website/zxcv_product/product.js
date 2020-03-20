@@ -3,7 +3,11 @@
  */
 
 $(function () {
-    $("#public-header").load("../zxcv_public/public-header.html");
+    $("#public-header").load("../zxcv_public/public-header.html",function(){
+        var sc =  document.createElement("script");
+        sc.src= "../zxcv_public/public-header.js";
+        $("body").append(sc);
+    });
     $("#public-footer").load("../zxcv_public/public-footer.html");
 
     loadProduct();
@@ -49,7 +53,7 @@ function generateProductList(total, rows) {
         html += "     <div class='text-center'>";
         html += "         <a href='product-detail.html?pno=" + rows[i].productNo + "'>";
         html += "             <img src='" + rows[i].picUrl + "' alt='team'>";
-        html += "             <h6>" + rows[i].title.substring(0, 10) + "</h6>";
+        html += "             <h6 class='product-title'>" + rows[i].title.substring(0, 10) + "</h6>";
         html += "             <p>" + rows[i].description.substring(0, 40) + "</p>";
         html += "         </a>";
         html += "     </div>";

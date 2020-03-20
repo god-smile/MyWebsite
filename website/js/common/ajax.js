@@ -1,6 +1,6 @@
 //ajax的封装
-var baseURL = 'http://localhost:8088';
-//var baseURL = 'https://zxcv.vip/web';
+// var baseURL = 'http://localhost:8088';
+var baseURL = 'http://lh.zxcv.vip/web';
 
 var dataUrl = {};
 dataUrl.util = {
@@ -95,38 +95,57 @@ dataUrl.util = {
 
 //公共接口
 commonFun = {
-    getToken: function () {
-        var token = sessionStorage.getItem("token");
-        return token;
-    },
-    setToken: function (token) {
-        sessionStorage.setItem("token", token);
-    },
-    setUser: function (user) {
-        sessionStorage.setItem("user", JSON.stringify(user));
-    },
-    getLoginUserNo: function () {
-        return JSON.parse(sessionStorage.getItem("user")).userNo;
-    },
-    getLoginUserName: function () {
-        return JSON.parse(sessionStorage.getItem("user")).userName;
-    },
-    getProjectNo:function () {
-        return localStorage.getItem("projectNo");
-    },
-    setProjectNo:function (projectNo) {
+    checkLocalStorage:function() {
         if(!window.localStorage){
             alert("浏览器不支持localstorage");
             return false;
-        }else {
+        }
+        return true;
+    },
+    getToken: function () {
+        if(this.checkLocalStorage()) {
+            return localStorage.getItem("token");
+        }
+    },
+    setToken: function (token) {
+        if(this.checkLocalStorage()) {
+            localStorage.setItem("token", token);
+        }
+    },
+    setUser: function (user) {
+        if(this.checkLocalStorage()) {
+            localStorage.setItem("user", JSON.stringify(user));
+        }
+    },
+    getLoginUserNo: function () {
+        if(this.checkLocalStorage()) {
+            return JSON.parse(localStorage.getItem("user")).userNo;
+        }
+    },
+    getLoginUserName: function () {
+        if(this.checkLocalStorage()) {
+            return JSON.parse(localStorage.getItem("user")).userName;
+        }
+    },
+    getProjectNo:function () {
+        if(this.checkLocalStorage()) {
+            return localStorage.getItem("projectNo");
+        }
+    },
+    setProjectNo:function (projectNo) {
+        if(this.checkLocalStorage()){
             localStorage.setItem("projectNo", projectNo);
         }
     },
     getProjectIndexUrl: function () {
-        return sessionStorage.getItem("indexUrl");
+        if(this.checkLocalStorage()) {
+            return localStorage.getItem("indexUrl");
+        }
     },
     setProjectIndexUrl: function (indexUrl) {
-        sessionStorage.setItem("indexUrl", indexUrl);
+        if(this.checkLocalStorage()) {
+            localStorage.setItem("indexUrl", indexUrl);
+        }
     },
 }
 
