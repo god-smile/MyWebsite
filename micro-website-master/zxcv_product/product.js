@@ -529,31 +529,7 @@ function editProduct(productId, productNo) {
                 // var html='';
                 var fileList=[];
                 if(data.picUrl != null && data.picUrl != ''){
-                    // html = '<div class="fileItem" filecodeid="0">'
-                    //     +'<div class="imgShow">'
-                    //     +'<img src="'+data.picUrl+'">'
-                    //     +'</div>'
-                    //     +'<div class="status"><i class="iconfont icon-gou"></i>'
-                    //     +'</div>'
-                    //     +'<div class="fileName">封面1.jpg</div>'
-                    //     +'</div>';
-                    // $("#editFileUploadContent .box").append(html);
                     $("#editPictureHide0").val(data.picUrl);
-                    // let file = commonObj.getFile("封面1.jpg");
-                    // fileList.push(file);
-                    // debugger;
-                    // uploadTools.addFileList(fileList,opt);
-
-
-                    /*getImgToBase64(data.picUrl,function(data){
-                        console.log(1);
-                        var file = dataURLtoFile(data,"封面1.jpg");
-                        fileList =[];
-                        fileList.push(file);
-                        uploadTools.addFileList(fileList,opt);
-                    });*/
-
-
 
                     var canvas = document.createElement('canvas'),
                         ctx = canvas.getContext('2d'),
@@ -574,29 +550,11 @@ function editProduct(productId, productNo) {
                         canvas = null;
                     };
                     img.src = data.picUrl;
-
-
                 }
 
                 setTimeout(function () {
                     if(data.picUrl1 != null && data.picUrl1 != ''){
-                        // html = '<div class="fileItem" filecodeid="1">'
-                        //     +'<div class="imgShow">'
-                        //     +'<img src="'+data.picUrl1+'">'
-                        //     +'</div>'
-                        //     +'<div class="status"><i class="iconfont icon-gou"></i>'
-                        //     +'</div>'
-                        //     +'<div class="fileName">封面2.jpg</div>'
-                        //     +'</div>';
-                        // $("#editFileUploadContent .box").append(html);
                         $("#editPictureHide1").val(data.picUrl1);
-                        /*getImgToBase64(data.picUrl1,function(data){
-                            console.log(2);
-                            var file = dataURLtoFile(data,"封面2.jpg");
-                            fileList =[];
-                            fileList.push(file);
-                            uploadTools.addFileList(fileList,opt);
-                        });*/
 
                         var canvas1 = document.createElement('canvas'),
                             ctx1 = canvas1.getContext('2d'),
@@ -620,27 +578,9 @@ function editProduct(productId, productNo) {
                     }
                 }, 20);//加了500毫秒延迟
 
-
-
                 setTimeout(function () {
                     if(data.picUrl2 != null && data.picUrl2 != ''){
-                        // html = '<div class="fileItem" filecodeid="2">'
-                        //     +'<div class="imgShow">'
-                        //     +'<img src="'+data.picUrl2+'">'
-                        //     +'</div>'
-                        //     +'<div class="status"><i class="iconfont icon-gou"></i>'
-                        //     +'</div>'
-                        //     +'<div class="fileName">封面3.jpg</div>'
-                        //     +'</div>';
-                        // $("#editFileUploadContent .box").append(html);
                         $("#editPictureHide2").val(data.picUrl2);
-                        /*getImgToBase64(data.picUrl2,function(data){
-                            console.log(3);
-                            var file = dataURLtoFile(data,"封面3.jpg");
-                            fileList =[];
-                            fileList.push(file);
-                            uploadTools.addFileList(fileList,opt);
-                        });*/
 
                         var canvas2 = document.createElement('canvas'),
                             ctx2 = canvas2.getContext('2d'),
