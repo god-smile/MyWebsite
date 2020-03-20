@@ -672,16 +672,16 @@ function getImgToBase64(url,callback){
     var canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         img = new Image;
-    img.crossOrigin = 'Anonymous';
-    img.onload = function(){
-        canvas.height = img.height;
-        canvas.width = img.width;
-        ctx.drawImage(img,0,0);
-        var dataURL = canvas.toDataURL('image/png');
-        callback(dataURL);
-        canvas = null;
-    };
-    img.src = url;
+        img.crossOrigin = 'Anonymous';
+        img.onload = function(){
+            canvas.height = img.height;
+            canvas.width = img.width;
+            ctx.drawImage(img,0,0);
+            var dataURL = canvas.toDataURL('image/png');
+            callback(dataURL);
+            canvas = null;
+        };
+        img.src = url;
 }
 function dataURLtoFile(dataurl, filename) {
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
