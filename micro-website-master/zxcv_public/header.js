@@ -96,5 +96,5 @@ function logout() {
     });
 }
 function destroySessionValue() {
-    sessionStorage.clear();
+    localStorage.clear();
 }

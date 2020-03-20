@@ -1,6 +1,6 @@
 //ajax的封装
-// var baseURL = 'http://localhost:8088';
-var baseURL = 'https://zxcv.vip/web';
+var baseURL = 'http://localhost:8088';
+// var baseURL = 'https://zxcv.vip/web';
 
 var dataUrl = {};
 dataUrl.util = {
@@ -102,69 +102,95 @@ dataUrl.util = {
 
 //公共接口
 commonFun = {
+    checkLocalStorage:function() {
+        if(!window.localStorage){
+            alert("浏览器不支持localstorage");
+            return false;
+        }
+        return true;
+    },
     getToken:function(){
-        var token = sessionStorage.getItem("token");
-        return token;
+        if(this.checkLocalStorage()) {
+            return localStorage.getItem("token");
+        }
     },
     setToken:function(token){
-        sessionStorage.setItem("token",token);
+        if(this.checkLocalStorage()) {
+            localStorage.setItem("token", token);
+        }
     },
     setUser:function (user) {
-        sessionStorage.setItem("user", JSON.stringify(user));
+        if(this.checkLocalStorage()) {
+            localStorage.setItem("user", JSON.stringify(user));
+        }
     },
     getLoginUserNo:function () {
-        return JSON.parse(sessionStorage.getItem("user")).userNo;
+        if(this.checkLocalStorage()) {
+            return JSON.parse(localStorage.getItem("user")).userNo;
+        }
     },
     getLoginUserName:function () {
-        return JSON.parse(sessionStorage.getItem("user")).userName;
+        if(this.checkLocalStorage()) {
+            return JSON.parse(localStorage.getItem("user")).userName;
+        }
     },
     getProjectNo:function () {
-        return sessionStorage.getItem("projectNo");
+        if(this.checkLocalStorage()) {
+            return localStorage.getItem("projectNo");
+        }
     },
     setProjectNo:function (projectNo) {
-        sessionStorage.setItem("projectNo", projectNo);
+        if(this.checkLocalStorage()) {
+            localStorage.setItem("projectNo", projectNo);
+        }
     },
     getProjectIndexUrl:function () {
-        return sessionStorage.getItem("indexUrl");
+        if(this.checkLocalStorage()) {
+            return localStorage.getItem("indexUrl");
+        }
     },
     setProjectIndexUrl:function (indexUrl) {
-        sessionStorage.setItem("indexUrl", indexUrl);
+        if(this.checkLocalStorage()) {
+            localStorage.setItem("indexUrl", indexUrl);
+        }
     },
     getUserProjects:function(){
-        var projects = sessionStorage.getItem('projects');
+        if(this.checkLocalStorage()) {
+            var projects = localStorage.getItem('projects');
 
-        if(projects != undefined && projects != null){
-            projects = JSON.parse(projects);
-            return projects
-        }
-        if(projects == undefined || projects == null){
-            var userNo = commonFun.getLoginUserNo();
-            var req = {
-                userNo: userNo
-            };
-            var opt = {
-                method: 'post',
-                url: dataUrl.util.getSysProjectInfoByUserNo(),
-                data: JSON.stringify(req),
-                sync:false,
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                success: function (res) {
-                    if (res.code == '8888') {
-                        var length = res.data.length;
-                        if (length <= 0) {
-                            parent.content.ErrorAlertManual("该用户没有关联项目，请联系管理员");
-                            return;
-                        }else{
-                            var data =res.data;
-                            sessionStorage.setItem("projects", JSON.stringify(data));
-                            return data;
+            if (projects != undefined && projects != null) {
+                projects = JSON.parse(projects);
+                return projects
+            }
+            if (projects == undefined || projects == null) {
+                var userNo = commonFun.getLoginUserNo();
+                var req = {
+                    userNo: userNo
+                };
+                var opt = {
+                    method: 'post',
+                    url: dataUrl.util.getSysProjectInfoByUserNo(),
+                    data: JSON.stringify(req),
+                    sync: false,
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.code == '8888') {
+                            var length = res.data.length;
+                            if (length <= 0) {
+                                parent.content.ErrorAlertManual("该用户没有关联项目，请联系管理员");
+                                return;
+                            } else {
+                                var data = res.data;
+                                localStorage.setItem("projects", JSON.stringify(data));
+                                return data;
+                            }
+
                         }
-
                     }
-                }
-            };
-            getAjax(opt);
+                };
+                getAjax(opt);
+            }
         }
 
     }
