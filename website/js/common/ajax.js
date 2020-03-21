@@ -1,6 +1,6 @@
 //ajax的封装
-// var baseURL = 'http://localhost:8088';
-var baseURL = 'http://lh.zxcv.vip/web';
+var baseURL = 'http://localhost:8088';
+// var baseURL = 'http://lh.zxcv.vip/web';
 
 var dataUrl = {};
 dataUrl.util = {
