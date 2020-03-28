@@ -157,7 +157,9 @@ var commonObj={
         var obj = $('#' + formId).serialize();
         obj = decodeURIComponent(obj, true);
         var jsonobj = JSON.parse(commonObj.formToJson(obj));
-        jsonobj[variable] = editor.txt.html();
+        if (editor != null && variable != null) {
+            jsonobj[variable] = editor.txt.html();
+        }
         jsonobj['projectNo'] = commonFun.getProjectNo();
         return jsonobj;
     },

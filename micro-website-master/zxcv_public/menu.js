@@ -29,13 +29,19 @@ function clickMenu(target) {
             window.open("../zxcv_index/index.html", "_top");
             break;
         case 'news':
-            window.open("../zxcv_news/news.html", "_top");
+            window.open("../zxcv_news/company.html", "_top");
             break;
         case 'product':
             window.open("../zxcv_product/product.html", "_top");
             break;
         case 'user':
             window.open("../zxcv_user/user.html", "_top");
+            break;
+        case 'dict':
+            window.open("../zxcv_dict/company.html", "_top");
+            break;
+        case 'company':
+            window.open("../zxcv_company/company.html", "_top");
             break;
         default:
             break;
