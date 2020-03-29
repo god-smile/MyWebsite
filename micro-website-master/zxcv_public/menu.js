@@ -38,7 +38,7 @@ function clickMenu(target) {
             window.open("../zxcv_user/user.html", "_top");
             break;
         case 'dict':
-            window.open("../zxcv_dict/company.html", "_top");
+            window.open("../zxcv_dict/dict.html", "_top");
             break;
         case 'company':
             window.open("../zxcv_company/company.html", "_top");

@@ -124,8 +124,8 @@ function addDict() {
     setTimeout(function () {
         $('#dictContent').removeClass('animated slideOutLeft').css('display', 'none');
     }, fadeTime);
-    $('#adddict').css('display', 'block');
-    $('#adddict').addClass('animated slideInRight');
+    $('#addDict').css('display', 'block');
+    $('#addDict').addClass('animated slideInRight');
 }
 // 新增页面表单验证
 function addSaveDict() {
